@@ -1,0 +1,17 @@
+# Maintainer: npaladin2000
+
+pkgname=flycast_xtreme_libretro_go2
+pkgver=1.0.0
+pkgrel=3
+pkgdesc='Dependencies for 32 bit flycast using RetroRun'
+arch=(aarch64)
+license=(GPL2)
+source=(retrorun32
+        libevdev.so.2.3.0
+)
+
+package() {
+    install -Dm 755 retrorun32 -t "$pkgdir"/usr/bin
+    install -Dm 755 libevdev.so.2.3.0 "$pkgdir"/usr/arm-linux-gnueabihf
+    ln -s  /usr/arm-linux-gnueabihf/libevdev.so.2.3.0 /usr/arm-linux-gnueabihf/libevdev.so.2
+}
