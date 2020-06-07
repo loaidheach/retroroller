@@ -2,7 +2,7 @@
 
 su odroid -c 'mkdir -p /home/odroid/.emulationstation/themes'
 
-for d in arcade dreamcast atomiswave naomi saturn neogeo cps1 cps2 cps3 cps mame2003 mame fds nes virtualboy sufami snes_msu1 snes intellivision n64 gb gbc gba sgb psx nds psp sg-1000 mastersystem megadrive genesis segacd sega32x gamegear ngp ngpc tg16cd tg16 pcengine pcenginecd supergrafx vectrex wonderswan wonderswancolor atari2600 atari5200 atari800 atari7800 atarilynx msx2 msx dos coleco scummvm c64 pokemini; do 
+for d in arcade dreamcast atomiswave naomi saturn neogeo cps1 cps2 cps3 cps mame2003 mame fds nes virtualboy sufami snesmsu1 snes intellivision n64 gb gbc gba sgb psx nds psp sg-1000 mastersystem megadrive genesis segacd sega32x gamegear ngp ngpc tg16cd tg16 pcengine pcenginecd supergrafx vectrex wonderswan wonderswancolor atari2600 atari5200 atari800 atari7800 atarilynx msx2 msx dos coleco scummvm c64 pokemini; do 
 	mkdir -p /roms/$d
 	chown odroid:odroid /roms/$d
 done
