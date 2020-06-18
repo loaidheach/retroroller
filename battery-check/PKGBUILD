@@ -2,7 +2,7 @@
 
 pkgname=battery-check
 pkgver=1.1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Flashes LED when battery is low"
 arch=('aarch64')
 url=https://github.com/valadaa48
@@ -11,7 +11,6 @@ source=(
     'battery-check'
     'battery-check.service'
 )
-install=battery-check.install
 md5sums=('2cf3d1b8eb1961f646480339c6723279'
          'd24add9828a9adc21f8f7a08c854207e')
 

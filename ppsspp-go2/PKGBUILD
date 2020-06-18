@@ -1,7 +1,7 @@
 # Maintainer: valadaa48
 
 pkgname=ppsspp-go2
-pkgver=121.e4c6359
+pkgver=374.04c7915
 pkgrel=1
 pkgdesc='A PSP emulator written in C++ built against libgo2'
 arch=(x86_64 aarch64)

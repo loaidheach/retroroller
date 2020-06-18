@@ -1,6 +1,0 @@
-post_upgrade() {
-    if [ ! -e /etc/systemd/system/multi-user.target.wants/retrolauncher.service ]; then
-        systemctl disable retrolauncher
-        systemctl enable retrolauncher
-    fi
-}

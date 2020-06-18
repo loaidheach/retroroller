@@ -3,7 +3,7 @@
 _pkgname=emulationstation
 pkgname=emuelec-emulationstation
 pkgver=3529.5332d6d7
-pkgrel=1
+pkgrel=2
 pkgdesc="Emulation Station is a flexible emulator front-end supporting keyboardless navigation and custom system themes. EmuELEC edition."
 arch=(any)
 url="https://github.com/EmuELEC/emuelec-emulationstation"
@@ -22,7 +22,6 @@ depends=(
 makedepends=('cmake' 'curl' 'git')
 provides=(emulationstation)
 conflicts=(emulationstation)
-install=emuelec-emulationstation.install
 source=(
   "emulationstation::git+https://github.com/valadaa48/batocera-emulationstation#branch=rr"
   "git+https://github.com/valadaa48/EmuELEC#branch=rr"

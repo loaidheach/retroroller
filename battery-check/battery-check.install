@@ -1,4 +1,0 @@
-post_upgrade() {
-    systemctl disable battery-check
-    systemctl enable battery-check
-}

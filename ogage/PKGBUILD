@@ -1,8 +1,8 @@
 # Maintainer: valadaa48 <valadaa48@gmx.com>
 
 pkgname=ogage
-pkgver=0.1.0
-pkgrel=2
+pkgver=0.2.0
+pkgrel=1
 pkgdesc="ogage"
 arch=('aarch64')
 url=https://github.com/valadaa48
@@ -12,7 +12,7 @@ source=(
     'ogage'
     'ogage.service'
 )
-md5sums=('ce0eab5db1a3fb3e0a8168752c07b31a'
+md5sums=('eb08e85bb709057f8f5210813a0cdb4e'
          '24363699bd8c29c8e81eb0a3e9f07978')
 
 package() {

@@ -3,7 +3,7 @@
 _pkgname=retrolauncher
 pkgname=retrolauncher2
 pkgver=0.4.2
-pkgrel=2
+pkgrel=4
 pkgdesc="Low resource launcher2"
 arch=('any')
 url=https://github.com/valadaa48/retrolauncher2
@@ -38,8 +38,6 @@ provides=(retrolauncher)
 backup=(
   home/odroid/.config/retrolauncher/retrolauncher.toml
 )
-
-install=retrolauncher2.install
 
 prepare() {
   cd ${pkgname}

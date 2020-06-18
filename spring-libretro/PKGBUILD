@@ -1,8 +1,8 @@
 # Maintainer: valadaa48 <valadaa48@gmx.com>
 
 pkgname=spring-libretro
-pkgver=1.3b30e90
-pkgrel=4
+pkgver=2.7c754b5
+pkgrel=1
 pkgdesc="Spring libretro launcher"
 arch=('aarch64')
 url="https://github.com/valadaa48/spring-libretro"
@@ -10,6 +10,7 @@ license=('MIT')
 makedepends=('git')
 options=(!buildflags)
 source=(
+  #'git+https://github.com/valadaa48/spring-libretro#commit=3b30e903f'
   'git+https://github.com/valadaa48/spring-libretro'
   spring_drastic_libretro.info
   spring_mupen_libretro.info

@@ -4,7 +4,7 @@ epoch=1
 
 _pkgname=RetroArch
 pkgname=retroarch-odroidgo2
-pkgver=54321.eb78b608d3
+pkgver=54383.7a97f9ebeb
 pkgrel=1
 pkgdesc="Retroarch for odroidgo2"
 arch=('aarch64')
@@ -24,14 +24,15 @@ depends=(
   zlib
 )
 source=(
-#  'git+https://github.com/valadaa48/RetroArch'
-  'git+https://github.com/libretro/RetroArch'
+  'git+https://github.com/valadaa48/RetroArch#branch=ozone_oga'
+#  'git+https://github.com/libretro/RetroArch'
   'retroarch.cfg'
+  'retroarch.service'
 )
 backup=('etc/retroarch.cfg')
 md5sums=('SKIP'
-         'ba2da9cd6b6fc81c75b6d9a1a4bf65f5')
-options=(!strip)
+         'ba2da9cd6b6fc81c75b6d9a1a4bf65f5'
+         'a68f468e4eb5afa92b37d4e916dba57e')
 
 pkgver() {
   cd "$_pkgname"
@@ -44,8 +45,8 @@ prepare() {
 }
 
 build() {
-  export CXXFLAGS="$CXXFLAGS -fno-rtti -std=gnu++11 -g"
-  export CFLAGS="$CFLAGS -g"
+  export CXXFLAGS="$CXXFLAGS -fno-rtti -std=gnu++11"
+  export CFLAGS="$CFLAGS"
 
   cd "$_pkgname"
   ./configure \
@@ -57,7 +58,7 @@ build() {
     --disable-miniupnpc \
     --disable-opengl \
     --disable-opengl1 \
-    --disable-ozone \
+    --enable-ozone \
     --disable-pulse \
     --disable-qt \
     --disable-sdl \
@@ -86,5 +87,7 @@ package() {
   cd "$_pkgname"
   make DESTDIR="$pkgdir" install
   install -Dm644 ../retroarch.cfg -t "$pkgdir"/etc
+
+  install -Dm644 ../retroarch.service -t "$pkgdir"/usr/lib/systemd/system
 }
 
