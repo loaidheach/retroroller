@@ -5,8 +5,8 @@ log_file = "/tmp/retrolauncher.log"
 
 [shortcuts]
 f1 = { name = "RA", cmd = "retroarch" }
-f2 = { name = "RA32", cmd = "retroarch32" }
-f3 = { name = "Hotkey" }
+f2 = { name = "Hotkey" }
+f3 = { name = "RA32", cmd = "retroarch32" }
 f4 = { name = "ES", cmd = "emulationstation" }
 f5 = { name = "Shutdown", cmd = "sudo systemctl poweroff" }
 f6 = { name = "Reboot", cmd = "sudo systemctl reboot" }
