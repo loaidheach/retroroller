@@ -32,7 +32,7 @@ cmd = "performance on; ppsspp; performance off"
 
 [[apps]]
 name = "Dr4st1c"
-cmd = "/usr/bin/drastic/drastic.sh"
+cmd = "performance on; cd ~/drastic/; ./drastic; performance off"
 
 [[apps]]
 name = "\n:: System Utils ::\n"
