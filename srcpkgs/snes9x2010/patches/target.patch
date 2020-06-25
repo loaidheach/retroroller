@@ -1,0 +1,16 @@
+--- Makefile.libretro	2020-05-18 07:25:12.000000000 -0400
++++ Makefile.libretro	2020-06-19 07:36:29.218926664 -0400
+@@ -309,6 +309,13 @@
+         CFLAGS += -fomit-frame-pointer -ffast-math
+         HAVE_NEON = 1
+ 
++else ifeq ($(platform), goadvance)
++        TARGET := $(TARGET_NAME)_libretro.so
++        fpic := -fPIC
++        SHARED := -shared -Wl,--version-script=libretro/link.T -Wl,--no-undefined
++        CFLAGS += -DARM
++        HAVE_NEON = 1
++
+ # Classic Platforms ####################
+ # Platform affix = classic_<ISA>_<µARCH>
+ # Help at https://modmyclassic.com/comp

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+sudo ARCH=armv7l XBPS_ARCH=armv7l XBPS_TARGET_ARCH=armv7l xbps-install --root /usr/arm -R https://mirror.clarkson.edu/voidlinux/current -R /home/odroid/oga $*
+
+

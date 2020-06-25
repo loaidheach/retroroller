@@ -1,0 +1,72 @@
+# Template file for 'mupen64plus-go2'
+pkgname=mupen64plus-go2
+version=2.5.9
+revision=1
+create_wrksrc=yes
+hostmakedepends="pkg-config git which"
+makedepends="boost-devel SDL2-devel speexdsp-devel freetype-devel glu-devel libpng-devel libsamplerate-devel libgo2-devel MesaLib-devel"
+short_desc="A Nintendo64 Emulator for go2"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-2"
+homepage="http://www.mupen64plus.org"
+archs="aarch64"
+
+_components='core rsp-hle video-rice audio-sdl input-sdl ui-console'
+_opts='BITS=64 USE_GLES=1 NEW_DYNAREC=1 OPTFLAGS="-O3" V=1 HOST_CPU=aarch64 PIE=1 PLUGINDIR=/usr/lib/mupen64plus'
+
+do_extract() {
+	git clone --depth=1 https://github.com/OtherCrashOverride/mupen64plus-core-go2 mupen64plus-core
+	git clone --depth=1 https://github.com/mupen64plus/mupen64plus-rsp-hle
+    git clone --depth=1 https://github.com/mupen64plus/mupen64plus-video-rice
+    git clone --depth=1 https://github.com/mupen64plus/mupen64plus-audio-sdl
+    git clone --depth=1 https://github.com/OtherCrashOverride/mupen64plus-input-sdl-go2 mupen64plus-input-sdl
+    git clone --depth=1 https://github.com/mupen64plus/mupen64plus-ui-console
+}
+
+do_patch() {
+    cd mupen64plus-video-rice
+    patch -Np1 < ${FILESDIR}/mupen64plus-video-rice-aarch64.patch
+    patch -Np1 < ${FILESDIR}/mupen64plus-video-rice-res.patch
+}
+
+do_build() {
+  local _component
+
+  export CROSS_COMPILE=aarch64-linux-gnu-
+  vsed -i mupen64plus-core/projects/unix/Makefile -e "s/SDL_CONFIG = \$(CROSS_COMPILE)sdl2-config/SDL_CONFIG = sdl2-config/"
+  vsed -i mupen64plus-core/src/api/vidext.c -e "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:"
+  vsed -i mupen64plus-video-rice/projects/unix/Makefile -e "s/SDL_CONFIG = \$(CROSS_COMPILE)sdl2-config/SDL_CONFIG = sdl2-config/"
+  vsed -i mupen64plus-audio-sdl/projects/unix/Makefile -e "s/SDL_CONFIG = \$(CROSS_COMPILE)sdl2-config/SDL_CONFIG = sdl2-config/"
+  vsed -i mupen64plus-input-sdl/projects/unix/Makefile -e "s/SDL_CONFIG = \$(CROSS_COMPILE)sdl2-config/SDL_CONFIG = sdl2-config/"
+  vsed -i mupen64plus-ui-console/projects/unix/Makefile -e "s/SDL_CONFIG = \$(CROSS_COMPILE)sdl2-config/SDL_CONFIG = sdl2-config/"
+
+  export CFLAGS="$CFLAGS -Ofast -pipe -march=armv8-a+crc+simd -mtune=cortex-a35 -mcpu=cortex-a35 -U_FORTIFY_SOURCE -fno-stack-protector -fno-stack-clash-protection -ftree-vectorize -fdata-sections -ffunction-sections -fno-ident -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-math-errno -funsafe-math-optimizations -fomit-frame-pointer -ffast-math"
+  export CXXFLAGS="$CXXFLAGS $CFLAGS"
+  for _component in $_components
+  do
+    make -C "mupen64plus-${_component}/projects/unix" clean
+    make -j8 -C "mupen64plus-${_component}/projects/unix" PREFIX='/usr' $_opts all
+  done
+}
+
+do_install() {
+    local _component _doc _subdoc
+
+    export CROSS_COMPILE=aarch64-linux-gnu-
+    for _component in $_components
+    do
+        make -C "mupen64plus-${_component}/projects/unix" PREFIX='/usr' $_opts install DESTDIR="${DESTDIR}"
+
+    for _doc in LICENSES README RELEASE; do
+      if [ -e "mupen64plus-${_component}/${_doc}" ]; then
+        install -Dm644 "mupen64plus-${_component}/${_doc}" -t "${DESTDIR}/usr/share/doc/mupen64plus-${_component}"
+      fi
+    done
+
+    for _subdoc in gpl-license font-license lgpl-license module-api-versions.txt; do
+      if [ -e "mupen64plus-${_component}/doc/${_subdoc}" ]; then
+        install -Dm644 "mupen64plus-${_component}/doc/${_subdoc}" -t "${DESTDIR}/usr/share/doc/mupen64plus-${_component}"
+      fi
+    done
+  done
+}

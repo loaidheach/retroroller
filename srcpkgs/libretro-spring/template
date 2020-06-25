@@ -1,0 +1,24 @@
+# Template file for 'libretro-spring'
+pkgname=libretro-spring
+version=0.4.0
+revision=1
+_gitrev=master
+wrksrc="spring-libretro-${_gitrev}"
+build_style=gnu-makefile
+makedepends=""
+short_desc="spring launcher for libretro"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/valadaa48/spring-libretro"
+distfiles="https://github.com/valadaa48/spring-libretro/archive/${_gitrev}.tar.gz"
+checksum=0dbf3b1869bbef451aeef26e8c77732487a3cdc70fd84e27afb2cdb48cd6a5e2
+
+do_build() {
+    make V=1 CFLAGS=""
+}
+
+do_install() {
+    vinstall spring_libretro.so 755 opt/libretro
+    vinstall spring_libretro.info 644 opt/libretro
+}
+

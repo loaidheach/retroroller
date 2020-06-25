@@ -1,0 +1,95 @@
+# Template file for 'retroarch'
+pkgname=retroarch-odroidgo2
+version=1.8.9
+revision=2
+_gitrev=d0e426011d8a9727ded3b366e2c7c48996a2b2e2
+wrksrc="RetroArch-${_gitrev}"
+build_style=configure
+configure_args="--prefix=/usr
+ --sysconfdir=/etc
+ --enable-networking
+ --disable-builtinminiupnpc
+ --disable-caca
+ --disable-discord
+ --disable-jack
+ --disable-miniupnpc
+ --disable-opengl
+ --disable-opengl1
+ --enable-ozone
+ --disable-pulse
+ --disable-qt
+ --disable-sdl
+ --disable-sdl2
+ --enable-tinyalsa
+ --disable-libusb
+ --disable-v4l2
+ --disable-wayland
+ --disable-x11
+ --disable-vulkan
+ --disable-ffmpeg
+ --disable-xvideo
+ --enable-alsa
+ --enable-egl
+ --enable-freetype
+ --enable-kms
+ --enable-odroidgo2
+ --enable-opengles
+ --enable-opengles3
+ --enable-udev
+"
+conf_files="/etc/retroarch.cfg"
+hostmakedepends="pkg-config python unzip"
+makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel
+ librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel"
+short_desc="Official reference frontend for the libretro API"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-3.0-or-later"
+homepage="http://www.libretro.com/"
+distfiles="https://github.com/libretro/RetroArch/archive/${_gitrev}.tar.gz"
+#distfiles="https://github.com/valadaa48/RetroArch/archive/${_gitrev}.tar.gz"
+checksum=56b579e1825adec6a0270bb76a8525d1baf29a594903e22563aa800e2142e98e
+nostrip=1
+
+_lto="-flto=$(nproc) -fuse-linker-plugin"
+
+do_configure() {
+	if [ "$CROSS_BUILD" ]; then
+		configure_args+=" --host=${XBPS_CROSS_TRIPLET}"
+	fi
+
+	case "$XBPS_TARGET_MACHINE" in
+		armv7*)
+            configure_args+=" --enable-neon"
+            ;;
+        *)
+            export CFLAGS+=" ${_lto}"
+            export CXXFLAGS+=" ${_lto}"
+            export LDFLAGS+=" ${_lto}"
+            ;;
+    esac
+	
+    export ASFLAGS="$CFLAGS"
+	./configure ${configure_args}
+}
+
+pre_build() {
+	sed -i "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:" gfx/drivers_context/drm_go2_ctx.c
+	sed -i "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:" deps/libgo2/src/display.c
+	sed -i "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:" gfx/drivers/oga_gfx.c
+}
+
+do_build() {
+    local _opts=""
+
+	case "$XBPS_TARGET_MACHINE" in
+		armv7*) _opts+="NEON_CFLAGS='-mfpu=neon-vfpv4 -mfloat-abi=hard' NEON_ASFLAGS='-mfpu=neon-vfpv4 -mfloat-abi=hard'";;
+    esac
+
+    make V=1 -j$(nproc)
+}
+
+post_install() {
+    vinstall ${FILESDIR}/retroarch.cfg 644 etc
+    vsv retroarch
+}
+

@@ -1,0 +1,7 @@
+case "${ACTION}" in
+post)
+    cp opt/libretro/spring* home/odroid/.config/retroarch/cores/
+    rm home/odroid/.config/retroarch/cores/spring_libretro*
+    chown -R odroid:odroid home/odroid
+	;;
+esac

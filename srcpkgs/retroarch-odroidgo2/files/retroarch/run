@@ -1,0 +1,8 @@
+#!/bin/sh
+
+export USER=odroid
+export HOME=/home/odroid
+GROUPS=input:video:audio:odroid:cdrom:wheel:adm
+
+exec chpst -u "$USER:$GROUPS" \
+retroarch

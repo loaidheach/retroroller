@@ -1,0 +1,41 @@
+# Template file for 'libgo2'
+pkgname=libgo2
+version=1.0.0
+revision=1
+_gitrev=fc78629ffc5152035c5872e609b7468254eae9ec
+wrksrc="${pkgname}-${_gitrev}"
+hostmakedepends="premake4"
+makedepends="libopenal-devel alsa-lib-devel libdrm-devel libevdev-devel
+MesaLib-devel librga-devel libpng-devel"
+short_desc="Support library for the ODROID-GO Advance"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-2.0-only"
+homepage="https://github.com/OtherCrashOverride/libgo2"
+distfiles="https://github.com/OtherCrashOverride/libgo2/archive/${_gitrev}.tar.gz"
+checksum=c7cb07f92c509d8aeee478d9bc0e4187450e8373af6fc078c99f44567c198b10
+shlib_provides="libgo2.so"
+
+do_configure() {
+    premake4 gmake
+    vsed -i build/gmake/Makefile -e "s/CC = gcc/CC = ${CC}/"
+    vsed -i src/display.c -e "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:"
+}
+
+do_build() {
+    CFLAGS+=" -I${XBPS_CROSS_BASE}/usr/include/libdrm"
+    make config=release verbose=1
+}
+
+do_install() {
+    vinstall libgo2.so 755 usr/lib
+}
+
+libgo2-devel_package() {
+	depends="${sourcepkg}>=${version}_${revision}"
+	short_desc+=" - development files"
+	pkg_install() {
+        vmkdir usr/include/go2
+        vcopy src/*.h usr/include/go2
+	}
+}
+

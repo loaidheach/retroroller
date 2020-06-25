@@ -1,0 +1,23 @@
+# Template file for 'spcsx_rearmed_libretro
+pkgname=pcsx_rearmed_libretro
+version=1.0.0
+revision=1
+_gitrev=b76bab8002d203f74e854072b6964138ede0a967
+wrksrc="pcsx_rearmed-${_gitrev}"
+build_style=gnu-makefile
+hostmakedepends="pkg-config libtool git"
+short_desc="${pkgname}"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-2.0-only"
+homepage="https://github.com/libretro/pcsx_rearmed"
+distfiles="https://github.com/libretro/pcsx_rearmed/archive/${_gitrev}.tar.gz"
+checksum=86fb7d252d608cdaa520e70047631a62497e550132df8ebebc5f31dada32016b
+
+do_build() {
+	CFLAGS="$CFLAGS -Ofast -Wl,--gc-sections -fno-stack-protector -fno-ident -fomit-frame-pointer -falign-functions=1 -falign-jumps=1 -falign-loops=1 -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unroll-loops -fmerge-all-constants -fno-math-errno"
+    make -f Makefile.libretro HAVE_NEON=1 ARCH=arm BUILTIN_GPU=neon DYNAREC=ari64
+}
+
+do_install() {
+    vinstall "${pkgname}.so" 755 opt/libretro
+}

@@ -1,0 +1,33 @@
+# Template file for 'rr-base'
+pkgname=rr-base
+version=1.0.0
+revision=3
+archs="aarch64"
+create_wrkdir=true
+short_desc="retroroller base"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-2.0-or-later"
+homepage="https://github.com/valadaa48"
+
+do_install() {
+    cd ${FILESDIR}
+    vinstall boot.ini 644 boot
+    vinstall logo.bmp 644 boot
+
+    vinstall 50-oga-suspend.sh 755 etc/zzz.d/suspend
+    vinstall 50-oga-resume.sh 755 etc/zzz.d/resume
+
+    vinstall 50-oga.rules 644 usr/lib/udev/rules.d
+
+    vbin firstboot.sh
+    vbin onboot.sh
+    vbin performance
+    vbin arm-xbps
+
+    vbin retroarch32
+
+    for f in drastic ppsspp pcsx_rearmed_libretro mupen64plus; do
+        vinstall spring_$f.info 644 opt/libretro
+        vinstall spring_$f.so 755 opt/libretro
+    done
+}

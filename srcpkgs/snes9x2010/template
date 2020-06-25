@@ -1,0 +1,24 @@
+# Template file for 'snes9x2010'
+pkgname=snes9x2010
+version=1.0.0
+revision=1
+_gitrev=87737c0b4425e2372086385de7fe9c54b9dbbace
+wrksrc="${pkgname}-master"
+build_style=gnu-makefile
+hostmakedepends="pkg-config libtool"
+short_desc="${pkgname}"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-2.0-only"
+homepage="https://github.com/libretro/snes9x2010"
+distfiles="https://github.com/libretro/snes9x2010/archive/master.tar.gz"
+checksum=bf8ae9c64a9da23eb65fa071cfac1adc8934fdd23a8825bcf10cbcb99d00f064
+#patch_args="-Np1"
+
+do_build() {
+    CFLAGS+=" -DARM"
+    make
+}
+
+do_install() {
+    vinstall "${pkgname}_libretro.so" 755 opt/libretro
+}

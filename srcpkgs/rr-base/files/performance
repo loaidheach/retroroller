@@ -1,0 +1,28 @@
+#!/bin/bash
+
+gpu=/sys/devices/platform/ff400000.gpu/devfreq/ff400000.gpu/governor
+dmc=/sys/devices/platform/dmc/devfreq/dmc/governor
+cpu=/sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+
+dmc_default="dmc_ondemand"
+gpu_default="simple_ondemand"
+cpu_default="ondemand"
+performance="performance"
+
+case $1 in 
+	on)
+		echo $performance > $cpu
+		echo $performance > $dmc
+		echo $performance > $gpu
+		;;
+	off)
+		echo $cpu_default > $cpu
+		echo $dmc_default > $dmc
+		echo $gpu_default > $gpu
+		;;
+	*)
+		echo "cpu $(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_governor)"
+		echo "gpu $(cat /sys/devices/platform/ff400000.gpu/devfreq/ff400000.gpu/governor)"
+		echo "dmc $(cat /sys/devices/platform/dmc/devfreq/dmc/governor)"
+		;;
+esac

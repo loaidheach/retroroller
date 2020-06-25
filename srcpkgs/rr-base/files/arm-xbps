@@ -1,0 +1,7 @@
+#!/bin/sh
+
+cmd=$1; shift
+
+XBPS_ARCH=armv7l xbps-$cmd --root /usr/arm $*
+
+
