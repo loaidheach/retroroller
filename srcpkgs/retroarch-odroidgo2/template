@@ -7,7 +7,6 @@ wrksrc="RetroArch-${_gitrev}"
 build_style=configure
 configure_args="--prefix=/usr
  --sysconfdir=/etc
- --enable-networking
  --disable-builtinminiupnpc
  --disable-caca
  --disable-discord
@@ -15,12 +14,10 @@ configure_args="--prefix=/usr
  --disable-miniupnpc
  --disable-opengl
  --disable-opengl1
- --enable-ozone
  --disable-pulse
  --disable-qt
  --disable-sdl
  --disable-sdl2
- --enable-tinyalsa
  --disable-libusb
  --disable-v4l2
  --disable-wayland
@@ -28,6 +25,9 @@ configure_args="--prefix=/usr
  --disable-vulkan
  --disable-ffmpeg
  --disable-xvideo
+ --enable-networking
+ --enable-ozone
+ --enable-tinyalsa
  --enable-alsa
  --enable-egl
  --enable-freetype
