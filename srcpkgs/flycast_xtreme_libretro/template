@@ -1,0 +1,24 @@
+# Template file for 'flycast_xtreme_libretro'
+pkgname=flycast_xtreme_libretro
+_gitrev=ca53b27866acaef444f5fc48317f1c1b77b8ea64
+version=1.0.0
+revision=1
+wrksrc="flycast-${_gitrev}"
+build_style=gnu-makefile
+hostmakedepends="pkg-config libtool git"
+makedepends="zlib-devel libdrm-devel MesaLib-devel"
+short_desc="${pkgname}"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-2.0-only"
+homepage="https://github.com/KMFDManic/reicast-emulator"
+distfiles="https://github.com/valadaa48/flycast/archive/${_gitrev}.tar.gz"
+checksum=028a45d9fa595701cf44f1f3ff7d6629ae23ca4e59bb3bce2d0344d8576ea398
+
+do_build() {
+    env
+    make -j8 platform=odroid-n2 CC_PREFIX=aarch64-linux-gnu-
+}
+
+do_install() {
+    vinstall "${pkgname}_libretro.so" 755 opt/libretro
+}

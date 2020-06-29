@@ -1,0 +1,24 @@
+# Template file for 'flycast_libretro'
+pkgname=flycast_libretro
+_gitrev=master
+version=1.0.0
+revision=1
+wrksrc="flycast-${_gitrev}"
+build_style=gnu-makefile
+hostmakedepends="pkg-config libtool git"
+makedepends="zlib-devel libdrm-devel MesaLib-devel"
+short_desc="${pkgname}"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-2.0-only"
+homepage="https://github.com/KMFDManic/reicast-emulator"
+distfiles="https://github.com/libretro/flycast/archive/master.zip"
+checksum=0aa05b4336fc7583ad76dbba6170c1973ce5197a8b498c08805120d642c4d019
+patch_args="-Np1"
+
+do_build() {
+    make -j8 platform=goadvance
+}
+
+do_install() {
+    vinstall "${pkgname}_libretro.so" 755 opt/libretro
+}
