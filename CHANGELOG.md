@@ -1,7 +1,5 @@
 # 20200629
 
 - fixed spring-ppsspp (incorrect filename in command)
-- added spring flycast32 bit (`sudo arm-xbps install -S flycast_libretro`)
-
-
-
+- added 32bit flycast_libretro (`sudo arm-xbps install -S flycast_libretro`)
+- Added spring flycast_libretro 32bit to rr-base
