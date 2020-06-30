@@ -1,7 +1,7 @@
 # Template file for 'rr-base'
 pkgname=rr-base
 version=1.0.3
-revision=1
+revision=2
 archs="aarch64"
 create_wrkdir=true
 short_desc="retroroller base"
@@ -26,7 +26,7 @@ do_install() {
 
     vbin retroarch32
 
-    for f in drastic ppsspp pcsx_rearmed_libretro mupen64plus; do
+    for f in drastic ppsspp pcsx_rearmed_libretro mupen64plus flycast32_libretro; do
         vinstall spring_$f.info 644 opt/libretro
         vinstall spring_$f.so 755 opt/libretro
     done
