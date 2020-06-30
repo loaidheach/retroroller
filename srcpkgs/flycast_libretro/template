@@ -10,13 +10,12 @@ makedepends="zlib-devel libdrm-devel MesaLib-devel"
 short_desc="${pkgname}"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
-homepage="https://github.com/KMFDManic/reicast-emulator"
+homepage="https://github.com/libretro/flycast"
 distfiles="https://github.com/libretro/flycast/archive/master.zip"
 checksum=0aa05b4336fc7583ad76dbba6170c1973ce5197a8b498c08805120d642c4d019
-patch_args="-Np1"
 
 do_build() {
-    make -j8 platform=goadvance
+    make -j8 platform=classic_armv8_a35 FORCE_GLES=1 HAVE_LTCG=0 HAVE_OPENMP=1
 }
 
 do_install() {
