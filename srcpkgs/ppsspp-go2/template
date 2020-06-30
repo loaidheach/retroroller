@@ -1,7 +1,7 @@
 # Template file for 'ppsspp-go2'
 pkgname=ppsspp-go2
-version=20200623
-revision=2
+version=20200630
+revision=1
 _gitrev=c85bdbfdc7bccaf082ff668404a53f69739b0e3c
 create_wrksrc=yes
 build_wrksrc="ppsspp-go2-${_gitrev}"
@@ -35,6 +35,7 @@ checksum="18d53993770f51bf2ed974fd54f0e5e4a08812b10788a88f79d976c56e9f939d
 1e4284387cc586acb7ce0eefba712fe15e11a87c45c102063c11d0fa60f66dce
 456b1e2a75a8e82985ce22f4707570c7aa1fc50d4119cba1a641e8b233ecde26
 f8a03906135fb6f2932b80b7ef5991f39ccac46b36ec3690776fb38c69775c3d"
+patch_args="-Np1"
 
 CFLAGS+=" -flto=$(nproc) -fuse-linker-plugin"
 CXXFLAGS+=" -flto=$(nproc) -fuse-linker-plugin"
@@ -48,6 +49,7 @@ pre_configure() {
 	cp -rup ${wrksrc}/SPIRV-Cross-*/* ${wrksrc}/${pkgname}-${_gitrev}/ext/SPIRV-Cross
 
     vsed -i SDL/SDLMain.cpp -e "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:"
+    vsed -i Core/HW/MediaEngine.cpp -e "s/if (!SetupStreams()/if (true/"
 }
 
 do_install() {

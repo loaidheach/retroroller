@@ -4,3 +4,5 @@
 - added 32bit flycast_libretro (`sudo arm-xbps install -S flycast_libretro`)
 - Added spring flycast_libretro 32bit to rr-base
 - Fixed volume from going to 100% upon resume from sleep
+- No more text on the screen
+- ppsspp with FMV patch (thanks to EmuELEC's patch)
