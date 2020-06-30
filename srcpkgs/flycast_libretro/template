@@ -1,23 +1,27 @@
 # Template file for 'flycast_libretro'
 pkgname=flycast_libretro
-_gitrev=master
+_gitrev=8472365ddadc3a718189527285ae13c2232f26cc
 version=1.0.0
-revision=1
+revision=2
 wrksrc="flycast-${_gitrev}"
-build_style=gnu-makefile
 hostmakedepends="pkg-config libtool git"
-makedepends="zlib-devel libdrm-devel MesaLib-devel"
+makedepends="zlib-devel libdrm-devel libgomp-devel MesaLib-devel"
 short_desc="${pkgname}"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
 homepage="https://github.com/libretro/flycast"
-distfiles="https://github.com/libretro/flycast/archive/master.zip"
-checksum=0aa05b4336fc7583ad76dbba6170c1973ce5197a8b498c08805120d642c4d019
+distfiles="https://github.com/libretro/flycast/archive/${_gitrev}.zip"
+checksum=19933c43db614eb0f29de0cd87c32d68d01edb1c13888872000d93eeb5379dd1
+patch_args="-Np1"
+
+do_fetch() {
+    git clone https://github.com/libretro/flycast flycast-8472365ddadc3a718189527285ae13c2232f26cc
+}
 
 do_build() {
-    make -j8 platform=classic_armv8_a35 FORCE_GLES=1 HAVE_LTCG=0 HAVE_OPENMP=1
+    make -j8 platform=classic_armv8_a35
 }
 
 do_install() {
-    vinstall "${pkgname}_libretro.so" 755 opt/libretro
+    vinstall "${pkgname}.so" 755 opt/libretro
 }
