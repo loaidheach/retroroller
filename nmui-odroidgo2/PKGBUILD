@@ -10,6 +10,7 @@ pkgdesc="nmui by OtherCrashOverride"
 arch=('aarch64')
 url=https://github.com/OtherCrashOverride
 license=('Use on odroidgo2 advance')
+depends=('libgo2')
 source=(
   'nmui'
   'nmui.sh'
