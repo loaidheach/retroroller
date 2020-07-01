@@ -1,7 +1,7 @@
 #!/bin/sh
 
 XBPS_ARCH=aarch64 xbps-rindex --signedby "RRVL" --privkey ~/.ssh/rrvl.pem --sign hostdir/binpkgs/rrvl
-XBPS_ARCH=armv7l xbps-rindex --signedby "RRVL" --privkey ~/.ssh/rrvl.pem --sign binpkgs/rrvl
+XBPS_ARCH=armv7l xbps-rindex --signedby "RRVL" --privkey ~/.ssh/rrvl.pem --sign hostdir/binpkgs/rrvl
 
 XBPS_ARCH=aarch64 xbps-rindex --privkey ~/.ssh/rrvl.pem --sign-pkg hostdir/binpkgs/rrvl/*.xbps
 
