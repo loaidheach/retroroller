@@ -1,9 +1,26 @@
 #!/bin/sh
 
-pkgs="librga libgo2 libmali-bifrost-gbm retroarch-odroidgo2 SDL2-2.0.10-go2 SDL2-go2 ppsspp-go2 
- rr-base drastic-go2 libretro-spring odroid-go2-kernel ogage mupen64plus-go2"
+pkgs="librga
+ libgo2
+ libmali-bifrost-gbm
+ retroarch-odroidgo2
+ SDL2-2.0.10-go2
+ SDL2-go2
+ ppsspp-go2 
+ rr-base
+ drastic-go2
+ libretro-spring
+ odroid-go2-kernel
+ ogage
+ mupen64plus-go2
+ flycast_libretro"
 
-pkgs32="librga libgo2 libmali-bifrost-gbm retroarch-odroidgo2 pcsx_rearmed_libretro"
+pkgs32="librga
+ libgo2
+ libmali-bifrost-gbm
+ retroarch-odroidgo2
+ pcsx_rearmed_libretro
+ flycast_libretro"
 
 for p in $pkgs; do
     ./xbps-src -a aarch64 -f pkg $p
