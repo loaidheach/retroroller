@@ -1,7 +1,7 @@
 # Template file for 'retroarch'
 pkgname=retroarch-odroidgo2
 version=1.8.9
-revision=2
+revision=3
 _gitrev=d0e426011d8a9727ded3b366e2c7c48996a2b2e2
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
@@ -36,7 +36,6 @@ configure_args="--prefix=/usr
  --enable-opengles
  --enable-opengles3
  --enable-udev
- #--enable-plain_drm
 "
 conf_files="/etc/retroarch.cfg"
 hostmakedepends="pkg-config python unzip"
