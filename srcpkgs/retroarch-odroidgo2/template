@@ -36,6 +36,7 @@ configure_args="--prefix=/usr
  --enable-opengles
  --enable-opengles3
  --enable-udev
+ #--enable-plain_drm
 "
 conf_files="/etc/retroarch.cfg"
 hostmakedepends="pkg-config python unzip"
@@ -73,9 +74,9 @@ do_configure() {
 }
 
 pre_build() {
-	sed -i "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:" gfx/drivers_context/drm_go2_ctx.c
-	sed -i "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:" deps/libgo2/src/display.c
-	sed -i "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:" gfx/drivers/oga_gfx.c
+	vsed -i gfx/drivers_context/drm_go2_ctx.c -e "s:<drm/drm_fourcc.h>:<libdrm/drm_fourcc.h>:" 
+	vsed -i deps/libgo2/src/display.c -e "s:<drm/drm_fourcc.h>:<libdrm/drm_fourcc.h>:" 
+	vsed -i gfx/drivers/oga_gfx.c -e "s:<drm/drm_fourcc.h>:<libdrm/drm_fourcc.h>:" 
 }
 
 do_build() {
