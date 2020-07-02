@@ -12,3 +12,7 @@
 - retroarch: change save and states dir to ~/saves
 - retroarch: add openal audio driver
 - Add `update` command to update both 64bit and 32bit
+
+# 20200702
+
+- Add spring_shell to launch .sh scripts from retroarch
