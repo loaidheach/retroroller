@@ -1,0 +1,4 @@
+#/bin/sh
+
+sudo xbps-install -Su
+sudo arm-xbps install -Su

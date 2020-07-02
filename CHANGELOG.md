@@ -6,3 +6,9 @@
 - Fixed volume from going to 100% upon resume from sleep
 - No more text on the screen
 - ppsspp with FMV patch (thanks to EmuELEC's patch)
+
+# 20200701
+
+- retroarch: change save and states dir to ~/saves
+- retroarch: add openal audio driver
+- Add `update` command to update both 64bit and 32bit
