@@ -17,7 +17,6 @@ homepage="http://www.libsdl.org/"
 distfiles="https://www.libsdl.org/release/SDL2-${version}.tar.gz"
 checksum=b4656c13a1f0d0023ae2f4a9cf08ec92fffb464e0f24238337784159b8b91d57
 patch_args="-Np1"
-shlib_provides="libSDL2-2.0.so.0.10.0"
 
 LDFLAGS+=" -lrga"
 

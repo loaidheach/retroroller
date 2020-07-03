@@ -1,5 +1,6 @@
 case "${ACTION}" in
 post)
+    patchelf --replace-needed libSDL2-2.0.so.0 libSDL2-2.0.so.0.10.0 /opt/drastic/drastic
     chown -R odroid:odroid /opt/drastic
 	;;
 esac

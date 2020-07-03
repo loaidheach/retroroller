@@ -1,7 +1,7 @@
 # Template file for 'drastic-go2'
 pkgname=drastic-go2
 version=2.5.2.0
-revision=4
+revision=5
 wrksrc="drastic"
 hostmakedepends="patchelf"
 makedepends="SDL2-2.0.10-go2"
@@ -11,10 +11,6 @@ license="Proprietary"
 homepage="http://drastic-ds.com"
 distfiles="https://github.com/Retro-Arena/binaries/raw/master/odroid-n2/drastic.tar.gz"
 checksum=aad1a62a557fc18c64ddde2a319cde51e6dd6e9f710ed1d258f14e0f3cd30883
-
-post_build() {
-    patchelf --replace-needed libSDL2-2.0.so.0 libSDL2-2.0.so.0.10.0 drastic
-}
 
 do_install() {
     vmkdir opt/drastic
