@@ -1,7 +1,7 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.8.9
-revision=6
+revision=7
 _gitrev=d0e426011d8a9727ded3b366e2c7c48996a2b2e2
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
@@ -45,14 +45,14 @@ short_desc="Official reference frontend for the libretro API"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
 homepage="http://www.libretro.com/"
-#distfiles="https://github.com/libretro/RetroArch/archive/${_gitrev}.tar.gz"
+distfiles="https://github.com/libretro/RetroArch/archive/${_gitrev}.tar.gz"
 checksum=56b579e1825adec6a0270bb76a8525d1baf29a594903e22563aa800e2142e98e
 
 _flags=""
 
-do_fetch() {
-    git clone https://github.com/libretro/RetroArch ${wrksrc}
-}
+#do_fetch() {
+#    git clone https://github.com/libretro/RetroArch ${wrksrc}
+#}
 
 do_configure() {
 	if [ "$CROSS_BUILD" ]; then
@@ -64,7 +64,7 @@ do_configure() {
             configure_args+=" --enable-neon"
             ;;
         *)
-#            _flags+="-flto=$(nproc) -fuse-linker-plugin"
+            _flags+=" $LTO_FLAGS"
             ;;
     esac
 	
@@ -79,6 +79,7 @@ pre_build() {
 	vsed -i gfx/drivers_context/drm_go2_ctx.c -e "s:<drm/drm_fourcc.h>:<libdrm/drm_fourcc.h>:" 
 	vsed -i deps/libgo2/src/display.c -e "s:<drm/drm_fourcc.h>:<libdrm/drm_fourcc.h>:" 
 	vsed -i gfx/drivers/oga_gfx.c -e "s:<drm/drm_fourcc.h>:<libdrm/drm_fourcc.h>:" 
+    vsed -i menu/drivers/ozone/ozone.c -e "s/scale_factor = ozone->last_scale_factor/scale_factor = ozone->last_scale_factor \* 1.5/"
 }
 
 do_build() {
