@@ -1,5 +1,4 @@
 #!/bin/sh
 
 cd /opt/drastic
-export LD_PRELOAD=/usr/lib/libSDL2-2.0.so.0.10.0
 exec ./drastic "$@"

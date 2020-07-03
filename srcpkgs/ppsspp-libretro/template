@@ -19,7 +19,7 @@ configure_args="-DHEADLESS=OFF -DUSE_SYSTEM_FFMPEG=ON
 hostmakedepends="pkg-config python3"
 makedepends="zlib-devel ffmpeg-devel libzip-devel
  snappy-devel rapidjson SDL2-devel libpng-devel libgo2-devel libdrm-devel
- MesaLib-devel"
+ MesaLib-devel libmali-bifrost-gbm"
 short_desc="Fast and portable PSP emulator (go2)"
 maintainer="John <johnz@posteo.net>"
 license="GPL-2.0-or-later"
@@ -36,11 +36,10 @@ checksum="18d53993770f51bf2ed974fd54f0e5e4a08812b10788a88f79d976c56e9f939d
 456b1e2a75a8e82985ce22f4707570c7aa1fc50d4119cba1a641e8b233ecde26
 f8a03906135fb6f2932b80b7ef5991f39ccac46b36ec3690776fb38c69775c3d"
 patch_args="-Np1"
-replaces="ppsspp"
 
-CFLAGS+=" -flto=$(nproc) -fuse-linker-plugin"
-CXXFLAGS+=" -flto=$(nproc) -fuse-linker-plugin"
-LDFLAGS+=" -flto=$(nproc) -fuse-linker-plugin"
+#CFLAGS+=" -flto=$(nproc) -fuse-linker-plugin"
+#CXXFLAGS+=" -flto=$(nproc) -fuse-linker-plugin"
+#LDFLAGS+=" -flto=$(nproc) -fuse-linker-plugin"
 
 pre_configure() {
 	# copy submodules to right location
