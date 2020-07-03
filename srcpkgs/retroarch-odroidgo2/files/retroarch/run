@@ -4,5 +4,6 @@ export USER=odroid
 export HOME=/home/odroid
 GROUPS=input:video:audio:odroid:cdrom:wheel:adm
 
+cd $HOME
 exec chpst -u "$USER:$GROUPS" \
 retroarch
