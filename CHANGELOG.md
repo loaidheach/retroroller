@@ -20,3 +20,7 @@
 - New package: ppsspp-odroidgo2 from upstream with correct SDL2 mappings for both v10 and v11
 - SDL-go2 library fixes
 - drastic now is patchelf'd to point to SDL 2.0.10 explicitly
+
+# 20200703
+
+- Integrate v10 and v11 joypad into SDL2-go2 and SDL2-2.0.10-g2
