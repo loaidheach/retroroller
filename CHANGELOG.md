@@ -16,3 +16,7 @@
 # 20200702
 
 - Add spring_shell to launch .sh scripts from retroarch
+- Retroarch default config points bios to `/roms/bios`
+- New package: ppsspp-odroidgo2 from upstream with correct SDL2 mappings for both v10 and v11
+- SDL-go2 library fixes
+- drastic now is patchelf'd to point to SDL 2.0.10 explicitly
