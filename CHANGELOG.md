@@ -24,3 +24,4 @@
 # 20200703
 
 - Integrate v10 and v11 joypad into SDL2-go2 and SDL2-2.0.10-g2
+- New optimized snes9x_libretro core
