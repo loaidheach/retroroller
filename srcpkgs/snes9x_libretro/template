@@ -1,0 +1,23 @@
+# Template file for 'snes9x_libretro'
+pkgname=snes9x_libretro
+version=20200703
+_gitrev=6db918cfe32b157239da44096091c212fdfb3b60
+revision=1
+wrksrc="snes9x-${_gitrev}"
+archs="aarch64 armv7*"
+build_style=gnu-makefile
+short_desc="snes9x"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-2.0-or-later"
+homepage="https://github.com/libretro/snes9x"
+distfiles="https://github.com/libretro/snes9x/archive/${_gitrev}.tar.gz"
+checksum=bbcdd512026424aed32a2fa87d5dd3672e13b36eedb4dfd674a4409a08f91b8c
+
+do_build() {
+    cd libretro
+    make -j${XBPS_MAKEJOBS} V=1 LTO="${LTO_FLAGS}"
+}
+
+do_install() {
+	vinstall libretro/${pkgname}.so 755 opt/libretro
+}
