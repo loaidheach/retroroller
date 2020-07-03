@@ -1,8 +1,21 @@
 #!/bin/sh
 
+rm hostdir/binpkgs/rrvl/{aarch64-repodata,armv7l-repodata}
+
 XBPS_ARCH=aarch64 xbps-rindex --signedby "RRVL" --privkey ~/.ssh/rrvl.pem --sign hostdir/binpkgs/rrvl
 XBPS_ARCH=armv7l xbps-rindex --signedby "RRVL" --privkey ~/.ssh/rrvl.pem --sign hostdir/binpkgs/rrvl
 
 XBPS_ARCH=aarch64 xbps-rindex --privkey ~/.ssh/rrvl.pem --sign-pkg hostdir/binpkgs/rrvl/*.xbps
+
+XBPS_ARCH=aarch64 xbps-rindex -a hostdir/binpkgs/rrvl/*.xbps
+XBPS_ARCH=armv7l xbps-rindex -a hostdir/binpkgs/rrvl/*.xbps
+
+#XBPS_ARCH=aarch64 xbps-rindex --signedby "RRVL" --privkey ~/.ssh/rrvl.pem --sign hostdir/binpkgs/rrvl
+#XBPS_ARCH=armv7l xbps-rindex --signedby "RRVL" --privkey ~/.ssh/rrvl.pem --sign hostdir/binpkgs/rrvl
+#
+#XBPS_ARCH=aarch64 xbps-rindex --privkey ~/.ssh/rrvl.pem --sign-pkg hostdir/binpkgs/rrvl/*.xbps
+
+XBPS_ARCH=aarch64 xbps-rindex -r $(realpath hostdir/binpkgs/rrvl)
+XBPS_ARCH=armv7l xbps-rindex -r $(realpath hostdir/binpkgs/rrvl)
 
 rsync -av --delete hostdir/binpkgs/rrvl/* eple.us:www/rrvl
