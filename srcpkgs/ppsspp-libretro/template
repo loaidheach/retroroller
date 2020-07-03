@@ -1,12 +1,16 @@
-# Template file for 'ppsspp-go2'
-pkgname=ppsspp-go2
-version=20200630
-revision=1
-_gitrev=c85bdbfdc7bccaf082ff668404a53f69739b0e3c
+# Template file for 'ppsspp-libretro'
+pkgname=ppsspp-libretro
+_pkgname=ppsspp
+version=1.9.4
+_gitrev=99411472d1dbd1640dd47e1192b46b1b5bf18b80
+revision=3
 create_wrksrc=yes
-build_wrksrc="ppsspp-go2-${_gitrev}"
+build_wrksrc="ppsspp-${_gitrev}"
 build_style=cmake
-configure_args="-DHEADLESS=OFF -DUSE_SYSTEM_FFMPEG=ON
+configure_args="
+ -DHEADLESS=OFF
+ -DLIBRETRO=ON
+ -DUSE_SYSTEM_FFMPEG=ON
  -DUSING_QT_UI=OFF
  -DCMAKE_SKIP_RPATH=ON
  -DUSING_FBDEV=ON
@@ -16,40 +20,37 @@ configure_args="-DHEADLESS=OFF -DUSE_SYSTEM_FFMPEG=ON
  -DUSING_X11_VULKAN=OFF
  -DUSE_DISCORD=OFF
  -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON"
-hostmakedepends="pkg-config python3"
+hostmakedepends="pkg-config python3 git"
 makedepends="zlib-devel ffmpeg-devel libzip-devel
- snappy-devel rapidjson SDL2-devel libpng-devel libgo2-devel libdrm-devel
- MesaLib-devel libmali-bifrost-gbm"
-short_desc="Fast and portable PSP emulator (go2)"
+ snappy-devel rapidjson SDL2-devel libpng-devel libmali-bifrost-gbm"
+short_desc="Fast and portable PSP emulator"
 maintainer="John <johnz@posteo.net>"
 license="GPL-2.0-or-later"
 homepage="https://www.ppsspp.org/"
+patch_args="-Np1"
 distfiles="
- https://github.com/OtherCrashOverride/ppsspp-go2/archive/${_gitrev}.tar.gz
- https://github.com/hrydgard/ppsspp-lang/archive/03707d6.tar.gz
- https://github.com/hrydgard/glslang/archive/f9d08a2.tar.gz
+ https://github.com/hrydgard/ppsspp/archive/${_gitrev}.tar.gz
+ https://github.com/hrydgard/ppsspp-lang/archive/942934a.tar.gz
+ https://github.com/hrydgard/glslang/archive/d0850f8.tar.gz
  https://github.com/KhronosGroup/SPIRV-Cross/archive/a1f7c8d.tar.gz
  https://github.com/Kingcom/armips/archive/7885552.tar.gz"
-checksum="18d53993770f51bf2ed974fd54f0e5e4a08812b10788a88f79d976c56e9f939d
-1414891931941da247d303f220dfadda2ce923c8f130a5f8d29b6d2792fbb0a5
-1e4284387cc586acb7ce0eefba712fe15e11a87c45c102063c11d0fa60f66dce
+checksum="51531a6da6bde1cf4cd39e5825f45dcc2926b56dcb02ec9243a3935339269bcd
+4327760e8c2c34bb335de52b74a0b7501d9e441766ec5c7c6702dadf3362ab13
+699e177e0022f17c204e3542bbf7fcb6843923095968edc1ebbc5124e85a2bdf
 456b1e2a75a8e82985ce22f4707570c7aa1fc50d4119cba1a641e8b233ecde26
 f8a03906135fb6f2932b80b7ef5991f39ccac46b36ec3690776fb38c69775c3d"
-patch_args="-Np1"
-
-#CFLAGS+=" -flto=$(nproc) -fuse-linker-plugin"
-#CXXFLAGS+=" -flto=$(nproc) -fuse-linker-plugin"
-#LDFLAGS+=" -flto=$(nproc) -fuse-linker-plugin"
+#replaces="ppsspp"
+#conflicts="ppsspp"
 
 pre_configure() {
 	# copy submodules to right location
-	cp -rup ${wrksrc}/ppsspp-lang-*/* ${wrksrc}/${pkgname}-${_gitrev}/assets/lang
-	cp -rup ${wrksrc}/armips-*/* ${wrksrc}/${pkgname}-${_gitrev}/ext/armips
-	cp -rup ${wrksrc}/glslang-*/* ${wrksrc}/${pkgname}-${_gitrev}/ext/glslang
-	cp -rup ${wrksrc}/SPIRV-Cross-*/* ${wrksrc}/${pkgname}-${_gitrev}/ext/SPIRV-Cross
+	cp -rup ${wrksrc}/ppsspp-lang-*/* ${wrksrc}/${_pkgname}-${_gitrev}/assets/lang
+	cp -rup ${wrksrc}/armips-*/* ${wrksrc}/${_pkgname}-${_gitrev}/ext/armips
+	cp -rup ${wrksrc}/glslang-*/* ${wrksrc}/${_pkgname}-${_gitrev}/ext/glslang
+	cp -rup ${wrksrc}/SPIRV-Cross-*/* ${wrksrc}/${_pkgname}-${_gitrev}/ext/SPIRV-Cross
 
-    vsed -i SDL/SDLMain.cpp -e "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:"
-    vsed -i Core/HW/MediaEngine.cpp -e "s/if (!SetupStreams()/if (true/"
+#    cd ppsspp-${_gitrev}
+    patch -p1 < ${FILESDIR}/PPSSPPSDL-05-fix-fmv-stutter.patch
 }
 
 do_install() {
@@ -57,4 +58,7 @@ do_install() {
 	vmkdir usr/share/ppsspp
 	vcopy build/assets usr/share/ppsspp/
     vbin build/PPSSPPSDL ppsspp-sdl
+
+    echo "19000000010000000100000001010000,odroidgo2_joypad,a:b0,b:b1,x:b3,y:b2,back:b10,start:b15,leftstick:b12,rightstick:b13,leftshoulder:b4,rightshoulder:b5,dpup:b6,dpdown:b7,dpleft:b8,dpright:b9,leftx:a0,lefty:a1,lefttrigger:b11,righttrigger:b14,platform:Linux" >> ${DESTDIR}/usr/share/ppsspp/assets/gamecontrollerdb.txt
+    echo "19000000010000000200000001010000,odroidgo2_joypad_v11,a:b1,b:b0,x:b2,y:b3,leftshoulder:b4,rightshoulder:b5,dpdown:b9,dpleft:b10,dpright:b11,dpup:b8,leftx:a0,lefty:a1,guide:b12,leftstick:b14,lefttrigger:b13,rightstick:b15,righttrigger:b16,start:b17,platform:Linux," >> ${DESTDIR}/usr/share/ppsspp/assets/gamecontrollerdb.txt
 }
