@@ -3,7 +3,7 @@ pkgname=ppsspp-odroidgo2
 _pkgname=ppsspp
 version=1.9.4
 _gitrev=99411472d1dbd1640dd47e1192b46b1b5bf18b80
-revision=3
+revision=4
 create_wrksrc=yes
 build_wrksrc="ppsspp-${_gitrev}"
 build_style=cmake
@@ -58,6 +58,6 @@ do_install() {
 	vcopy build/assets usr/share/ppsspp/
     vbin build/PPSSPPSDL ppsspp-sdl
 
-    echo "19000000010000000100000001010000,odroidgo2_joypad,a:b0,b:b1,x:b3,y:b2,back:b10,start:b15,leftstick:b12,rightstick:b13,leftshoulder:b4,rightshoulder:b5,dpup:b6,dpdown:b7,dpleft:b8,dpright:b9,leftx:a0,lefty:a1,lefttrigger:b11,righttrigger:b14,platform:Linux" >> ${DESTDIR}/usr/share/ppsspp/assets/gamecontrollerdb.txt
-    echo "19000000010000000200000001010000,odroidgo2_joypad_v11,a:b1,b:b0,x:b2,y:b3,leftshoulder:b4,rightshoulder:b5,dpdown:b9,dpleft:b10,dpright:b11,dpup:b8,leftx:a0,lefty:a1,guide:b12,leftstick:b14,lefttrigger:b13,rightstick:b15,righttrigger:b16,start:b17,platform:Linux," >> ${DESTDIR}/usr/share/ppsspp/assets/gamecontrollerdb.txt
+#    echo "19000000010000000100000001010000,odroidgo2_joypad,a:b0,b:b1,x:b3,y:b2,back:b10,start:b15,leftstick:b12,rightstick:b13,leftshoulder:b4,rightshoulder:b5,dpup:b6,dpdown:b7,dpleft:b8,dpright:b9,leftx:a0,lefty:a1,lefttrigger:b11,righttrigger:b14,platform:Linux" >> ${DESTDIR}/usr/share/ppsspp/assets/gamecontrollerdb.txt
+#    echo "19000000010000000200000001010000,odroidgo2_joypad_v11,a:b1,b:b0,x:b2,y:b3,leftshoulder:b4,rightshoulder:b5,dpdown:b9,dpleft:b10,dpright:b11,dpup:b8,leftx:a0,lefty:a1,guide:b12,leftstick:b14,lefttrigger:b13,rightstick:b15,righttrigger:b16,start:b17,platform:Linux," >> ${DESTDIR}/usr/share/ppsspp/assets/gamecontrollerdb.txt
 }

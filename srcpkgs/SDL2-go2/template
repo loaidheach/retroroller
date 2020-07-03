@@ -2,7 +2,7 @@
 pkgname=SDL2-go2
 _gitrev=8754b9d4f10961118610656142d00e26e39220df
 version=2.0.12
-revision=2
+revision=3
 build_style=gnu-configure
 wrksrc="SDL2-${version}"
 configure_args="--prefix=/usr --enable-alsa --disable-esd --disable-rpath --enable-libudev --disable-alsatest --disable-input-tslib --disable-video-opengl

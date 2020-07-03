@@ -1,4 +1,4 @@
-# Template file for 'retroarch'
+# Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.8.9
 revision=6
@@ -38,18 +38,21 @@ configure_args="--prefix=/usr
  --enable-udev
 "
 conf_files="/etc/retroarch.cfg"
-hostmakedepends="pkg-config python unzip"
+hostmakedepends="pkg-config python unzip git"
 makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel
  librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel libopenal-devel"
 short_desc="Official reference frontend for the libretro API"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
 homepage="http://www.libretro.com/"
-distfiles="https://github.com/libretro/RetroArch/archive/${_gitrev}.tar.gz"
+#distfiles="https://github.com/libretro/RetroArch/archive/${_gitrev}.tar.gz"
 checksum=56b579e1825adec6a0270bb76a8525d1baf29a594903e22563aa800e2142e98e
-nostrip=1
 
-_lto="-flto=$(nproc) -fuse-linker-plugin"
+_flags=""
+
+do_fetch() {
+    git clone https://github.com/libretro/RetroArch ${wrksrc}
+}
 
 do_configure() {
 	if [ "$CROSS_BUILD" ]; then
@@ -61,12 +64,13 @@ do_configure() {
             configure_args+=" --enable-neon"
             ;;
         *)
-            export CFLAGS+=" ${_lto}"
-            export CXXFLAGS+=" ${_lto}"
-            export LDFLAGS+=" ${_lto}"
+#            _flags+="-flto=$(nproc) -fuse-linker-plugin"
             ;;
     esac
 	
+    export CFLAGS+=" ${_flags}"
+    export CXXFLAGS+=" ${_flags}"
+    export LDFLAGS+=" ${_flags}"
     export ASFLAGS="$CFLAGS"
 	./configure ${configure_args}
 }
