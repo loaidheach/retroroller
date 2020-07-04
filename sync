@@ -1,22 +1,21 @@
 #!/bin/sh
 
-#rm hostdir/binpkgs/rrvl/{aarch64-repodata,armv7l-repodata}
+#set -xv 
 
-XBPS_ARCH=aarch64 xbps-rindex --signedby "RRVL" --privkey ~/.ssh/rrvl.pem --sign hostdir/binpkgs/rrvl
-XBPS_ARCH=armv7l xbps-rindex --signedby "RRVL" --privkey ~/.ssh/rrvl.pem --sign hostdir/binpkgs/rrvl
+repo=$(realpath hostdir/binpkgs/rrvl)
 
-XBPS_ARCH=aarch64 xbps-rindex --privkey ~/.ssh/rrvl.pem --sign-pkg hostdir/binpkgs/rrvl/*.xbps
-XBPS_ARCH=armv7l xbps-rindex --privkey ~/.ssh/rrvl.pem --sign-pkg hostdir/binpkgs/rrvl/*.xbps
+rm -f $repo/*.sig
 
-#XBPS_ARCH=aarch64 xbps-rindex -a hostdir/binpkgs/rrvl/*.xbps
-#XBPS_ARCH=armv7l xbps-rindex -a hostdir/binpkgs/rrvl/*.xbps
+for arch in aarch64 armv7l; do
+    rm -f $repo/$arch-repodata
 
-#XBPS_ARCH=aarch64 xbps-rindex --signedby "RRVL" --privkey ~/.ssh/rrvl.pem --sign hostdir/binpkgs/rrvl
-#XBPS_ARCH=armv7l xbps-rindex --signedby "RRVL" --privkey ~/.ssh/rrvl.pem --sign hostdir/binpkgs/rrvl
-#
-#XBPS_ARCH=aarch64 xbps-rindex --privkey ~/.ssh/rrvl.pem --sign-pkg hostdir/binpkgs/rrvl/*.xbps
+    XBPS_ARCH=$arch xbps-rindex -a $repo/*$arch.xbps
+    XBPS_ARCH=$arch xbps-rindex --signedby "RRVL" --privkey ~/.ssh/rrvl.pem --sign $repo
+    XBPS_ARCH=$arch xbps-rindex --privkey ~/.ssh/rrvl.pem --sign-pkg $repo/*.$arch.xbps
 
-#XBPS_ARCH=aarch64 xbps-rindex -r $(realpath hostdir/binpkgs/rrvl)
-#XBPS_ARCH=armv7l xbps-rindex -r $(realpath hostdir/binpkgs/rrvl)
+    #XBPS_ARCH=$arch xbps-rindex -c $repo
+    #XBPS_ARCH=$arch xbps-rindex -r $repo
+done
 
-rsync -av --delete hostdir/binpkgs/rrvl/* eple.us:www/rrvl
+
+rsync -av --delete $repo/* eple.us:www/rrvl
