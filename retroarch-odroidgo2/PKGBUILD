@@ -23,6 +23,8 @@ depends=(
   openal
   zlib
 )
+conflicts=('retroarch')
+provides=('retroarch')
 source=(
   'git+https://github.com/valadaa48/RetroArch#branch=ozone_oga'
 #  'git+https://github.com/libretro/RetroArch'
