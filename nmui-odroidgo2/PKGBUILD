@@ -5,7 +5,7 @@
 
 pkgname=nmui-odroidgo2
 pkgver=1.0.0
-pkgrel=1
+pkgrel=2
 pkgdesc="nmui by OtherCrashOverride"
 arch=('aarch64')
 url=https://github.com/OtherCrashOverride
