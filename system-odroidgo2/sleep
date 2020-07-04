@@ -8,10 +8,10 @@ case $1 in
         modprobe -r esp8089
         ;;
    post)
+        alsactl restore -f /var/local/asound.state
         modprobe -r dwc2
         modprobe -r esp8089
         modprobe -i dwc2
         modprobe -i esp8089
-        alsactl restore -f /var/local/asound.state
         ;;
 esac
