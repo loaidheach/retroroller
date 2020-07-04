@@ -5,13 +5,19 @@ case $1 in
         # workaround until dwc2 is fixed
         alsactl store -f /var/local/asound.state
         modprobe -r dwc2
-        modprobe -r esp8089
+        if [ $(grep v11 /sys/devices/platform/odroidgo2-joypad/input/input2/name) ]; then
+            modprobe -r esp8089
+        fi
         ;;
    post)
         alsactl restore -f /var/local/asound.state
         modprobe -r dwc2
-        modprobe -r esp8089
+        if [ $(grep v11 /sys/devices/platform/odroidgo2-joypad/input/input2/name) ]; then
+            modprobe -r esp8089
+        fi
         modprobe -i dwc2
-        modprobe -i esp8089
+        if [ $(grep v11 /sys/devices/platform/odroidgo2-joypad/input/input2/name) ]; then
+            modprobe -i esp8089
+        fi
         ;;
 esac
