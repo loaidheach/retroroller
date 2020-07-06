@@ -1,12 +1,10 @@
 # Template file for 'emulationstation-go2'
 pkgname=emulationstation-go2
-version=20200702
-revision=1
+version=20200704
+revision=7
 _gitrev=8026560cd7de15746736ba4b3bb87c921a3a5593
-#create_wrksrc=yes
 wrksrc="${pkgname}-${_gitrev}"
 build_style=cmake
-#configure_args="-DCMAKE_EXE_LINKER_FLAGS='-L/usr/lib/mali-egl' -Wno-dev"
 configure_args="-Wno-dev"
 hostmakedepends="pkg-config git"
 makedepends="freetype-devel freeimage-devel libgo2-devel libdrm-devel libmali-bifrost-gbm
@@ -28,4 +26,18 @@ pre_configure() {
 post_install() {
     rm -rf ${DESTDIR}/usr/include
     rm -rf ${DESTDIR}/usr/lib
+    rm -rf ${DESTDIR}/usr/bin
+
+    vmkdir usr/bin
+    cp ${FILESDIR}/emulationstation.sh ${DESTDIR}/usr/bin/emulationstation
+
+    vmkdir opt/emulationstation
+    cp emulationstation ${DESTDIR}/opt/emulationstation
+    cp -r resources ${DESTDIR}/opt/emulationstation/
+    cp ${FILESDIR}/splash.svg ${DESTDIR}/opt/emulationstation/resources/
+    cp ${FILESDIR}/es_systems.cfg ${DESTDIR}/opt/emulationstation/
+    cp ${FILESDIR}/es_input.cfg ${DESTDIR}/opt/emulationstation/
+
+    vlicense LICENSE.md
+    vsv emulationstation
 }
