@@ -26,3 +26,9 @@
 - Integrate v10 and v11 joypad into SDL2-go2 and SDL2-2.0.10-g2
 - New optimized snes9x_libretro core
 - Ozone scaled by 1.5x
+
+# 20200706
+
+- emulationstation-go2 with v10 and v11 compat es_input and es_systems.cfg from RR installed
+  to ~/.emulationstation. To boot to ES instead of RA, run `sudo rm /var/service/retroarch`
+  then `sudo ln -s /etc/sv/emulationstation /var/service/` and reboot.
