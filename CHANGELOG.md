@@ -32,3 +32,7 @@
 - emulationstation-go2 with v10 and v11 compat es_input and es_systems.cfg from RR installed
   to ~/.emulationstation. To boot to ES instead of RA, run `sudo rm /var/service/retroarch`
   then `sudo ln -s /etc/sv/emulationstation /var/service/` and reboot.
+
+# 20200707
+
+- update script updated to update xbps first
