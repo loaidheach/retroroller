@@ -37,3 +37,4 @@
 
 - update script updated to update xbps first
 - Add openbor-odroidgo2. Launch with `openbor_direct <path to pak>`. Look at the script on how it works.
+- update retroarch to use new core URL
