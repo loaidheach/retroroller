@@ -1,0 +1,10 @@
+#!/bin/sh
+
+rm -rf /tmp/openbor
+mkdir -p /tmp/openbor/Paks
+mkdir -p /tmp/openbor/Saves
+cp /usr/share/openbor/default.cfg /tmp/openbor/Saves/
+cp "$1" /tmp/openbor/Paks/
+cd /tmp/openbor
+exec OpenBOR
+rm -rf /tmp/openbor

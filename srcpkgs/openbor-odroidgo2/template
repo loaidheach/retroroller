@@ -1,0 +1,38 @@
+# Template file for 'openbor-odroidgo2'
+pkgname=openbor-odroidgo2
+version=0.20200706
+revision=2
+_gitrev=7a45a2215a0cc12c1085d92e7b210a827ea552c2
+wrksrc="openbor-${_gitrev}"
+build_style=gnu-makefile
+hostmakedepends="pkg-config"
+makedepends="libpng-devel SDL2-devel libogg-devel libvpx-devel"
+short_desc="openbor"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/DCurrent/openbor"
+distfiles="https://github.com/DCurrent/openbor/archive/${_gitrev}.tar.gz"
+checksum=cf765ffb41459068079f85a36c54aff2357b2403c5f67243ddd112d003907b6e
+
+pre_configure() {
+    cd engine
+    ./version.sh
+}
+
+do_build() {
+    local _args
+    _args="TARGET=OpenBOR.elf TARGET_FINAL=OpenBOR TARGET_PLATFORM=LINUX BUILD_SDL=1 BUILD_GFX=1 BUILD_PTHREAD=1 BUILD_SDL_IO=1 BUILD_VORBIS=1 BUILD_WEBM=1 BUILDING=1 OBJTYPE=elf"
+    _args+=" INCLUDES=${XBPS_CROSS_BASE}/usr/include/SDL2"
+
+    cd engine
+    CFLAGS+=" -Wno-format-overflow -Wno-stringop-truncation -Wno-unused-variable"
+    make -j8 ${_args} V=1 VERBOSE=1
+}
+
+do_install() {
+    vbin engine/OpenBOR
+    vbin ${FILESDIR}/openbor_direct
+
+    vmkdir usr/share/openbor
+    cp ${FILESDIR}/default.cfg ${DESTDIR}/usr/share/openbor
+}
