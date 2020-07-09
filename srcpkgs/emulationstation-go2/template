@@ -1,6 +1,6 @@
 # Template file for 'emulationstation-go2'
 pkgname=emulationstation-go2
-version=20200704
+version=20200707
 revision=7
 _gitrev=8026560cd7de15746736ba4b3bb87c921a3a5593
 wrksrc="${pkgname}-${_gitrev}"
