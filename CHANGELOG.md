@@ -42,4 +42,5 @@
 # 20200709
 
 - kernel update with a boat load of more wifi drivers
-- ppsspp updated to 1.10.2 from 1.9.4
+- ppsspp-odroidgo2 updated to 1.10.2 from 1.9.4
+- ppsspp-go2 removed
