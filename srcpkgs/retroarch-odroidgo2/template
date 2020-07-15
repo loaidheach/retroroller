@@ -1,8 +1,8 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.8.9
-revision=9
-_gitrev=d0e426011d8a9727ded3b366e2c7c48996a2b2e2
+revision=11
+_gitrev=d3c8704417d3aa27fed0949e9c230a60dd431cd7
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
 configure_args="--prefix=/usr
@@ -46,7 +46,8 @@ maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
 homepage="http://www.libretro.com/"
 distfiles="https://github.com/libretro/RetroArch/archive/${_gitrev}.tar.gz"
-checksum=56b579e1825adec6a0270bb76a8525d1baf29a594903e22563aa800e2142e98e
+checksum=1e463aee6183a945b39659f20966b489476c7021c3e4009917fc5f8de83eadab
+patch_args="-Np1"
 
 _flags=""
 

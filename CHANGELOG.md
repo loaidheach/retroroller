@@ -48,3 +48,8 @@
 # 20200714
 
 - Downgrade SDL2 to 2.0.10 since 2.0.12 has issues
+
+# 20200715
+
+- Retroarch oga driver last character in on-screen messages being cutoff fixed
+- Retroarch add shutdown and reboot
