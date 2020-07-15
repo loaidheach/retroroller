@@ -44,3 +44,7 @@
 - kernel update with a boat load of more wifi drivers
 - ppsspp-odroidgo2 updated to 1.10.2 from 1.9.4
 - ppsspp-go2 removed
+
+# 20200714
+
+- Downgrade SDL2 to 2.0.10 since 2.0.12 has issues
