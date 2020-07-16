@@ -1,7 +1,7 @@
 # Template file for 'ppsspp-odroidgo2'
 pkgname=ppsspp-odroidgo2
 _pkgname=ppsspp
-version=1.10.2
+version=1.10.3
 revision=1
 create_wrksrc=yes
 build_wrksrc="ppsspp-${version}"
@@ -32,7 +32,7 @@ distfiles="
  https://github.com/hrydgard/glslang/archive/d0850f8.tar.gz
  https://github.com/KhronosGroup/SPIRV-Cross/archive/a1f7c8d.tar.gz
  https://github.com/Kingcom/armips/archive/7885552.tar.gz"
-checksum="aee6ebcf672f673d332c8afd9539f88c94cf4263c30c9cf5687e096837129ea4
+checksum="4d1ec3bcd69468e5b239ab1eba9d8da2508d3d90775fb7843856f356dfaf9db6
 4327760e8c2c34bb335de52b74a0b7501d9e441766ec5c7c6702dadf3362ab13
 699e177e0022f17c204e3542bbf7fcb6843923095968edc1ebbc5124e85a2bdf
 456b1e2a75a8e82985ce22f4707570c7aa1fc50d4119cba1a641e8b233ecde26
