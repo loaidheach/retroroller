@@ -1,0 +1,32 @@
+# Template file for 'snes9x_libretro'
+pkgname=duckstation_libretro
+version=20200715
+_gitrev=71cef1de3f9c0e938f081dbc656b06e68de5822a
+revision=1
+wrksrc="duckstation-${_gitrev}"
+build_style=cmake
+short_desc="duckstation"
+#cmake_args="-DCMAKE_BUILD_TYPE=Release -GNinja -DBUILD_LIBRETRO_CORE=ON"
+configure_args="-DCMAKE_BUILD_TYPE=Release -DBUILD_LIBRETRO_CORE=ON -DCMAKE_VERBOSE_MAKEFILE=ON"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+hostmakedepends="pkg-config python unzip ninja cmake"
+makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel
+ librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel libopenal-devel"
+license="GPL-2.0-or-later"
+homepage="https://github.com/libretro/duckstation"
+distfiles="https://github.com/stenzek/duckstation/archive/${_gitrev}.tar.gz"
+checksum=64c0b3e5d2c8c01b84b9bd994696f6dda29b579854439da54279a3eaa4fc1b0d
+
+CFLAGS+=" $LTO_FLAGS"
+CXXFLAGS+=" $LTO_FLAGS"
+LDFLAGS+=" $LTO_FLAGS"
+
+#do_build() {
+#    mkdir build-release
+#    cd libretro
+#    make -j${XBPS_MAKEJOBS} V=1 LTO="${LTO_FLAGS}"
+#}
+#
+#do_install() {
+#	vinstall libretro/${pkgname}.so 755 opt/libretro
+#}
