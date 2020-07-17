@@ -1,7 +1,7 @@
 # Template file for 'libmali-bifrost-gbm'
 pkgname=libmali-bifrost-gbm
 version=r6p0.01rel0
-revision=1
+revision=2
 _gitrev=7fca6310eceb5b85062259ed8f4a5c1cf44fe773
 archs="aarch64 armv7l*"
 wrksrc="libmali-${_gitrev}"
@@ -13,7 +13,7 @@ distfiles="https://github.com/rockchip-linux/libmali/archive/${_gitrev}.tar.gz"
 checksum=49fdd86cc046e109ecb610fc2bde6bdbe2c63cd5e2aaba6bcdc4f00add884ea3
 #provides="libEGL-1.0_1 libGLES-1.0_1"
 #replaces="libEGL>=0 libGLES>=0"
-#shlib_provides="libEGL.so.1 libGLESv2.so.2 libGLESv1_CM.so.1 libmali.so libMali.so"
+shlib_provides="libEGL.so"
 
 do_install() {
 	local _lib _dir
