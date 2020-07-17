@@ -1,0 +1,60 @@
+# Template file for 'emuelec-emulationstation'
+pkgname=emuelec-emulationstation
+version=20200716
+revision=1
+create_wrksrc=yes
+build_wrksrc="batocera-emulationstation-78dd6eabd87ea5f602b535635a1a369d117a795f"
+build_style=cmake
+configure_args="-DCMAKE_BUILD_TYPE=Release -DDISABLE_KODI=1 -DGLES=1 -DENABLE_EMUELEC=1 -DENABLE_FILEMANAGER=1 -DUSE_GLES=on -DGL=off -DRPI=off -DCEC=off -DCMAKE_VERBOSE_MAKEFILE=ON"
+#configure_args+=' -DCMAKE_EXE_LINKER_FLAGS="-L/usr/aarch64-linux-gnu/usr/lib/mali -lGLESv2"'
+hostmakedepends="pkg-config git"
+makedepends="freetype-devel freeimage-devel libgo2-devel libdrm-devel libmali-bifrost-gbm
+ MesaLib-devel SDL2-devel SDL2_mixer-devel libcurl-devel vlc-devel rapidjson"
+short_desc="Emulation Station is a flexible emulator front-end supporting keyboardless navigation and custom system themes. EE edition for odroidgo2."
+license="MIT"
+homepage="https://github.com/RetroPie/EmulationStation"
+distfiles="https://github.com/valadaa48/batocera-emulationstation/archive/78dd6eabd87ea5f602b535635a1a369d117a795f.tar.gz 
+ https://github.com/valadaa48/EmuELEC/archive/49b329c4cb59739a67d20aae50b2c43772d30ee3.tar.gz
+ https://github.com/zeux/pugixml/archive/22401bafaff996baecfb694ddc754855e184d377.tar.gz"
+checksum="91eac071594fdafae56f135fb9f389335917c3438e9e7e1e3f9e7d6e15dcd3b1
+ d88320e7b44b22c259fc420baf77b5f7757e735ebaaae74c825bbda2f1718db0
+ 9164912ea79c1a997162ecde02cf4701722187102c6cbf339df7d79094f808b8"
+python_version=3
+
+LDFLAGS+=" -L/usr/aarch64-linux-gnu/usr/lib/mali -lGLESv2"
+
+pre_configure() {
+    rm -rf external/pugixml
+    cp -r ../pugixml-* external/pugixml
+#    vsed -i CMakeLists.txt -e "s:usr/lib/libMali.so:/usr/lib/mali/libMali.so:"
+}
+
+post_install() {
+    rm -rf ${DESTDIR}/usr/include
+    rm -rf ${DESTDIR}/usr/lib
+    rm -rf ${DESTDIR}/usr/bin
+
+    vmkdir usr/bin
+    cp ${FILESDIR}/emulationstation.sh ${DESTDIR}/usr/bin/emulationstation
+
+    vmkdir opt/emulationstation
+    cp emulationstation ${DESTDIR}/opt/emulationstation
+    cp -r resources ${DESTDIR}/opt/emulationstation/
+#    cp ${FILESDIR}/splash.svg ${DESTDIR}/opt/emulationstation/resources/
+    cp ${FILESDIR}/es_systems.cfg ${DESTDIR}/opt/emulationstation/
+    cp ${FILESDIR}/es_input.cfg ${DESTDIR}/opt/emulationstation/
+
+    vlicense LICENSE.md
+    vsv emulationstation
+
+    vmkdir /usr/share/emulationstation
+    cp -r ../EmuELEC-49b329c4cb59739a67d20aae50b2c43772d30ee3/packages/sx05re/emuelec/config/emulationstation/scripts ${DESTDIR}/usr/share/emulationstation/es_scripts
+    chmod -R 755 ${DESTDIR}/usr/share/emulationstation/es_scripts
+
+    cp ../EmuELEC-49b329c4cb59739a67d20aae50b2c43772d30ee3/packages/sx05re/emuelec/config/emuelec/scripts/batocera/* ${DESTDIR}/usr/bin
+    chmod 755 ${DESTDIR}/usr/bin/*
+
+    cp -r ../EmuELEC-49b329c4cb59739a67d20aae50b2c43772d30ee3/packages/sx05re/emuelec/config/emuelec ${DESTDIR}/usr/share/emulationstation/ee_config
+
+    echo "OdroidGoAdvance" > ${DESTDIR}/usr/share/emulationstation/ee_arch
+}
