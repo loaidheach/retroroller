@@ -18,6 +18,9 @@ depends=(
     mesa
     openal
 )
+makedepends=(
+    premake
+)
 source=(
 	'git+https://github.com/OtherCrashOverride/libgo2'
     'include_path.patch'
