@@ -10,7 +10,7 @@ pkgdesc="Retroarch for odroidgo2"
 arch=('aarch64')
 url="https://github.com/libretro/RetroArch"
 license=('GPL')
-makedepends=('git')
+makedepends=('git' 'libdrm-rockchip')
 depends=(
   alsa-lib
   freetype2
