@@ -4,7 +4,7 @@ epoch=1
 
 _pkgname=RetroArch
 pkgname=retroarch-odroidgo2
-pkgver=54456.d0e426011d
+pkgver=55438.5e551dd92b
 pkgrel=1
 pkgdesc="Retroarch for odroidgo2"
 arch=('aarch64')
@@ -25,7 +25,7 @@ depends=(
 conflicts=('retroarch')
 provides=('retroarch')
 source=(
-  'git+https://github.com/libretro/RetroArch#commit=d0e426011d8a9727ded3b366e2c7c48996a2b2e2'
+  'git+https://github.com/libretro/RetroArch#commit=5e551dd92b79d8127e66939835ea3c2a140c4078'
   'retroarch.cfg'
   'retroarch.service'
 )
