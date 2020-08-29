@@ -18,4 +18,4 @@ for arch in aarch64 armv7l; do
 done
 
 
-rsync -av --delete $repo/* eple.us:www/rrvl
+rsync --delete -av $* $repo/* eple.us:www/rrvl
