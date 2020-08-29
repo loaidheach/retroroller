@@ -1,7 +1,7 @@
-# Template file for 'snes9x_libretro'
+# Template file for 'duckstation_libretro'
 pkgname=duckstation_libretro
-version=20200715
-_gitrev=71cef1de3f9c0e938f081dbc656b06e68de5822a
+version=20200828
+_gitrev=79aaf908a602e03a16698976791c82baafa794d0
 revision=1
 wrksrc="duckstation-${_gitrev}"
 build_style=cmake
@@ -15,7 +15,7 @@ makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel
 license="GPL-2.0-or-later"
 homepage="https://github.com/libretro/duckstation"
 distfiles="https://github.com/stenzek/duckstation/archive/${_gitrev}.tar.gz"
-checksum=64c0b3e5d2c8c01b84b9bd994696f6dda29b579854439da54279a3eaa4fc1b0d
+checksum=a32874402a5f7da944fe070e2ec582bde8eb8e5711c43361c1174fe09d653bc7
 
 CFLAGS+=" $LTO_FLAGS"
 CXXFLAGS+=" $LTO_FLAGS"
