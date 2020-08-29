@@ -1,8 +1,8 @@
 # Template file for 'libmali-bifrost-gbm'
 pkgname=libmali-bifrost-gbm
 version=r6p0.01rel0
-revision=2
-_gitrev=7fca6310eceb5b85062259ed8f4a5c1cf44fe773
+revision=3
+_gitrev=b91d4b95726ba3fb0a287d0cb60752bc3d968bc9
 archs="aarch64 armv7l*"
 wrksrc="libmali-${_gitrev}"
 short_desc="Rockchip mali bifrost g31 gbm"
@@ -10,7 +10,7 @@ maintainer="valadaa48 <valadaa48@gmx.com>"
 license="custom:Proprietary"
 homepage="https://github.com/rockchip-linux/libmali"
 distfiles="https://github.com/rockchip-linux/libmali/archive/${_gitrev}.tar.gz"
-checksum=49fdd86cc046e109ecb610fc2bde6bdbe2c63cd5e2aaba6bcdc4f00add884ea3
+checksum=ec9b5a3d1e807bec052137527e8a18d6fa7d486aa7c9076048ae1d7267a3bca2
 #provides="libEGL-1.0_1 libGLES-1.0_1"
 #replaces="libEGL>=0 libGLES>=0"
 shlib_provides="libEGL.so"
@@ -41,6 +41,7 @@ do_install() {
 	ln -sf ${_lib} libgbm.so
 	ln -sf ${_lib} libMali.so
 	ln -sf ${_lib} libmali.so
+	ln -sf ${_lib} libmali.so.1
 
 	vinstall ${FILESDIR}/50-mali.rules 644 usr/lib/udev/rules.d
 	vinstall ${FILESDIR}/libmali-bifrost.conf 644 etc/ld.so.conf.d
