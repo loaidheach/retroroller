@@ -1,6 +1,8 @@
-#/bin/sh
+#/usr/bin/env bash
 
-sudo xbps-install -Su xbps
-sudo xbps-install -Su
-sudo arm-xbps install -Su xbps
-sudo arm-xbps install -Su
+set -euo pipefail
+
+sudo xbps-install -Su $* xbps
+sudo xbps-install -u $*
+sudo arm-xbps install -Su $* xbps
+sudo arm-xbps install -u $*

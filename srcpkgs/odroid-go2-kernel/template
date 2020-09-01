@@ -1,17 +1,17 @@
 # Template file for 'odroid-go2-kernel'
 #
-_gitrev="597b7316fd30b7721afc9be7930931af97c13452"
+_gitrev="3e230d424b823267fec12d003d5ca36b3f694229"
 _gitshort="${_gitrev:0:7}"
 
 pkgname=odroid-go2-kernel
 version=4.4.189
-revision=3
+revision=5
 short_desc="Linux kernel and modules for Odroid GO2 (${version%.*} [git ${_gitshort}])"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
 homepage="http://www.kernel.org"
 distfiles="https://github.com/hardkernel/linux/archive/${_gitrev}.tar.gz"
-checksum=9554495577762780fd277def18dea60101f79153d76db41cd02c100059fe35cf
+checksum=ec193f88820d1b3b2ff1478df790381f7efbb04cee0062fc91f8f76d52de4dcc
 patch_args="-p1"
 wrksrc="linux-${_gitrev}"
 python_version=2 #unverified

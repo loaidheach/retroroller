@@ -3,12 +3,12 @@ pkgname=residualvm
 version=0.3.1
 revision=5
 build_style=configure
-configure_args="--prefix=/usr --enable-all-engines --enable-release
+configure_args="--prefix=/usr --backend=sdl --enable-optimizations --force-opengles2 --enable-release
  --enable-flac --enable-faad --enable-fluidsynth $(vopt_enable sndio)"
 hostmakedepends="pkg-config"
 makedepends="SDL2-devel libvorbis-devel libmad-devel libjpeg-turbo-devel
  libpng-devel libtheora-devel zlib-devel libmpeg2-devel freetype-devel
- glew-devel libflac-devel fluidsynth-devel faad2-devel $(vopt_if sndio sndio-devel)"
+ libflac-devel fluidsynth-devel faad2-devel $(vopt_if sndio sndio-devel)"
 short_desc="Cross-platform 3D game interpreter"
 maintainer="newbluemoon <blaumolch@mailbox.org>"
 license="GPL-2.0-or-later, GPL-3.0-or-later, LGPL-2.1-or-later, BSD-3-Clause, ISC, MIT, Zlib"

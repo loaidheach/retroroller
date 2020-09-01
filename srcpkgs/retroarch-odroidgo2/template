@@ -1,8 +1,8 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.9.0
-revision=1
-_gitrev=5e551dd92b79d8127e66939835ea3c2a140c4078
+revision=3
+_gitrev=c9bf0594e9d6ff5bfd5d0c185412f85fd92ed284
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
 configure_args="--prefix=/usr
@@ -36,6 +36,7 @@ configure_args="--prefix=/usr
  --enable-opengles
  --enable-opengles3
  --enable-udev
+ --enable-wifi
 "
 conf_files="/etc/retroarch.cfg"
 hostmakedepends="pkg-config python unzip git"
@@ -45,8 +46,8 @@ short_desc="Official reference frontend for the libretro API"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
 homepage="http://www.libretro.com/"
-distfiles="https://github.com/libretro/RetroArch/archive/${_gitrev}.tar.gz"
-checksum=9d58b3fdf5967d0dbf7fcde061c70f40dfeb3a3da165417e8758a34fa46f7dda
+distfiles="https://github.com/valadaa48/RetroArch/archive/${_gitrev}.tar.gz"
+checksum=756ec13266e317de48b4176784a7fc3ff46d11653d018eb926ada39d99b0ec08
 patch_args="-Np1"
 
 _flags=""

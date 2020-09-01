@@ -1,8 +1,31 @@
 #!/bin/sh
 
-if [ -f /boot/wpa_supplicant.conf ]; then
-    cp /boot/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
-    chmod 700 /etc/wpa_supplicant/wpa_supplicant.conf
+RM="/etc/runit/runsvdir/default/agetty-tty1
+/etc/runit/runsvdir/default/agetty-tty3
+/etc/runit/runsvdir/default/agetty-tty4
+/etc/runit/runsvdir/default/agetty-tty5
+/etc/runit/runsvdir/default/agetty-tty6
+/etc/runit/runsvdir/default/dhcpcd
+/usr/libexec/dhcpcd-hooks/10-wpa_supplicant
+/boot/wpa_supplicant.conf
+ "
+
+for f in $RM; do
+    if [ -e $f ]; then
+        rm -f $f
+    fi
+done
+
+if [ ! -e /etc/runit/runsvdir/default/dbus ]; then
+    ln -sf /etc/sv/dbus /etc/runit/runsvdir/default/
+fi
+
+if [ ! -e /etc/runit/runsvdir/default/NetworkManager ]; then
+    ln -sf /etc/sv/NetworkManager /etc/runit/runsvdir/default/
+fi
+
+if ! groups odroid | grep -q '\bnetwork\b'; then
+    gpasswd -a odroid network
 fi
 
 echo 0 > /proc/sys/kernel/nmi_watchdog

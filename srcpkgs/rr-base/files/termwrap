@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+sudo chvt 2
+
+printf "\033c"
+
+"$@"
+
+sudo chvt 1

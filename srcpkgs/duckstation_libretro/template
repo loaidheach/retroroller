@@ -1,7 +1,7 @@
 # Template file for 'duckstation_libretro'
 pkgname=duckstation_libretro
-version=20200828
-_gitrev=79aaf908a602e03a16698976791c82baafa794d0
+version=0.20200901
+_gitrev=0af22825ad0370215460c3519514a8f0ab65d7d2
 revision=1
 wrksrc="duckstation-${_gitrev}"
 build_style=cmake
@@ -15,12 +15,12 @@ makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel
 license="GPL-2.0-or-later"
 homepage="https://github.com/libretro/duckstation"
 distfiles="https://github.com/stenzek/duckstation/archive/${_gitrev}.tar.gz"
-checksum=a32874402a5f7da944fe070e2ec582bde8eb8e5711c43361c1174fe09d653bc7
+checksum=b8339c0ee4c53388532a58ae9a72169d2f3508070a602d0dc6200c66a4296c0a
 
-CFLAGS+=" $LTO_FLAGS"
-CXXFLAGS+=" $LTO_FLAGS"
-LDFLAGS+=" $LTO_FLAGS"
-
+#CFLAGS+=" $LTO_FLAGS"
+#CXXFLAGS+=" $LTO_FLAGS"
+#LDFLAGS+=" $LTO_FLAGS"
+#
 #do_build() {
 #    mkdir build-release
 #    cd libretro
