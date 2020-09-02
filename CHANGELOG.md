@@ -1,7 +1,8 @@
+
 # 20200901
 
-- Switch to NetworkManager from wpa_supplicant. You *must* reboot after this update
-  and then reconfigure your network in retroarch (Settings->WiFi).
+- Switch to NetworkManager from wpa\_supplicant. You *must* reboot after this update
+  and then reconfigure your network in retroarch (Settings-\>WiFi).
 - Add WiFi configuration to retroarch
 - Retroarch 1.9.0 64bit and 32bit
 - Final image now includes flycast 32bit libretro core to fix issue with built-in spring
@@ -12,6 +13,8 @@
 - Fix libGLESv2 ldconfig issue, this was caused by a bad update of the libmali drivers
 - Add retrorun 64bit and 32bit package
 - Add unzip, rar, 7z and xtools package by default
+- RetroArch now defaults to glcore + ozone (thanks to Firebird\_WS6)
+- RRVL 20200901 Final Image release!
 
 # 20200715
 
