@@ -19,3 +19,4 @@ done
 
 
 rsync --delete -av $* $repo/* eple.us:www/rrvl
+#rsync -av hostdir/binpkgs/rrvl rrvl:
