@@ -1,4 +1,8 @@
 
+# 20200903
+
+- Port wifi disable power savings from RR
+
 # 20200902
 
 - ppsspp-odroidgo2 update to include speedup patch
