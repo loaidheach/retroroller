@@ -2,12 +2,19 @@
 pkgname=ppsspp-odroidgo2
 _pkgname=ppsspp
 version=1.10.3
-revision=1
+revision=2
+_gitrev=e8c2fce1b14f1f342c7725533b7034694c175587
+lang_commit=d5a2a51942377820764604d9bb424fa9a879c4bd
+glslang_commit=d0850f875ec392a130ccf00018dab458b546f27c
+SPIRV_Cross_commit=a1f7c8dc8ea2f94443951ee27003bffa562c1f13
+armips_commit=7885552b208493a6a0f21663770c446c3ba65576
+miniupnp_commit=7e229ddd635933239583ab190d9b614bde018157
 create_wrksrc=yes
-build_wrksrc="ppsspp-${version}"
+build_wrksrc="${_pkgname}-${_gitrev}"
+_pkgroot="${_pkgname}-${_gitrev}"
 build_style=cmake
 configure_args="
- -DHEADLESS=OFF
+ -DHEADLESS=ON
  -DUSE_SYSTEM_FFMPEG=ON
  -DUSING_QT_UI=OFF
  -DCMAKE_SKIP_RPATH=ON
@@ -16,40 +23,43 @@ configure_args="
  -DUSING_GLES2=ON
  -DUSE_SYSTEM_LIBZIP=ON
  -DUSING_X11_VULKAN=OFF
+ -DUSE_MINIUPNPC=ON
+ -DUSE_ADDRESS_SANITIZER=OFF
  -DUSE_DISCORD=OFF
  -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON"
-hostmakedepends="pkg-config python3 git"
-makedepends="zlib-devel ffmpeg-devel libzip-devel
- snappy-devel rapidjson SDL2-devel libpng-devel libmali-bifrost-gbm"
+hostmakedepends="pkg-config python3"
+makedepends="zlib-devel ffmpeg-devel libzip-devel libpng-devel
+ snappy-devel rapidjson SDL2-devel libmali-bifrost-gbm libgomp-devel"
 short_desc="Fast and portable PSP emulator"
 maintainer="John <johnz@posteo.net>"
 license="GPL-2.0-or-later"
 homepage="https://www.ppsspp.org/"
 patch_args="-Np1"
 distfiles="
- https://github.com/hrydgard/ppsspp/archive/v${version}.zip
- https://github.com/hrydgard/ppsspp-lang/archive/942934a.tar.gz
- https://github.com/hrydgard/glslang/archive/d0850f8.tar.gz
- https://github.com/KhronosGroup/SPIRV-Cross/archive/a1f7c8d.tar.gz
- https://github.com/Kingcom/armips/archive/7885552.tar.gz"
-checksum="4d1ec3bcd69468e5b239ab1eba9d8da2508d3d90775fb7843856f356dfaf9db6
-4327760e8c2c34bb335de52b74a0b7501d9e441766ec5c7c6702dadf3362ab13
+ https://github.com/hrydgard/ppsspp/archive/${_gitrev}.tar.gz
+ https://github.com/hrydgard/ppsspp-lang/archive/${lang_commit}.tar.gz
+ https://github.com/Kingcom/armips/archive/${armips_commit}.tar.gz
+ https://github.com/hrydgard/glslang/archive/${glslang_commit}.tar.gz
+ https://github.com/KhronosGroup/SPIRV-Cross/archive/${SPIRV_Cross_commit}.tar.gz
+ https://github.com/hrydgard/miniupnp/archive/${miniupnp_commit}.tar.gz"
+checksum="d9d0549513bf54dd7cb852e92ec1e75d822ef2544e6f74c6e65c03b6eba164b7
+9645d4a6fb9b4c19e02f570b08a78b15f954c9f1d648e97d8654dd8ebe937207
+f8a03906135fb6f2932b80b7ef5991f39ccac46b36ec3690776fb38c69775c3d
 699e177e0022f17c204e3542bbf7fcb6843923095968edc1ebbc5124e85a2bdf
 456b1e2a75a8e82985ce22f4707570c7aa1fc50d4119cba1a641e8b233ecde26
-f8a03906135fb6f2932b80b7ef5991f39ccac46b36ec3690776fb38c69775c3d"
-#replaces="ppsspp"
-#conflicts="ppsspp"
+6819f0984fa647f69a74831a2333859a07099f64098ce58c35d8604d19532d3d"
 
 pre_configure() {
 	# copy submodules to right location
-	cp -rup ${wrksrc}/ppsspp-lang-*/* ${wrksrc}/${_pkgname}-${version}/assets/lang
-	cp -rup ${wrksrc}/armips-*/* ${wrksrc}/${_pkgname}-${version}/ext/armips
-	cp -rup ${wrksrc}/glslang-*/* ${wrksrc}/${_pkgname}-${version}/ext/glslang
-	cp -rup ${wrksrc}/SPIRV-Cross-*/* ${wrksrc}/${_pkgname}-${version}/ext/SPIRV-Cross
+	cp -rupv ${wrksrc}/ppsspp-lang-*/* ${wrksrc}/${_pkgroot}/assets/lang
+	cp -rupv ${wrksrc}/armips-*/* ${wrksrc}/${_pkgroot}/ext/armips
+	cp -rupv ${wrksrc}/glslang-*/* ${wrksrc}/${_pkgroot}/ext/glslang
+	cp -rupv ${wrksrc}/SPIRV-Cross-*/* ${wrksrc}/${_pkgroot}/ext/SPIRV-Cross
+	cp -rupv ${wrksrc}/miniupnp-*/* ${wrksrc}/${_pkgroot}/ext/miniupnp
 
-    pwd
-    #cd ${_pkgname}-${version}
     patch -p1 < ${FILESDIR}/PPSSPPSDL-05-fix-fmv-stutter.patch
+
+    vsed -i CMakeLists.txt -e "s/ANDROID OR ARMV7 OR ARM64 OR ARM OR IOS/ANDROID OR ARMV7 OR ARM OR IOS/"
 }
 
 do_install() {
