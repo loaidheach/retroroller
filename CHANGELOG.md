@@ -2,6 +2,8 @@
 # 20200903
 
 - Port wifi disable power savings from RR
+- ppsspp-odroidgo2 now replaces ppsspp-go2. You may have to run
+  `sudo xbps-install -Su ppsspp-odroidgo2` to install it.
 
 # 20200902
 

@@ -2,7 +2,7 @@
 pkgname=ppsspp-odroidgo2
 _pkgname=ppsspp
 version=1.10.3
-revision=3
+revision=4
 lang_commit=1c64b8fbd3cb6bd87935eb53f302f7de6f86e209
 glslang_commit=d0850f875ec392a130ccf00018dab458b546f27c
 SPIRV_Cross_commit=a1f7c8dc8ea2f94443951ee27003bffa562c1f13
@@ -43,6 +43,8 @@ checksum="92a0931c0817529202679f926632510658f3aeea83e2a1663f9cce595b505421
  699e177e0022f17c204e3542bbf7fcb6843923095968edc1ebbc5124e85a2bdf
  456b1e2a75a8e82985ce22f4707570c7aa1fc50d4119cba1a641e8b233ecde26
  f8a03906135fb6f2932b80b7ef5991f39ccac46b36ec3690776fb38c69775c3d"
+conflicts=ppsspp-go2
+replaces="ppsspp-go2>=0"
 
 # compiler segfaults
 #XBPS_CROSS_CFLAGS+=" -flto=16 -fuse-linker-plugin"
