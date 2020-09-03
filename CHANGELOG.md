@@ -1,4 +1,8 @@
 
+# 20200902
+
+- ppsspp-odroidgo2 update to include speedup patch
+
 # 20200901
 
 - Switch to NetworkManager from wpa\_supplicant. You *must* reboot after this update
