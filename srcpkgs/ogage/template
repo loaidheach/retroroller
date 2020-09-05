@@ -1,14 +1,11 @@
 # Template file for 'ogage'
 pkgname=ogage
-version=1.0.0
+version=1.1.0
 revision=1
-build_style=fetch
 short_desc="ogage"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
 homepage="https://github.com/valadaa48"
-distfiles="https://github.com/valadaa48/retroroller/raw/master/ogage/ogage"
-checksum=f245539a8deb539acc207e21ae5b81d96f20cce95f9b30e463e710f18e6c2379
 
 do_install() {
     vinstall ${FILESDIR}/ogage_bin 755 usr/bin ogage
