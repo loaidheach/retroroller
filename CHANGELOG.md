@@ -1,3 +1,7 @@
+# 20200905
+
+- ogage (global events daemon) further optimized to use basically 0% CPU
+
 # 20200904
 
 - Fix SDL2 controller mappings (this doesn't mean you definitely don't need to
