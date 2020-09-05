@@ -1,6 +1,6 @@
 # Template file for 'rr-base'
 pkgname=rr-base
-version=1.5.2
+version=1.5.3
 revision=1
 archs="aarch64"
 create_wrkdir=true
@@ -8,7 +8,7 @@ short_desc="retroroller base"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-or-later"
 homepage="https://github.com/valadaa48"
-depends="p7zip unzip NetworkManager SDL2-2.0.10-go2 xtools librga libgo2 libmali-bifrost-gbm ogage odroid-go2-kernel"
+depends="p7zip unzip NetworkManager SDL2-2.0.10-go2 xtools librga libgo2 libmali-bifrost-gbm ogage odroid-go2-kernel ppsspp-odroidgo2"
 conf_files="/boot/boot.ini /boot/network.sh /etc/NetworkManager/conf.d/wifi-powersave-off.conf"
 
 do_install() {
