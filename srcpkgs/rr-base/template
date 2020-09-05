@@ -1,6 +1,6 @@
 # Template file for 'rr-base'
 pkgname=rr-base
-version=1.5.1
+version=1.5.2
 revision=1
 archs="aarch64"
 create_wrkdir=true
@@ -9,7 +9,7 @@ maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-or-later"
 homepage="https://github.com/valadaa48"
 depends="p7zip unzip NetworkManager SDL2-2.0.10-go2 xtools librga libgo2 libmali-bifrost-gbm ogage odroid-go2-kernel"
-conf_files="/boot/boot.ini /boot/network.sh"
+conf_files="/boot/boot.ini /boot/network.sh /etc/NetworkManager/conf.d/wifi-powersave-off.conf"
 
 do_install() {
     cd ${FILESDIR}
@@ -17,7 +17,9 @@ do_install() {
     vinstall logo.bmp 644 boot
     vinstall network.sh 755 boot
 
-    vinstall update.sh 755 usr/share/rr-base/roms/sh
+    vinstall wifi-powersave-off.conf 644 etc/NetworkManager/conf.d
+
+    vinstall update.sh 755 usr/share/rrvl/scripts
 
     vinstall 50-oga-suspend.sh 755 etc/zzz.d/suspend
     vinstall 50-oga-resume.sh 755 etc/zzz.d/resume

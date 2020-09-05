@@ -1,3 +1,15 @@
+# 20200904
+
+- Fix SDL2 controller mappings (this doesn't mean you definitely don't need to
+  remap in SDL apps!)
+- ppsspp recompiled against SDL2-2.0.10 for compatibility
+- New directory `/roms/_rrvl` for system managed scripts. This is where you'll
+  find update.sh and standalone launchers like ppsspp.sh. Users should use
+  another directory such as /roms/sh for their own scripts.
+- Fixed libGLESv2 issue that prevented dreamcast from running.
+- NOTE: You will *need* to remap PPSSPP controls. We can't force v11 or v10
+  mapping by default for obvious reasons. You just need to do this once.
+- Wifi powersave is disabled in NetworkManager. Thanks to @pyghast for testing.
 
 # 20200903
 
@@ -82,3 +94,5 @@
 - No more text on the screen
 - ppsspp with FMV patch (thanks to EmuELEC's patch)
 
+
+<!-- vim: set tw=80: -->

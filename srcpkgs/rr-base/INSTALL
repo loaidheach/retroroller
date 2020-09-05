@@ -4,8 +4,8 @@ post)
     rm home/odroid/.config/retroarch/cores/spring_libretro*
     chown -R odroid:odroid home/odroid
 
-    mkdir -p /roms/sh
-    chown odroid:odroid /roms/sh
-    cp usr/share/rr-base/roms/sh/* /roms/sh/
+    if [ ! -e /roms/_rrvl ]; then
+        ln -sf /usr/share/rrvl/scripts /roms/_rrvl
+    fi
 	;;
 esac

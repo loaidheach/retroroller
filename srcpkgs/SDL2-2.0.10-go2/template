@@ -2,14 +2,14 @@
 pkgname=SDL2-2.0.10-go2
 _gitrev=8754b9d4f10961118610656142d00e26e39220df
 version=2.0.10
-revision=5
+revision=6
 build_style=gnu-configure
 wrksrc="SDL2-${version}"
 configure_args="--prefix=/usr --enable-alsa --disable-esd --disable-rpath --enable-libudev --disable-alsatest --disable-input-tslib --disable-video-opengl
  --enable-clock_gettime --disable-nas --disable-arts --disable-x11-shared --disable-video-x11 --disable-pulseaudio --disable-video-wayland
  --disable-alsa-shared --disable-pulseaudio-shared --disable-dbus --enable-video-kmsdrm --enable-sdl-dlopen --enable-video-opengles --disable-video-x11-xrandr --disable-video-vulkan"
 hostmakedepends="pkg-config autoconf which"
-makedepends="alsa-lib-devel eudev-libudev-devel libusb-compat-devel libsamplerate-devel libdrm-devel MesaLib-devel sndio-devel librga-devel libmali-bifrost-gbm"
+makedepends="alsa-lib-devel eudev-libudev-devel libusb-compat-devel libsamplerate-devel libdrm-devel MesaLib-devel sndio-devel librga-devel"
 short_desc="Simple DirectMedia Layer (version 2) w/ go2 rotation"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="Zlib"

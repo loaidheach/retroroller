@@ -2,7 +2,7 @@
 pkgname=ppsspp-odroidgo2
 _pkgname=ppsspp
 version=1.10.3
-revision=4
+revision=7
 lang_commit=1c64b8fbd3cb6bd87935eb53f302f7de6f86e209
 glslang_commit=d0850f875ec392a130ccf00018dab458b546f27c
 SPIRV_Cross_commit=a1f7c8dc8ea2f94443951ee27003bffa562c1f13
@@ -26,7 +26,7 @@ configure_args="
  -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON"
 hostmakedepends="pkg-config python3"
 makedepends="zlib-devel ffmpeg-devel libzip-devel libpng-devel
- snappy-devel rapidjson SDL2-devel libmali-bifrost-gbm libgomp-devel"
+ snappy-devel rapidjson SDL2-2.0.10-go2 libgomp-devel libglvnd-devel"
 short_desc="Fast and portable PSP emulator"
 maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later"
@@ -67,6 +67,8 @@ do_install() {
 	vinstall icons/icon.svg 644 usr/share/pixmaps ppsspp.svg
 	vmkdir usr/share/ppsspp
 	vcopy build/assets usr/share/ppsspp/
+
+	vinstall ${FILESDIR}/ppsspp.sh 755 usr/share/rrvl/scripts
 
     vbin build/PPSSPPSDL ppsspp-sdl
 
