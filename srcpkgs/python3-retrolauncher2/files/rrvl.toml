@@ -1,0 +1,321 @@
+title = "+-- RRVL --+"
+
+theme = "retroroller"
+log_file = "/tmp/retrolauncher.log"
+
+[shortcuts]
+f1 = { name = "Power", cmd = "sudo shutdown -h now" }
+f2 = { name = "Sleep", cmd = "sudo zzz" }
+f3 = { name = "RetroArch", cmd = "retroarch" }
+f4 = { name = "RA32", cmd = "retroarch32" }
+f5 = { name = "Hotkey" }
+f6 = { name = "Quit", action = "quit" }
+
+[[apps]]
+name = "RetroArch"
+cmd = "retroarch"
+
+[[apps]]
+name = "RetroArch 32-bit"
+cmd = "retroarch32"
+
+[[apps]]
+name = ""
+
+[[apps]]
+name = "PPSSPP"
+cmd = "performance on; ppsspp-sdl; performance off"
+
+[[apps]]
+name = "Drastic"
+cmd = "performance on; /usr/bin/drastic; performance off"
+
+[[apps]]
+name = "\n:: System Utils ::\n"
+
+[[apps]]
+name = "System Update"
+cmd = "/usr/bin/update"
+term = true
+
+[[apps]]
+name = "neofetch"
+cmd = "neofetch --ascii_distro Arch_small"
+term = true
+
+[[apps]]
+name = "Autostart RetroLauncher"
+cmd = "sudo systemctl disable emulationstation; sudo systemctl enable retrolauncher"
+term = true
+
+[[apps]]
+name = "Autostart Emulation Station"
+cmd = "sudo systemctl disable retrolauncher; sudo systemctl enable emulationstation"
+term = true
+
+# Begin Systems Config
+[[context_menu]]
+name = "PPSSPP"
+cmd = "performance on; ppsspp {path}; performance off"
+path = "/roms/psp"
+
+[[context_menu]]
+name = "nestopia"
+cmd = "retroarch -L ~/.config/retroarch/cores/nestopia_libretro.so {path}"
+path = "/roms/nes"
+
+[[context_menu]]
+name = "arcade"
+cmd = "performance on; retroarch -L ~/.config/retroarch/cores/fbneo_libretro.so {path}; performance off"
+path = "/roms/arcade"
+
+[[context_menu]]
+name = "dreamcast"
+cmd = "performance on; retroarch -L ~/.config/retroarch/cores/flycast_libretro.so {path}; performance off"
+path = "/roms/dreamcast"
+
+[[context_menu]]
+name = "atomiswave"
+cmd = "performance on; retroarch -L ~/.config/retroarch/cores/flycast_libretro.so {path}; performance off"
+path = "/roms/atomiswave"
+
+[[context_menu]]
+name = "naomi"
+cmd = "performance on; retroarch -L ~/.config/retroarch/cores/flycast_libretro.so {path}; performance off"
+path = "/roms/naomi"
+
+[[context_menu]]
+name = "saturn"
+cmd = "performance on; retroarch -L ~/.config/retroarch/cores/yabasanshiro_libretro.so {path}; performance off"
+path = "/roms/saturn"
+
+[[context_menu]]
+name = "neogeo"
+cmd = "performance on; retroarch -L ~/.config/retroarch/cores/yabasanshiro_libretro.so {path}; performance off"
+path = "/roms/neogeo"
+
+[[context_menu]]
+name = "cps1"
+cmd = "performance on; retroarch -L ~/.config/retroarch/cores/fbalpha2012_cps1_libretro.so {path}; performance off"
+path = "/roms/cps1"
+
+[[context_menu]]
+name = "cps2"
+cmd = "performance on; retroarch -L ~/.config/retroarch/cores/fbalpha2012_cps2_libretro.so {path}; performance off"
+path = "/roms/cps2"
+
+[[context_menu]]
+name = "cps3"
+cmd = "performance on; retroarch -L ~/.config/retroarch/cores/fbneo_libretro.so {path}; performance off"
+path = "/roms/cps3"
+
+[[context_menu]]
+name = "cps"
+cmd = "performance on; retroarch -L ~/.config/retroarch/cores/fbneo_libretro.so {path}; performance off"
+path = "/roms/cps"
+
+[[context_menu]]
+name = "mame2003"
+cmd = "performance on; retroarch -L ~/.config/retroarch/cores/mame2003_plus_libretro.so {path}; performance off"
+path = "/roms/mame2003"
+
+[[context_menu]]
+name = "mame2010"
+cmd = "performance on; retroarch -L ~/.config/retroarch/cores/mame2010_libretro.so {path}; performance off"
+path = "/roms/mame2010"
+
+[[context_menu]]
+name = "fds"
+cmd = "retroarch -L ~/.config/retroarch/cores/nestopia_libretro.so {path}"
+path = "/roms/fds"
+
+[[context_menu]]
+name = "snes-cd"
+cmd = "performance on; retroarch -L ~/.config/retroarch/cores/snes9x_libretro.so {path}; performance off"
+path = "/roms/snes_msu1"
+
+[[context_menu]]
+name = "snes"
+cmd = "performance on; retroarch -L ~/.config/retroarch/cores/snes9x2010_libretro.so {path}; performance off"
+path = "/roms/snes"
+
+[[context_menu]]
+name = "n64"
+cmd = "performance on; mupen64 {path}; performance off"
+path = "/roms/n64"
+
+[[context_menu]]
+name = "gb"
+cmd = "retroarch -L ~/.config/retroarch/cores/gambatte_libretro.so {path}"
+path = "/roms/gb"
+
+[[context_menu]]
+name = "gbc"
+cmd = "retroarch -L ~/.config/retroarch/cores/gambatte_libretro.so {path}"
+path = "/roms/gbc"
+
+[[context_menu]]
+name = "gba"
+cmd = "performance on; retroarch -L ~/.config/retroarch/cores/mgba_libretro.so {path}; performance off"
+path = "/roms/gba"
+
+[[context_menu]]
+name = "sgb"
+cmd = "retroarch -L ~/.config/retroarch/cores/mgba_libretro.so {path}"
+path = "/roms/sgb"
+
+[[context_menu]]
+name = "psx"
+cmd = "performance on; retroarch32 -L ~/.config/retroarch/cores/pcsx_rearmed_libretro.so {path}; performance off"
+path = "/roms/psx"
+
+[[context_menu]]
+name = "nds"
+cmd = "performance on; drastic {path}; performance off"
+path = "/roms/nds"
+
+[[context_menu]]
+name = "sms"
+cmd = "retroarch -L ~/.config/retroarch/cores/genesis_plus_gx_libretro.so {path}"
+path = "/roms/sms"
+
+[[context_menu]]
+name = "megadrive"
+cmd = "retroarch -L ~/.config/retroarch/cores/genesis_plus_gx_libretro.so {path}"
+path = "/roms/megadrive"
+
+[[context_menu]]
+name = "genesis"
+cmd = "retroarch -L ~/.config/retroarch/cores/genesis_plus_gx_libretro.so {path}"
+path = "/roms/genesis"
+
+[[context_menu]]
+name = "segacd"
+cmd = "retroarch -L ~/.config/retroarch/cores/genesis_plus_gx_libretro.so {path}"
+path = "/roms/segacd"
+
+[[context_menu]]
+name = "32x"
+cmd = "retroarch -L ~/.config/retroarch/cores/picodrive_libretro.so {path}"
+path = "/roms/sega32x"
+
+[[context_menu]]
+name = "gamegear"
+cmd = "retroarch -L ~/.config/retroarch/cores/genesis_plus_gx_libretro.so {path}"
+path = "/roms/gamegear"
+
+[[context_menu]]
+name = "ngp"
+cmd = "retroarch -L ~/.config/retroarch/cores/mednafen_ngp_libretro.so {path}"
+path = "/roms/ngp"
+
+[[context_menu]]
+name = "ngpc"
+cmd = "retroarch -L ~/.config/retroarch/cores/mednafen_ngp_libretro.so {path}"
+path = "/roms/ngpc"
+
+[[context_menu]]
+name = "tgcd"
+cmd = "retroarch -L ~/.config/retroarch/cores/mednafen_pce_fast_libretro.s {path}"
+path = "/roms/tgcd"
+
+[[context_menu]]
+name = "tg16"
+cmd = "retroarch -L ~/.config/retroarch/cores/mednafen_pce_fast_libretro.s {path}"
+path = "/roms/tg16"
+
+[[context_menu]]
+name = "pce"
+cmd = "retroarch -L ~/.config/retroarch/cores/mednafen_pce_fast_libretro.s {path}"
+path = "/roms/pcengine"
+
+[[context_menu]]
+name = "pce-cd"
+cmd = "retroarch -L ~/.config/retroarch/cores/mednafen_pce_fast_libretro.s {path}"
+path = "/roms/pcenginecd"
+
+[[context_menu]]
+name = "supergrafx"
+cmd = "retroarch -L ~/.config/retroarch/cores/mednafen_pce_fast_libretro.s {path}"
+path = "/roms/supergrafx"
+
+[[context_menu]]
+name = "vectrex"
+cmd = "retroarch -L ~/.config/retroarch/cores/vecx_libretro.so {path}"
+path = "/roms/vextrex"
+
+[[context_menu]]
+name = "ws"
+cmd = "retroarch -L ~/.config/retroarch/cores/mednafen_wswan_libretro.so {path}"
+path = "/roms/wonderswan"
+
+[[context_menu]]
+name = "wsc"
+cmd = "retroarch -L ~/.config/retroarch/cores/mednafen_wswan_libretro.so {path}"
+path = "/roms/wonderswancolor"
+
+[[context_menu]]
+name = "2600"
+cmd = "retroarch -L ~/.config/retroarch/cores/stella2014_libretro.so {path}"
+path = "/roms/atari2600"
+
+[[context_menu]]
+name = "5200"
+cmd = "retroarch -L ~/.config/retroarch/cores/atari800_libretro.so {path}"
+path = "/roms/atari5200"
+
+[[context_menu]]
+name = "atari800"
+cmd = "retroarch -L ~/.config/retroarch/cores/atari800_libretro.so {path}"
+path = "/roms/atari800"
+
+[[context_menu]]
+name = "7800"
+cmd = "retroarch -L ~/.config/retroarch/cores/prosystem_libretro.so {path}"
+path = "/roms/atari7800"
+
+[[context_menu]]
+name = "atarilynx"
+cmd = "retroarch -L ~/.config/retroarch/cores/handy_libretro.so {path}"
+path = "/roms/atarilynx"
+
+[[context_menu]]
+name = "msdos"
+cmd = "retroarch -L ~/.config/retroarch/cores/dosbox_libretro.so {path}"
+path = "/roms/dos"
+
+[[context_menu]]
+name = "coleco"
+cmd = "retroarch -L ~/.config/retroarch/cores/bluemsx_libretro.so {path}"
+path = "/roms/coleco"
+
+[[context_menu]]
+name = "scummvm"
+cmd = "retroarch -L ~/.config/retroarch/cores/scummvm_libretro.so {path}"
+path = "/roms/scummvm"
+
+[[context_menu]]
+name = "c64"
+cmd = "retroarch -L ~/.config/retroarch/cores/vice_x64_libretro.so {path}"
+path = "/roms/c64"
+
+[[context_menu]]
+name = "pokemini"
+cmd = "retroarch -L ~/.config/retroarch/cores/pokemini_libretro.so {path}"
+path = "/roms/pokemini"
+# End Systems Config
+
+[[context_menu]]
+name = "Set Timezone"
+cmd = "sudo ln -sf {path} /etc/localtime"
+path = "/usr/share/zoneinfo"
+
+[[context_menu]]
+name = "Run in Terminal"
+cmd = "{path}"
+term = true
+
+[[context_menu]]
+name = "Run"
+cmd = "{path}"
+

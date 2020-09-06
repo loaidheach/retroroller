@@ -1,15 +1,21 @@
 # Template file for 'retrolauncher2'
 pkgname=retrolauncher2
-_gitrev=a3bb2c1383ed6b47af039ec868ef193bff3e64ac
 version=0.5.0
 revision=1
-build_style=python3-module
-wrksrc="${pkgname}-${_gitrev}"
-hostmakedepends="python3-setuptools"
-depends="python3-evdev python3-urwid python3-toml python3-setuptools python3-humanize python3-cachetools neofetch conky bc"
-short_desc="Retrolauncher2"
+short_desc="RetroLauncher 2"
 maintainer="valadaa48 <valadaa48@gmx.com>"
-license="Apache-2.0"
+#wrksrc="retrolauncher2-${version}"
+create_wrksrc=yes
+depends="python3-retrolauncher2"
+license="GPL-3.0-or-later"
 homepage="https://github.com/valadaa48/retrolauncher2"
-distfiles="https://github.com/valadaa48/retrolauncher2/archive/${_gitrev}.tar.gz"
-checksum=a99278fb9a04335e026d277da99182dc6fc2d53973ef33dcbe969d493ac5a9a0
+
+# TODO @pyghast copy conky.conf to ~/.config/conky/conky.conf
+# check our other packages for INSTALL files on how
+# to do this during package install
+
+do_install() {
+	vinstall ${FILESDIR}/retrolauncher2.sh 755 usr/share/rrvl/scripts
+
+    vsv retrolauncher2
+}
