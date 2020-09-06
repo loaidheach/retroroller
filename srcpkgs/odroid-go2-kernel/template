@@ -5,7 +5,7 @@ _gitshort="${_gitrev:0:7}"
 
 pkgname=odroid-go2-kernel
 version=4.4.189
-revision=5
+revision=6
 short_desc="Linux kernel and modules for Odroid GO2 (${version%.*} [git ${_gitshort}])"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
@@ -59,6 +59,9 @@ do_build() {
 	if [ "$CROSS_BUILD" ]; then
 		_args="CROSS_COMPILE=${XBPS_CROSS_TRIPLET}-"
 	fi
+
+	export KBUILD_BUILD_USER="odroid"
+	export KBUILD_BUILD_HOST="rrvl"
 
 	unset LDFLAGS
 	make ARCH=arm64 ${_args} ${makejobs} prepare
