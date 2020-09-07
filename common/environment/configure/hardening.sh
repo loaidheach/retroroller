@@ -5,8 +5,8 @@ if [ -z "$nopie" ]; then
 	# Our compilers use --enable-default-pie and --enable-default-ssp,
 	# but the bootstrap host compiler may not, force them.
 	if [ -z "$CHROOT_READY" ]; then
-		CFLAGS="-fstack-protector-strong -D_FORTIFY_SOURCE=2 ${CFLAGS}"
-		CXXFLAGS="-fstack-protector-strong -D_FORTIFY_SOURCE=2 ${CXXFLAGS}"
+		#CFLAGS="-fstack-protector-strong -D_FORTIFY_SOURCE=2 ${CFLAGS}"
+		#CXXFLAGS="-fstack-protector-strong -D_FORTIFY_SOURCE=2 ${CXXFLAGS}"
 		_GCCSPECSDIR=${XBPS_COMMONDIR}/environment/configure/gccspecs
 		case "$XBPS_TARGET_MACHINE" in
 			mips*) _GCCSPECSFILE="${_GCCSPECSDIR}/hardened-mips-cc1" ;;
@@ -17,8 +17,8 @@ if [ -z "$nopie" ]; then
 		LDFLAGS="-specs=${_GCCSPECSDIR}/hardened-ld -Wl,-z,relro -Wl,-z,now ${LDFLAGS}"
 	else
 		# Enable FORITFY_SOURCE=2
-		CFLAGS="-fstack-clash-protection -D_FORTIFY_SOURCE=2 ${CFLAGS}"
-		CXXFLAGS="-fstack-clash-protection -D_FORTIFY_SOURCE=2 ${CXXFLAGS}"
+		#CFLAGS="-fstack-clash-protection -D_FORTIFY_SOURCE=2 ${CFLAGS}"
+		#CXXFLAGS="-fstack-clash-protection -D_FORTIFY_SOURCE=2 ${CXXFLAGS}"
 		FFLAGS="-fstack-clash-protection ${FFLAGS}"
 		LDFLAGS="-Wl,-z,relro -Wl,-z,now ${LDFLAGS}"
 	fi
