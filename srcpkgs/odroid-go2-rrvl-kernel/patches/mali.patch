@@ -1,0 +1,45 @@
+diff --git a/drivers/gpu/arm/bifrost/mali_kbase_core_linux.c b/drivers/gpu/arm/bifrost/mali_kbase_core_linux.c
+index bd6ac75be40f..d365b8443477 100644
+--- a/drivers/gpu/arm/bifrost/mali_kbase_core_linux.c
++++ b/drivers/gpu/arm/bifrost/mali_kbase_core_linux.c
+@@ -22,6 +22,7 @@
+ 
+ #include <mali_kbase.h>
+ #include <mali_kbase_config_defaults.h>
++#include <backend/gpu/mali_kbase_devfreq.h>
+ #include <mali_midg_regmap.h>
+ #include <mali_kbase_gator.h>
+ #include <mali_kbase_mem_linux.h>
+diff --git a/drivers/gpu/arm/bifrost_for_linux/mali_kbase_core_linux.c b/drivers/gpu/arm/bifrost_for_linux/mali_kbase_core_linux.c
+index b15fc1f2b8d1..56b35e09f843 100644
+--- a/drivers/gpu/arm/bifrost_for_linux/mali_kbase_core_linux.c
++++ b/drivers/gpu/arm/bifrost_for_linux/mali_kbase_core_linux.c
+@@ -21,6 +21,7 @@
+ #include <mali_midg_regmap.h>
+ #include <mali_kbase_gator.h>
+ #include <mali_kbase_mem_linux.h>
++#include <backend/gpu/mali_kbase_devfreq.h>
+ #ifdef CONFIG_MALI_BIFROST_DEVFREQ
+ #include <linux/devfreq.h>
+ #include <backend/gpu/mali_kbase_devfreq.h>
+diff --git a/drivers/gpu/arm/bifrost_for_linux/platform/rk/mali_kbase_config_rk.c b/drivers/gpu/arm/bifrost_for_linux/platform/rk/mali_kbase_config_rk.c
+index 926c2dd3f8c9..3cf945a66ad7 100755
+--- a/drivers/gpu/arm/bifrost_for_linux/platform/rk/mali_kbase_config_rk.c
++++ b/drivers/gpu/arm/bifrost_for_linux/platform/rk/mali_kbase_config_rk.c
+@@ -395,6 +395,7 @@ static ssize_t utilisation_show(struct device *dev,
+ 				struct device_attribute *attr,
+ 				char *buf)
+ {
++#if defined(CONFIG_MALI_BIFROST_DEVFREQ) || defined(CONFIG_MALI_BIFROST_DVFS)
+ 	struct kbase_device *kbdev = dev_get_drvdata(dev);
+ 	struct rk_context *platform = get_rk_context(kbdev);
+ 	ssize_t ret = 0;
+@@ -417,6 +418,8 @@ static ssize_t utilisation_show(struct device *dev,
+ 	ret += snprintf(buf, PAGE_SIZE, "%ld\n", utilisation);
+ 
+ 	return ret;
++#endif
++    return 0;
+ }
+ 
+ static DEVICE_ATTR_RW(utilisation_period);

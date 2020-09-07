@@ -5,7 +5,7 @@ _gitshort="${_gitrev:0:7}"
 
 pkgname=odroid-go2-rrvl-kernel
 version=4.4.189
-revision=6
+revision=1
 short_desc="Linux kernel and modules for Odroid GO2 (${version%.*} [git ${_gitshort}])"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
@@ -61,7 +61,7 @@ do_build() {
 		_args="CROSS_COMPILE=${XBPS_CROSS_TRIPLET}-"
 	fi
 
-	_args+=" V=1"
+#	_args+=" V=1"
 
 	# export ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu MENUCONFIG_COLOR=blackbg
 
