@@ -3,6 +3,7 @@
 - odroid-go2-rrvl-kernel is an alternative, experimental kernel with some
   optimizations. Install manually via `sudo xbps-install -Su
   odroid-go2-rrvl-kernel` and reboot.
+- SDL2 mappings added for v10 (thanks npaladin2000)
 
 # 20200908
 
