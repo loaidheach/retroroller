@@ -2,6 +2,8 @@
 
 sudo chvt 2
 
+export TERM=linux
+
 printf "\033c"
 
 "$@"

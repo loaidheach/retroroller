@@ -2,7 +2,7 @@
 pkgname=SDL2-2.0.10-go2
 _gitrev=8754b9d4f10961118610656142d00e26e39220df
 version=2.0.10
-revision=6
+revision=8
 build_style=gnu-configure
 wrksrc="SDL2-${version}"
 configure_args="--prefix=/usr --enable-alsa --disable-esd --disable-rpath --enable-libudev --disable-alsatest --disable-input-tslib --disable-video-opengl
@@ -21,6 +21,8 @@ replaces="SDL2>=0 SDL2-go2>=0"
 patch_args="-Np1"
 
 LDFLAGS+=" -lrga"
+
+# v11 Buttons: F1=leftstick, F6=rightstick, F2=guide, f3=back, f4=start
 
 pre_configure() {
     ./autogen.sh
