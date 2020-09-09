@@ -65,8 +65,6 @@ do_build() {
 
 	# export ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu MENUCONFIG_COLOR=blackbg
 
-	vsed -i Makefile -e "s/-Wno-trigraphs/-Wno-trigraphs -march=armv8-a+crc+simd -mtune=cortex-a35/"
-
 	export KBUILD_BUILD_USER="odroid"
 	export KBUILD_BUILD_HOST="rrvl"
 
