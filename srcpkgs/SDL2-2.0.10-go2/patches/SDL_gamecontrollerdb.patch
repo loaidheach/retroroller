@@ -6,8 +6,8 @@ index 45379da..bcba4f1 100644
   */
  static const char *s_ControllerMappings [] =
  {
-+    "19000000010000000100000001010000,odroidgo2_joypad,a:b0,b:b1,x:b3,y:b2,back:b10,start:b15,leftstick:b12,rightstick:b13,leftshoulder:b4,rightshoulder:b5,dpup:b6,dpdown:b7,dpleft:b8,dpright:b9,leftx:a0,lefty:a1,lefttrigger:b11,righttrigger:b14,",
-+    "19000000010000000200000001010000,odroidgo2_joypad_v11,a:b1,b:b0,x:b2,y:b3,leftshoulder:b4,rightshoulder:b5,lefttrigger:b6,righttrigger:b7,dpdown:b9,dpleft:b10,dpright:b11,dpup:b8,leftx:a0,lefty:a1,back:b14,start:b15,guide:b13,leftstick:b12,rightstick:b17platform:Linux,",
++     "19000000010000000100000001010000,odroidgo2_joypad,a:b1,b:b0,x:b2,y:b3,leftshoulder:b4,rightshoulder:b5,dpdown:b7,dpleft:b8,dpright:b9,dpup:b6,leftx:a0,lefty:a1,back:b12,start:b13,guide:b11,leftstick:b10,rightstick:b15,rightx:b14,platform:Linux,",
++    "19000000010000000200000001010000,odroidgo2_joypad_v11,a:b1,b:b0,x:b2,y:b3,leftshoulder:b4,rightshoulder:b5,lefttrigger:b6,righttrigger:b7,dpdown:b9,dpleft:b10,dpright:b11,dpup:b8,leftx:a0,lefty:a1,back:b14,start:b15,guide:b13,leftstick:b12,rightstick:b17,platform:Linux,",
 +
  #if SDL_JOYSTICK_XINPUT
      "xinput,XInput Controller,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b10,leftshoulder:b4,leftstick:b8,lefttrigger:a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b9,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,",
