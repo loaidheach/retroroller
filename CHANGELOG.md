@@ -4,6 +4,7 @@
   optimizations. Install manually via `sudo xbps-install -Su
   odroid-go2-rrvl-kernel` and reboot.
 - SDL2 mappings added for v10 (thanks npaladin2000)
+- Further optimizations to odroid-go2-rrvl-kernel
 
 # 20200908
 
