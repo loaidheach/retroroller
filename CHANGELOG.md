@@ -1,3 +1,11 @@
+# 20200908
+
+- SDL2 finally fixed with sane default mappings for v11 (v10 still WIP)
+- ppsspp-odroigo2 updated with standalone launch script in `/roms/_rrvl`
+- After upgrading, run `/roms/_rrvl/reset_ppsspp.sh` and you'll have a much
+  better experience. It now has a built-in file browser.
+- termwrap now sets the TERM var appropriately so it works with dialog(1)
+
 # 20200905
 
 - ogage (global events daemon) further optimized to use basically 0% CPU
