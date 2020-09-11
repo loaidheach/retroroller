@@ -1,3 +1,7 @@
+# 20200910
+
+- Add wifi firmware to fix issues with recognizing certain wifi devices
+
 # 20200909
 
 - odroid-go2-rrvl-kernel is an alternative, experimental kernel with some
