@@ -3,9 +3,9 @@ pkgname=tic80_libretro
 version=0.80.0b
 revision=1
 build_style=cmake
-configure_args="-DBUILD_LIBRETRO=ON -DBUILD_SDL=OFF -DBUILD_PLAYER=OFF -DBUILD_PRO=OFF"
+configure_args='-DBUILD_LIBRETRO=ON -DBUILD_SDL=OFF -DBUILD_PLAYER=OFF -DBUILD_PRO=OFF -DCMAKE_VERBOSE_MAKEFILE=ON -DBUILD_DEMO_CARTS_DEFAULT=OFF'
 hostmakedepends="pkg-config libtool git cmake"
-makedepends="zlib-devel libdrm-devel MesaLib-devel gtk+3-devel"
+makedepends="zlib-devel libdrm-devel MesaLib-devel gtk+3-devel alsa-lib-devel"
 short_desc="${pkgname}"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
