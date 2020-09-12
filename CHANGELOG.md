@@ -1,3 +1,9 @@
+# 20200911
+
+- More odroid-go2-rrvl-kernel optimizations
+- Added 26 cores to retroarch core downloader, might be the biggest collection
+  now
+
 # 20200910
 
 - Add wifi firmware to fix issues with recognizing certain wifi devices
