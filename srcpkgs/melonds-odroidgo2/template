@@ -1,0 +1,62 @@
+# Template file for 'melonds-odroidgo2'
+pkgname=melonds-odroidgo2
+version=0.9.0
+revision=1
+_gitrev=9772201345ab47cc820fd6c08247c133605f8b84
+wrksrc="melonDS-${_gitrev}"
+build_style=cmake
+#configure_args="-DBUILD_QT_SDL=OFF"
+hostmakedepends="pkg-config qt5-qmake qt5-host-tools"
+makedepends="libpcap-devel MesaLib-devel SDL2-2.0.10-go2 libslirp-devel qt5-devel"
+short_desc="DS emulator, sorta"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/Arisotura/melonDS"
+distfiles="https://github.com/Arisotura/melonDS/archive/${_gitrev}.tar.gz"
+checksum=9ca8498d19b8a6e829a74d56f0b4a90f72e1a66473a2795fd0b9837659355a12
+patch_args="-Np1"
+nopie=1
+
+#do_configure() {
+#	if [ "$CROSS_BUILD" ]; then
+#		configure_args+=" --host=${XBPS_CROSS_TRIPLET}"
+#	fi
+#
+#	case "$XBPS_TARGET_MACHINE" in
+#		armv7*)
+#            configure_args+=" --enable-neon"
+#            ;;
+#        *)
+#            _flags+=" $LTO_FLAGS"
+#            ;;
+#    esac
+#	
+#    export CFLAGS+=" ${_flags}"
+#    export CXXFLAGS+=" ${_flags}"
+#    export LDFLAGS+=" ${_flags}"
+#    export ASFLAGS="$CFLAGS"
+#	./configure ${configure_args}
+#}
+#
+#pre_build() {
+#	vsed -i gfx/drivers_context/drm_go2_ctx.c -e "s:<drm/drm_fourcc.h>:<libdrm/drm_fourcc.h>:" 
+#	vsed -i deps/libgo2/src/display.c -e "s:<drm/drm_fourcc.h>:<libdrm/drm_fourcc.h>:" 
+#	vsed -i gfx/drivers/oga_gfx.c -e "s:<drm/drm_fourcc.h>:<libdrm/drm_fourcc.h>:" 
+#    vsed -i menu/drivers/ozone/ozone.c -e "s/scale_factor = ozone->last_scale_factor/scale_factor = ozone->last_scale_factor \* 1.5/"
+#}
+#
+#do_build() {
+#    local _opts=""
+#
+#	case "$XBPS_TARGET_MACHINE" in
+#		armv7*) _opts+="NEON_CFLAGS='-mfpu=neon-vfpv4 -mfloat-abi=hard' NEON_ASFLAGS='-mfpu=neon-vfpv4 -mfloat-abi=hard'";;
+#    esac
+#
+#    make V=1 -j$(nproc)
+#}
+#
+#post_install() {
+#    vinstall ${FILESDIR}/retroarch.cfg 644 etc
+#    vsv retroarch
+#}
+#
