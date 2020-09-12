@@ -22,6 +22,8 @@ do_build() {
 		aarch64*) _platform="goadvance";;
     esac
 
+    ${CC} --version
+
     _opts="CC_AS=$CC HAVE_OPENMP=1 FORCE_GLES=1 HAVE_LTCG=0 WITH_DYNAREC=arm64 platform=${_platform}"
 
     vsed -i Makefile -e "s/-O3/-O2 -fdata-sections -fmerge-all-constants/"
