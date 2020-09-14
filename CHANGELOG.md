@@ -1,12 +1,14 @@
-# 20200911
+# 20200913
 
-- Added optimized tic80 core to core downloader
+- Optimized retroarch's input handler
+
 
 # 20200911
 
 - More odroid-go2-rrvl-kernel optimizations
 - Added 26 cores to retroarch core downloader, might be the biggest collection
   now
+- Added optimized tic80 core to core downloader
 
 # 20200910
 
