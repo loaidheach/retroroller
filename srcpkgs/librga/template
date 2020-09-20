@@ -1,7 +1,7 @@
 # Template file for 'librga'
 pkgname=librga
 version=4.0.0
-revision=1
+revision=4
 _gitrev=87737c0b4425e2372086385de7fe9c54b9dbbace
 archs="aarch64 armv7*"
 wrksrc="linux-rga-${_gitrev}"
@@ -16,6 +16,7 @@ patch_args="-Np1"
 shlib_provides="librga.so"
 
 do_build() {
+#    vsed -i normal/NormalRga.cpp -e "s/RGA_BLIT_SYNC/RGA_BLIT_ASYNC/"
 	make PROJECT_DIR=.
 }
 

@@ -1,28 +1,33 @@
 # Template file for 'duckstation'
 pkgname=duckstation
 version=0.20200902
-_gitrev=f3baca92998e6cfe20f75f7ec3344d6c301b6bc9
+_gitrev=go2fast
 revision=1
 wrksrc="duckstation-${_gitrev}"
 build_style=cmake
 short_desc="duckstation"
-configure_args="-DCMAKE_BUILD_TYPE=Release -DBUILD_QT_FRONTEND=OFF -DBUILD_SDL_FRONTEND=OFF -DBUILD_GO2_FRONTEND=ON -DUSE_SDL2=OFF -DUSE_X11=OFF -DUSE_EGL=OFF"
+configure_args="-DCMAKE_BUILD_TYPE=Debug -DBUILD_QT_FRONTEND=OFF -DBUILD_SDL_FRONTEND=OFF -DBUILD_GO2_FRONTEND=ON"
+#configure_args="-DCMAKE_BUILD_TYPE=Release -DBUILD_QT_FRONTEND=OFF -DBUILD_SDL_FRONTEND=OFF -DBUILD_LIBRETRO_CORE=ON"
 maintainer="valadaa48 <valadaa48@gmx.com>"
-hostmakedepends="pkg-config python unzip ninja cmake"
+hostmakedepends="pkg-config python unzip ninja cmake git"
 makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel
  librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel libopenal-devel SDL2-devel qt5-devel qt5-qmake libgo2-devel libdrm-devel"
 license="GPL-2.0-or-later"
 homepage="https://github.com/libretro/duckstation"
-distfiles="https://github.com/stenzek/duckstation/archive/${_gitrev}.tar.gz"
-checksum=ea12776a5f81e650c42ddcdc38f6125cd98b4ba897520e992137275e64d5d656
+#distfiles="https://github.com/stenzek/duckstation/archive/${_gitrev}.tar.gz"
+#checksum=ea12776a5f81e650c42ddcdc38f6125cd98b4ba897520e992137275e64d5d656
 
 #CFLAGS+=" $LTO_FLAGS"
 #CXXFLAGS+=" $LTO_FLAGS"
 #LDFLAGS+=" $LTO_FLAGS"
-#
-pre_build() {
-    vsed -i src/duckstation-go2/go2_host_display.cpp -e 's:drm/drm_fourcc.h:libdrm/drm_fourcc.h:'
+
+do_fetch() {
+    git clone --depth 1 https://github.com/stenzek/duckstation -b ${_gitrev} ${wrksrc}
 }
+
+#pre_build() {
+##    vsed -i src/duckstation-go2/go2_host_display.cpp -e 's:drm/drm_fourcc.h:libdrm/drm_fourcc.h:'
+#}
 #    mkdir build-release
 #    cd libretro
 #    make -j${XBPS_MAKEJOBS} V=1 LTO="${LTO_FLAGS}"
