@@ -1,7 +1,7 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.9.0
-revision=15
+revision=16
 _gitrev=dev
 wrksrc="RetroArch-${_gitrev}"
 #wrksrc="RetroArch"
@@ -42,7 +42,7 @@ configure_args="--prefix=/usr
 conf_files="/etc/retroarch.cfg"
 hostmakedepends="pkg-config python unzip git"
 makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel
- librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel libopenal-devel"
+ librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel"
 short_desc="Official reference frontend for the libretro API"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
