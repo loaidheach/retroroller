@@ -1,24 +1,27 @@
 # Template file for 'retrorun-go2'
 pkgname=retrorun-go2
-version=0.20200831
-revision=2
-_gitrev=0e4aea561ead3805493374f26ab5a646663fbb36
+version=0.20201017
+revision=1
+_gitrev=b4265380340c793b05321689341c31b6edac2b77
 wrksrc="${pkgname}-${_gitrev}"
 hostmakedepends="premake4"
 makedepends="libgo2-devel MesaLib-devel"
 short_desc="Slim libretro frontend for the odroid go advance"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-or-later"
-homepage="https://github.com/OtherCrashOverride/retrorun-go2"
-distfiles="https://github.com/OtherCrashOverride/retrorun-go2/archive/${_gitrev}.tar.gz"
-checksum=4ab3afaba2d47c51d5e65f6d015574112e97e835c9cb5d248eff32b31283d507
+homepage="https://github.com/valadaa48/retrorun-go2"
+distfiles="https://github.com/valadaa48/retrorun-go2/archive/${_gitrev}.tar.gz"
+checksum=1750595419f9d7d95e2296f8ca1fe5352648ff75423c7e49d620ef5be59389ed
+
+#post_extract() {
+#    vsed -i src/video.cpp -e "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:"
+#    vsed -i src/main.cpp -e "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:"
+#}
 
 do_configure() {
     premake4 gmake
     vsed -i build/gmake/Makefile -e "s/CC = gcc/CC = ${CC}/"
     vsed -i build/gmake/Makefile -e "s/CXX = g++/CC = ${CXX}/"
-    vsed -i src/video.cpp -e "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:"
-    vsed -i src/main.cpp -e "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:"
 }
 
 do_build() {
