@@ -1,21 +1,29 @@
 # Template file for 'duckstation_libretro'
 pkgname=duckstation_libretro
 version=0.20200901
-_gitrev=0af22825ad0370215460c3519514a8f0ab65d7d2
+#_gitrev=
 revision=1
-wrksrc="duckstation-${_gitrev}"
+wrksrc="duckstation"
 build_style=cmake
 short_desc="duckstation"
 #cmake_args="-DCMAKE_BUILD_TYPE=Release -GNinja -DBUILD_LIBRETRO_CORE=ON"
-configure_args="-DCMAKE_BUILD_TYPE=Release -DBUILD_LIBRETRO_CORE=ON -DCMAKE_VERBOSE_MAKEFILE=ON"
+#configure_args="-DCMAKE_BUILD_TYPE=Release -DBUILD_LIBRETRO_CORE=ON -DCMAKE_VERBOSE_MAKEFILE=ON -DBUILD_QT_FRONTEND=OFF -DBUILD_SDL_FRONTEND=OFF"
+#configure_args="-DBUILD_GO2_FRONTEND=ON -DBUILD_QT_FRONTEND=OFF -DBUILD_SDL_FRONTEND=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_VERBOSE_MAKEFILE=ON -DENABLE_DISCORD_PRESENCE=OFF -DUSE_SDL2=OFF -DUSE_X11=OFF -DUSE_EGL=OFF"
+configure_args="-DBUILD_LIBRETRO_CORE=ON -DBUILD_QT_FRONTEND=OFF -DBUILD_SDL_FRONTEND=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_VERBOSE_MAKEFILE=ON -DENABLE_DISCORD_PRESENCE=OFF -DUSE_SDL2=OFF -DUSE_X11=OFF -DUSE_EGL=OFF"
 maintainer="valadaa48 <valadaa48@gmx.com>"
-hostmakedepends="pkg-config python unzip ninja cmake"
-makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel
- librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel libopenal-devel"
+hostmakedepends="pkg-config python unzip cmake rsync"
+#makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel libopenal-devel SDL2-devel qt5-devel qt5-qmake libgo2-devel libdrm-devel"
+makedepends="libgo2-devel libdrm-devel libopenal-devel alsa-lib-devel"
 license="GPL-2.0-or-later"
 homepage="https://github.com/libretro/duckstation"
-distfiles="https://github.com/stenzek/duckstation/archive/${_gitrev}.tar.gz"
-checksum=b8339c0ee4c53388532a58ae9a72169d2f3508070a602d0dc6200c66a4296c0a
+#distfiles="https://github.com/stenzek/duckstation/archive/${_gitrev}.tar.gz"
+#checksum=b8339c0ee4c53388532a58ae9a72169d2f3508070a602d0dc6200c66a4296c0a
+
+do_extract() {
+    rsync -av maruchan@akira:dev/github/duckstation/* ${wrksrc}
+#    vsed -i src/duckstation-go2/go2_host_display.cpp -e "s/
+#	git clone maruchan@akira:dev/github/duckstation ${wrksrc}
+}
 
 #CFLAGS+=" $LTO_FLAGS"
 #CXXFLAGS+=" $LTO_FLAGS"
