@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+case $1 in 
+	on)
+		sudo sv stop sshd
+		sudo sv stop chronyd
+		sudo sv stop NetworkManager
+		sudo rfkill block all
+		;;
+	off)
+		sudo rfkill unblock all
+		sudo sv start NetworkManager
+		sudo sv start chronyd
+		sudo sv start sshd
+		;;
+	*)
+		echo "Usage: dark on|off"
+esac

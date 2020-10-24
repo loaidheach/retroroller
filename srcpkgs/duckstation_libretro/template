@@ -1,6 +1,6 @@
 # Template file for 'duckstation_libretro'
 pkgname=duckstation_libretro
-version=0.20200901
+version=0.20201023
 #_gitrev=
 revision=1
 wrksrc="duckstation"

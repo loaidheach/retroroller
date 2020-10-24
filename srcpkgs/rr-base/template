@@ -1,14 +1,14 @@
 # Template file for 'rr-base'
 pkgname=rr-base
-version=1.5.8
-revision=1
+version=1.6.1
+revision=3
 archs="aarch64"
 create_wrkdir=true
 short_desc="retroroller base"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-or-later"
 homepage="https://github.com/valadaa48"
-depends="p7zip unzip NetworkManager SDL2-2.0.10-go2 xtools librga libgo2 libmali-bifrost-gbm ogage ppsspp-odroidgo2 dialog linux-firmware-network"
+depends="p7zip unzip NetworkManager SDL2-2.0.10-go2 xtools librga libgo2 libmali-bifrost-gbm ogage ppsspp-odroidgo2 dialog linux-firmware-network spring-rrvl retrorun-go2"
 conf_files="/boot/boot.ini /etc/NetworkManager/conf.d/wifi-powersave-off.conf"
 
 do_install() {
@@ -34,11 +34,8 @@ do_install() {
     vbin update
     vbin termwrap
     vbin ogainfo
-
+    vbin retrorun32
+    vbin retrorun64
     vbin retroarch32
-
-    for f in drastic ppsspp pcsx_rearmed_libretro mupen64plus flycast32_libretro shell; do
-        vinstall spring_$f.info 644 opt/libretro
-        vinstall spring_$f.so 755 opt/libretro
-    done
+    vbin dark
 }

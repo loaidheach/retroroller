@@ -43,5 +43,8 @@ chmod 775 /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
 
 echo mmc0 > /sys/class/leds/blue:heartbeat/trigger
 
+echo performance > /sys/devices/platform/dmc/devfreq/dmc/governor
+echo performance > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+
 /usr/bin/iw dev wlan0 set power_save off
 

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+exec retrorun -s /roms/saves -d /roms/bios "$@"
