@@ -1,0 +1,22 @@
+# Template file for 'spring-rrvl
+pkgname=spring-rrvl
+version=1.1.1
+revision=1
+_gitrev=18abb53d696e728f4e26d274c6a9a1005bbb0f8d
+wrksrc="$pkgname"
+short_desc="RRVL core info files"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/valadaa48/libretro-core-info"
+
+do_fetch() {
+    git clone https://github.com/valadaa48/libretro-core-info ${wrksrc}
+    cd ${wrksrc}
+    git reset --hard ${_gitrev}
+}
+
+do_install() {
+	vmkdir opt/libretro/spring
+	vcopy spring_* opt/libretro/spring
+}
+

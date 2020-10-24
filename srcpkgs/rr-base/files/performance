@@ -11,13 +11,13 @@ performance="performance"
 
 case $1 in 
 	on)
-		echo $performance > $cpu
-		echo $performance > $dmc
+		#echo $performance > $cpu
+		#echo $performance > $dmc
 		echo $performance > $gpu
 		;;
 	off)
-		echo $cpu_default > $cpu
-		echo $dmc_default > $dmc
+		#echo $cpu_default > $cpu
+		#echo $dmc_default > $dmc
 		echo $gpu_default > $gpu
 		;;
 	*)

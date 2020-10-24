@@ -1,8 +1,8 @@
 # Template file for 'libretro-spring'
 pkgname=libretro-spring
-version=0.4.0
+version=0.5.0
 revision=1
-_gitrev=master
+_gitrev=dcb5e14172bb3b60ffa70abd082194f71d034d95
 wrksrc="spring-libretro-${_gitrev}"
 build_style=gnu-makefile
 makedepends=""
@@ -11,7 +11,7 @@ maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/valadaa48/spring-libretro"
 distfiles="https://github.com/valadaa48/spring-libretro/archive/${_gitrev}.tar.gz"
-checksum=0dbf3b1869bbef451aeef26e8c77732487a3cdc70fd84e27afb2cdb48cd6a5e2
+checksum=0b00209744a4cef58ac97f4c3765d555fed0ed70565848e6dcef9069f3c4f2dd
 
 do_build() {
     make V=1 CFLAGS=""
