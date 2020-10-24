@@ -1,7 +1,26 @@
+# 20201024
+
+- New retrorun with support for pause (F2+B), ffwd (F2+A), reset (F2+X), also
+  added support for duckstation.
+- New dark mode (global F5+TR2 to enable, F5+TL2 to disable) turns off sshd,
+  chronyd, NetworkManager and rfkills wifi. Battery went from 305 -> 220 so it's
+  a big savings and less background noise.
+- CPU and RAM is set to performance by default, performance script only toggles
+  GPU. This is because I showed that performance mode really helps with response
+  times. Battery went from ~280 -> 305 so it's not that bad. Dark mode more than
+  mitigates this anyway.
+- ogage updated to control dark mode.
+- Retroarch 'oga' driver updates
+  https://github.com/libretro/RetroArch/pull/11481 and using latest master
+  (still 1.9.0).
+- rrvl-spring package now centralizes spring libretro files and installs them to
+  ~/.config/retroarch/cores. Submit PR's to
+  https://github.com/valadaa48/libretro-core-info.
+- A lot of retrorun spring files for those that prefer retrorun over retroarch
+
 # 20200913
 
 - Optimized retroarch's input handler
-
 
 # 20200911
 
