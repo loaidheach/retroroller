@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 
+mkdir -p /roms/saves
+mkdir -p /roms/bios
+
 exec /usr/arm/usr/bin/retrorun32 -s /roms/saves -d /roms/bios "$@"
