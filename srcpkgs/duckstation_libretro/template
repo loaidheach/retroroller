@@ -1,40 +1,22 @@
 # Template file for 'duckstation_libretro'
 pkgname=duckstation_libretro
-version=0.20201023
-#_gitrev=
+version=0.20201025
+_gitrev=8f579f3cfa4406279deef035881e50085ee5efc7
 revision=1
-wrksrc="duckstation"
+wrksrc="duckstation-${_gitrev}"
 build_style=cmake
 short_desc="duckstation"
-#cmake_args="-DCMAKE_BUILD_TYPE=Release -GNinja -DBUILD_LIBRETRO_CORE=ON"
-#configure_args="-DCMAKE_BUILD_TYPE=Release -DBUILD_LIBRETRO_CORE=ON -DCMAKE_VERBOSE_MAKEFILE=ON -DBUILD_QT_FRONTEND=OFF -DBUILD_SDL_FRONTEND=OFF"
-#configure_args="-DBUILD_GO2_FRONTEND=ON -DBUILD_QT_FRONTEND=OFF -DBUILD_SDL_FRONTEND=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_VERBOSE_MAKEFILE=ON -DENABLE_DISCORD_PRESENCE=OFF -DUSE_SDL2=OFF -DUSE_X11=OFF -DUSE_EGL=OFF"
 configure_args="-DBUILD_LIBRETRO_CORE=ON -DBUILD_QT_FRONTEND=OFF -DBUILD_SDL_FRONTEND=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_VERBOSE_MAKEFILE=ON -DENABLE_DISCORD_PRESENCE=OFF -DUSE_SDL2=OFF -DUSE_X11=OFF -DUSE_EGL=OFF"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 hostmakedepends="pkg-config python unzip cmake rsync"
-#makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel libopenal-devel SDL2-devel qt5-devel qt5-qmake libgo2-devel libdrm-devel"
-makedepends="libgo2-devel libdrm-devel libopenal-devel alsa-lib-devel"
+makedepends="libdrm-devel alsa-lib-devel"
 license="GPL-2.0-or-later"
 homepage="https://github.com/libretro/duckstation"
-#distfiles="https://github.com/stenzek/duckstation/archive/${_gitrev}.tar.gz"
-#checksum=b8339c0ee4c53388532a58ae9a72169d2f3508070a602d0dc6200c66a4296c0a
+distfiles="https://github.com/stenzek/duckstation/archive/${_gitrev}.tar.gz"
+checksum=4210442ff7b6aa0b185e22e232e2c8f87fc62e73a9947c44b1c1c6b1e9a39536
 
-do_extract() {
-    rsync -av maruchan@akira:dev/github/duckstation/* ${wrksrc}
-#    vsed -i src/duckstation-go2/go2_host_display.cpp -e "s/
-#	git clone maruchan@akira:dev/github/duckstation ${wrksrc}
+post_extract() {
+    # Software is threaded and faster than GL (mali)
+#    cd ${wrksrc}
+    vsed -i src/duckstation-libretro/libretro_host_interface.cpp -e 's/   "OpenGL"/   "Software"/'
 }
-
-#CFLAGS+=" $LTO_FLAGS"
-#CXXFLAGS+=" $LTO_FLAGS"
-#LDFLAGS+=" $LTO_FLAGS"
-#
-#do_build() {
-#    mkdir build-release
-#    cd libretro
-#    make -j${XBPS_MAKEJOBS} V=1 LTO="${LTO_FLAGS}"
-#}
-#
-#do_install() {
-#	vinstall libretro/${pkgname}.so 755 opt/libretro
-#}

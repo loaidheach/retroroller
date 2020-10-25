@@ -1,10 +1,9 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.9.0
-revision=18
-_gitrev=dev
+revision=19
+_gitrev=4c5c73683c2941a0d1c8b3645d336ef5836b60ec
 wrksrc="RetroArch-${_gitrev}"
-#wrksrc="RetroArch"
 build_style=configure
 configure_args="--prefix=/usr
  --sysconfdir=/etc
@@ -47,15 +46,15 @@ short_desc="Official reference frontend for the libretro API"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
 homepage="http://www.libretro.com/"
-#distfiles="https://github.com/valadaa48/RetroArch/archive/${_gitrev}.tar.gz"
-#checksum=200b342595f1c7036f8cc78c58fba9ce405c74dcb7ab03c3442ab72eec1f3f36
+distfiles="https://github.com/valadaa48/RetroArch/archive/${_gitrev}.tar.gz"
+checksum=14a628c7a1072fca9e1cf97c62cdcc779b3d33513b84db3fbcc5f31574ae5883
 patch_args="-Np1"
 
 _flags=""
 
-do_fetch() {
-    git clone --depth 1 https://github.com/valadaa48/RetroArch -b ${_gitrev} ${wrksrc}
-}
+#do_fetch() {
+#    git clone --depth 1 https://github.com/valadaa48/RetroArch -b ${_gitrev} ${wrksrc}
+#}
 
 do_configure() {
 	if [ "$CROSS_BUILD" ]; then
@@ -65,10 +64,6 @@ do_configure() {
 	case "$XBPS_TARGET_MACHINE" in
 		armv7*)
             configure_args+=" --enable-neon"
-            ;;
-        *)
-#            _flags+=" $LTO_FLAGS"
-            _flags+=""
             ;;
     esac
 	
