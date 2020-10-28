@@ -1,0 +1,36 @@
+# Template file for 'duckstation-go2'
+pkgname=duckstation-go2
+version=0.20201027
+_gitrev=5ff583454d7f151792b954fdebfaf5bb4a25f572
+revision=1
+wrksrc="duckstation-${_gitrev}"
+build_style=cmake
+short_desc="duckstation"
+configure_args="-DBUILD_GO2_FRONTEND=ON -DBUILD_QT_FRONTEND=OFF -DBUILD_SDL_FRONTEND=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_VERBOSE_MAKEFILE=ON -DENABLE_DISCORD_PRESENCE=OFF -DUSE_SDL2=OFF -DUSE_X11=OFF -DUSE_EGL=OFF"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+hostmakedepends="pkg-config python unzip cmake rsync"
+makedepends="libdrm-devel alsa-lib-devel libgo2-devel MesaLib-devel"
+license="GPL-2.0-or-later"
+homepage="https://github.com/libretro/duckstation"
+distfiles="https://github.com/stenzek/duckstation/archive/${_gitrev}.tar.gz"
+checksum=916d0ac2c9648b35166d6b9cb87ab0f431b46021cc28f492d5f420c037d1d6af
+
+post_extract() {
+    # Software is threaded and faster than GL (mali)
+#    cd ${wrksrc}
+    vsed -i src/duckstation-libretro/libretro_host_interface.cpp -e 's/   "OpenGL"/   "Software"/'
+    vsed -i src/duckstation-go2/go2_host_display.cpp -e "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:"
+    vsed -i src/duckstation-go2/go2_opengl_host_display.cpp -e "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:"
+
+    vsed -i src/frontend-common/common_host_interface.cpp -e 's:GetProgramDirectoryRelativePath("database/compatibility.xml"):"/usr/share/duckstation/database/compatibility.xml":'
+    vsed -i src/frontend-common/common_host_interface.cpp -e 's:GetProgramDirectoryRelativePath("database/gamesettings.ini"):"/usr/share/duckstation/database/gamesettings.ini":'
+    vsed -i src/frontend-common/common_host_interface.cpp -e 's:GetUserDirectoryRelativePath("gamesettings.ini"):"/usr/share/duckstation/database/gamesettings.ini":'
+}
+
+do_install() {
+    vbin build/bin/duckstation-go2
+
+    vmkdir usr/share/duckstation
+	vcopy data/database usr/share/duckstation
+}
+
