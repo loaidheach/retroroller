@@ -1,3 +1,7 @@
+# 2020113
+
+- Add ffmpeg (video playback) support to retroarch
+
 # 20201024
 
 - New retrorun with support for pause (F2+B), ffwd (F2+A), reset (F2+X), also

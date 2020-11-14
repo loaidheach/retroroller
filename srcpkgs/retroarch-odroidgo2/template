@@ -1,7 +1,7 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.9.0
-revision=21
+revision=22
 _gitrev=61930cfaa7bb367ac1d34b46346d7a58ed18f4d9
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
@@ -23,7 +23,6 @@ configure_args="--prefix=/usr
  --disable-wayland
  --disable-x11
  --disable-vulkan
- --disable-ffmpeg
  --disable-xvideo
  --enable-networking
  --enable-ozone
@@ -41,7 +40,7 @@ configure_args="--prefix=/usr
 conf_files="/etc/retroarch.cfg"
 hostmakedepends="pkg-config unzip git rsync openssh"
 makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel
- librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel"
+ librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel elogind-devel ffmpeg-devel"
 short_desc="Official reference frontend for the libretro API"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
