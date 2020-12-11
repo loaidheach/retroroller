@@ -1,7 +1,7 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.9.0
-revision=22
+revision=23
 _gitrev=61930cfaa7bb367ac1d34b46346d7a58ed18f4d9
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
@@ -60,6 +60,7 @@ do_configure() {
             ;;
     esac
 	
+    export CFLAGS="$CFLAGS -O3 -fno-tree-vectorize"
     export ASFLAGS="$CFLAGS"
 	./configure ${configure_args}
 }
@@ -72,11 +73,11 @@ pre_build() {
 }
 
 do_build() {
-    local _opts=""
+#    local _opts=""
 
-	case "$XBPS_TARGET_MACHINE" in
-		armv7*) _opts+="NEON_CFLAGS='-mfpu=neon-vfpv4 -mfloat-abi=hard' NEON_ASFLAGS='-mfpu=neon-vfpv4 -mfloat-abi=hard'";;
-    esac
+#	case "$XBPS_TARGET_MACHINE" in
+#		armv7*) _opts+="NEON_CFLAGS='-mfpu=neon-vfpv4 -mfloat-abi=hard' NEON_ASFLAGS='-mfpu=neon-vfpv4 -mfloat-abi=hard'";;
+#    esac
 
     make V=1 -j$(nproc)
 }

@@ -1,4 +1,9 @@
-# 2020113
+# 20201210
+
+- pcsx_rearmed chd + RetroAchievments finally fixed
+- retrorun32 pcsx_rearmed spring fixed
+
+# 20201113
 
 - Add ffmpeg (video playback) support to retroarch
 
