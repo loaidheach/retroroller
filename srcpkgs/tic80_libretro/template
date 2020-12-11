@@ -1,40 +1,24 @@
 # Template file for 'tic80_libretro'
 pkgname=tic80_libretro
-version=0.80.0b
+version=0.80.1344
+_gitrev=2c542f9fda0a3466dd8c59210795668684136e20
 revision=1
+wrksrc="TIC-80-${_gitrev}"
 build_style=cmake
-configure_args='-DBUILD_LIBRETRO=ON -DBUILD_SDL=OFF -DBUILD_PLAYER=OFF -DBUILD_PRO=OFF -DCMAKE_VERBOSE_MAKEFILE=ON -DBUILD_DEMO_CARTS_DEFAULT=OFF'
+configure_args='-DBUILD_LIBRETRO=ON -DBUILD_SDL=OFF -DBUILD_PLAYER=OFF -DBUILD_PRO=OFF -DCMAKE_VERBOSE_MAKEFILE=ON -DBUILD_DEMO_CARTS=OFF -DBUILD_TOUCH_INPUT=OFF'
 hostmakedepends="pkg-config libtool git cmake"
-makedepends="zlib-devel libdrm-devel MesaLib-devel gtk+3-devel alsa-lib-devel"
+makedepends="zlib-devel libdrm-devel MesaLib-devel gtk+3-devel alsa-lib-devel curl"
 short_desc="${pkgname}"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
-homepage="https://github.com/libretro/flycast"
-checksum=45fc272c8103fc554589564bba64524727c70b9442856a531093e3fc0c82b4a4
+homepage="https://github.com/nesbox/TIC-80"
 patch_args="-Np1"
 
 do_fetch() {
-    git clone --recursive https://github.com/nesbox/TIC-80 -b v0.80-beta ${wrksrc}
+    git clone https://github.com/nesbox/TIC-80 ${wrksrc}
+    cd ${wrksrc}
+    git submodule update --init --recursive
 }
-
-#do_build() {
-#    local _platform
-#    local _opts
-#	case "$XBPS_TARGET_MACHINE" in
-#		armv7*) _platform="classic_armv8_a35";;
-#		aarch64*) _platform="goadvance";;
-#    esac
-#
-#    ${CC} --version
-#
-#    _opts="CC_AS=$CC HAVE_OPENMP=1 FORCE_GLES=1 HAVE_LTCG=0 WITH_DYNAREC=arm64 platform=${_platform}"
-#
-#    vsed -i Makefile -e "s/-O3/-O2 -fdata-sections -fmerge-all-constants/"
-#
-#    #vsed -i Makefile -e "s/-frename-registers/-frename-registers -march=armv8-a -mtune=cortex-a35 -mcpu=cortex-a35 -fdata-sections -fno-stack-protector -fno-stack-clash-protection -fno-ident -fmerge-all-constants/"
-##
-#    make -j16 ${_opts} V=1
-#}
 
 do_install() {
     vinstall "${pkgname}.so" 755 opt/libretro

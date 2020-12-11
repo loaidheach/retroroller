@@ -2,6 +2,7 @@
 
 - pcsx_rearmed chd + RetroAchievments finally fixed
 - retrorun32 pcsx_rearmed spring fixed
+- new TIC-80 libretro core added
 
 # 20201113
 
