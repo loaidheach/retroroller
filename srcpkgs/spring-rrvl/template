@@ -1,8 +1,8 @@
 # Template file for 'spring-rrvl
 pkgname=spring-rrvl
-version=1.1.2
-revision=2
-_gitrev=ebb2d2a694391abade527ed722d59aad131cf6eb
+version=1.1.3
+revision=1
+_gitrev=e61baf492d12135a396ae8987c7ff45c348eab23
 wrksrc="$pkgname"
 short_desc="RRVL core info files"
 maintainer="valadaa48 <valadaa48@gmx.com>"
