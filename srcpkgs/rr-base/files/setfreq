@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+
+if ! grep -q userspace /sys/devices/system/cpu/cpufreq/policy0/scaling_governor; then
+	echo "Must be running userspace governor"
+	exit 2
+fi
+
+freq=$1
+avail_freq=$(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_available_frequencies)
+
+dump_freq() {
+	echo "Current frequency: $(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_setspeed)"
+	echo "Current max frequency: $(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq)"
+	echo "Available frequencies: $avail_freq"
+	exit 0
+}
+
+if [ -z $freq ]; then
+	dump_freq
+fi
+
+if echo $avail_freq | egrep -q "\b$freq\b"; then
+	echo $freq > /sys/devices/system/cpu/cpufreq/policy0/scaling_setspeed
+	echo $freq > /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq
+	dump_freq
+else
+	echo "Invalid frequency $freq. Available frequencies: $avail_freq"
+	exit 1
+fi

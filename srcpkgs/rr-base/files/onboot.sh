@@ -16,6 +16,19 @@ for f in $RM; do
     fi
 done
 
+for f in /sys/devices/platform/ff400000.gpu/devfreq/ff400000.gpu/governor /sys/devices/platform/dmc/devfreq/dmc/governor /sys/devices/system/cpu/cpufreq/policy0/*; do
+	chgrp adm $f
+	chmod 775 $f
+done
+
+echo performance > /sys/devices/platform/dmc/devfreq/dmc/governor
+
+if [ -f /boot/cpufreq ]; then
+	/usr/bin/setfreq $(cat /boot/cpufreq)
+else
+	/usr/bin/setfreq 1296000
+fi
+
 if [ ! -e /etc/runit/runsvdir/default/dbus ]; then
     ln -sf /etc/sv/dbus /etc/runit/runsvdir/default/
 fi
@@ -28,23 +41,12 @@ if ! groups odroid | grep -q '\bnetwork\b'; then
     gpasswd -a odroid network
 fi
 
-echo 0 > /proc/sys/kernel/nmi_watchdog
+[ -f /proc/sys/kernel/nmi_watchdog ] && echo 0 > /proc/sys/kernel/nmi_watchdog
+
 echo 1500 > /proc/sys/vm/dirty_writeback_centisecs
 #echo disabled > /sys/class/net/wlan0/device/power/wakeup
 
-chgrp adm /sys/devices/platform/ff400000.gpu/devfreq/ff400000.gpu/governor
-chmod 775 /sys/devices/platform/ff400000.gpu/devfreq/ff400000.gpu/governor
-
-chgrp adm /sys/devices/platform/dmc/devfreq/dmc/governor
-chmod 775 /sys/devices/platform/dmc/devfreq/dmc/governor
-
-chgrp adm /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
-chmod 775 /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
-
 echo mmc0 > /sys/class/leds/blue:heartbeat/trigger
-
-echo performance > /sys/devices/platform/dmc/devfreq/dmc/governor
-echo performance > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
 
 /usr/bin/iw dev wlan0 set power_save off
 
