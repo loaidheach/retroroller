@@ -5,7 +5,7 @@ _gitshort="${_gitrev:0:7}"
 
 pkgname=odroid-go2-kernel
 version=4.4.189
-revision=7
+revision=8
 short_desc="Linux kernel and modules for Odroid GO2 (${version%.*} [git ${_gitshort}])"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
