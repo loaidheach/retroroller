@@ -1,7 +1,7 @@
 # Template file for 'duckstation_libretro'
 pkgname=duckstation_libretro
 version=0.20201026
-_gitrev=5ff583454d7f151792b954fdebfaf5bb4a25f572
+_gitrev=3ed429772d034397a574a6419779005aa75b1a22
 revision=1
 wrksrc="duckstation-${_gitrev}"
 build_style=cmake
@@ -13,7 +13,7 @@ makedepends="libdrm-devel alsa-lib-devel"
 license="GPL-2.0-or-later"
 homepage="https://github.com/libretro/duckstation"
 distfiles="https://github.com/stenzek/duckstation/archive/${_gitrev}.tar.gz"
-checksum=916d0ac2c9648b35166d6b9cb87ab0f431b46021cc28f492d5f420c037d1d6af
+checksum=4780bec1aef50c261d4b8b9540b9abd33e1912efe3b750adb8e044962995ff3e
 
 post_extract() {
     # Software is threaded and faster than GL (mali)
