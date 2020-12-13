@@ -1,3 +1,14 @@
+# 20201213
+
+- Support for zero-copy framebuffer in video threaded and 'oga' video driver
+  (not yet upstreamed to RetroArch)
+- New duckstation libretro core
+- Updated ogainfo command that displays more information
+
+# 20201212
+
+- Overclock support for 1.4GHz and 1.5GHz (see wiki for instructions)
+
 # 20201210
 
 - pcsx_rearmed chd + RetroAchievments finally fixed
