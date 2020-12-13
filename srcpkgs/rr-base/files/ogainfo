@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
 
-echo "CPU Scaling  	$(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_governor)"
-echo "CPU Freq     	$(sudo cat /sys/devices/system/cpu/cpufreq/policy0/cpuinfo_cur_freq)"
-echo "CPU Temp     	$(cat /sys/class/thermal/thermal_zone0/temp)"
-echo "CPU Avail Freq	$(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_available_frequencies)"
+echo "CPU Scaling       $(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_governor)"
+echo "CPU Freq          $(sudo cat /sys/devices/system/cpu/cpufreq/policy0/cpuinfo_cur_freq)"
+echo "CPU Temp          $(cat /sys/class/thermal/thermal_zone0/temp)"
+echo "CPU Avail Freq    $(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_available_frequencies)"
 echo
-echo "GPU Governor	$(cat /sys/devices/platform/ff400000.gpu/devfreq/ff400000.gpu/governor)"
-echo "GPU Freq  	$(cat /sys/devices/platform/ff400000.gpu/devfreq/ff400000.gpu/cur_freq)"
-echo "GPU Temp     	$(cat /sys/class/thermal/thermal_zone1/temp)"
+echo "GPU Governor      $(cat /sys/devices/platform/ff400000.gpu/devfreq/ff400000.gpu/governor)"
+echo "GPU Freq          $(cat /sys/devices/platform/ff400000.gpu/devfreq/ff400000.gpu/cur_freq)"
+echo "GPU Temp          $(cat /sys/class/thermal/thermal_zone1/temp)"
 echo "GPU Avail Freq    $(cat /sys/devices/platform/ff400000.gpu/devfreq/ff400000.gpu/available_frequencies)"
 echo
-echo "Bat Capacity	$(cat /sys/class/power_supply/battery/capacity)"
-echo "Bat Current 	$(cat /sys/class/power_supply/battery/current_now)"
+echo "DMC Governor      $(cat /sys/devices/platform/dmc/devfreq/dmc/governor)"
+echo "DMC Freq          $(cat /sys/devices/platform/dmc/devfreq/dmc/cur_freq)"
+echo "DMC Avail Freq    $(cat /sys/devices/platform/dmc/devfreq/dmc/available_frequencies)"
+echo
+echo "Bat Capacity      $(cat /sys/class/power_supply/battery/capacity)"
+echo "Bat Current       $(cat /sys/class/power_supply/battery/current_now)"
