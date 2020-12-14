@@ -2,7 +2,7 @@
 pkgname=retroarch-odroidgo2
 version=1.9.0
 revision=24
-_gitrev=2b0bd08a26d2cfedbf65025bc94f13fe5b797955
+_gitrev=f76d7df1950570fbd50565265111b36143c1f157
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
 configure_args="--prefix=/usr
@@ -47,7 +47,7 @@ maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
 homepage="http://www.libretro.com/"
 distfiles="https://github.com/valadaa48/RetroArch/archive/${_gitrev}.tar.gz"
-checksum=1cd9f8fc82949ca638ec891fa27713d0c10ff54bf484f7256f5ccfa8bd4ccccd
+checksum=903dfcff548a06f0379fe18ec164a0351bfd8eed00fe9147147a5fb8d45e3f6b
 patch_args="-Np1"
 
 do_configure() {
