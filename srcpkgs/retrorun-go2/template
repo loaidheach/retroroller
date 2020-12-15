@@ -1,8 +1,8 @@
 # Template file for 'retrorun-go2'
 pkgname=retrorun-go2
-version=0.20201023
-revision=2
-_gitrev=87ea19af49317661895d0af3d1e1037efd74cc30
+version=0.20201214
+revision=1
+_gitrev=46e845108cde45d3de21333aa8ef1d5a6287ca2e
 wrksrc="${pkgname}-${_gitrev}"
 hostmakedepends="premake4"
 makedepends="libgo2-devel MesaLib-devel"
@@ -11,7 +11,7 @@ maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-or-later"
 homepage="https://github.com/valadaa48/retrorun-go2"
 distfiles="https://github.com/valadaa48/retrorun-go2/archive/${_gitrev}.tar.gz"
-checksum=9336f71b71c2129821bb276fda9c23983dc70301b4625587ba1389a5b7646036
+checksum=d81af21d893b7dd04e7b7747c66dd5f9c5182619d6d0dcf6763bbc3e7c4fdcbc
 
 #post_extract() {
 #    vsed -i src/video.cpp -e "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:"

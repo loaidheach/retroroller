@@ -4,6 +4,7 @@
   (not yet upstreamed to RetroArch)
 - New duckstation libretro core
 - Updated ogainfo command that displays more information
+- RetroArch updated to latest master, includes new Wi-Fi interface
 
 # 20201212
 
