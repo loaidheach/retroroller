@@ -1,0 +1,33 @@
+# Template file for 'picodrive_libretro'
+pkgname=picodrive_libretro
+_gitrev=9d1ecde69221dcdc485599457355b1da0e1cd8a1
+version=1.9.7
+revision=1
+wrksrc="picodrive-${_gitrev}"
+hostmakedepends="pkg-config libtool git"
+makedepends="zlib-devel libdrm-devel libgomp-devel MesaLib-devel"
+short_desc="${pkgname}"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-2.0-only"
+homepage="https://github.com/irixxxx/picodrive"
+#distfiles="https://github.com/irixxxx/picodrive/archive/${_gitrev}.tar.gz"
+#checksum=5a22acd12a52e3c5fb9b1889b52cdebcae9ad8536eda649020e19f1adaf0cf57
+patch_args="-Np1"
+
+do_fetch() {
+    git clone --recursive https://github.com/irixxxx/picodrive ${wrksrc}
+    cd ${wrksrc}
+    git reset --hard ${_gitrev}
+}
+
+do_build() {
+    local _opts
+    _opts+="GIT_VERSION=${_gitrev}"
+#    export CFLAGS="$CFLAGS $LTO_FLAGS"
+#    export LDFLAGS="$CFLAGS $LTO_FLAGS"
+    make -j${nproc} V=1 -f Makefile.libretro ${_opts}
+}
+
+do_install() {
+    vinstall "${pkgname}.so" 755 opt/libretro
+}
