@@ -1,0 +1,38 @@
+diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
+index b188283a2..13852985b 100644
+--- a/libretro/libretro.cpp
++++ b/libretro/libretro.cpp
+@@ -251,9 +251,14 @@ static int get_language_auto(void) {
+ 	}
+ }
+ 
+-static void check_variables(CoreParameter &coreParam) {
++static bool is_run[2]{};
++static void check_variables(CoreParameter &coreParam, int d) {
+ 	bool updated = false;
+ 
++    if (is_run[d])
++        return;
++    is_run[d] = true;
++
+ 	if (coreState != CORE_POWERUP && environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE_UPDATE, &updated) && !updated)
+ 		return;
+ 
+@@ -564,7 +569,7 @@ bool retro_load_game(const struct retro_game_info *game) {
+ 	coreParam.graphicsContext = ctx;
+ 	coreParam.gpuCore = ctx->GetGPUCore();
+ 	coreParam.cpuCore = CPUCore::JIT;
+-	check_variables(coreParam);
++	check_variables(coreParam, 0);
+ 
+ #if 0
+ 	g_Config.bVertexDecoderJit = (coreParam.cpuCore == CPU_JIT) ? true : false;
+@@ -672,7 +677,7 @@ void retro_run(void) {
+ 		}
+ 	}
+ 
+-	check_variables(PSP_CoreParameter());
++	check_variables(PSP_CoreParameter(), 1);
+ 
+ 	retro_input();
+ 
