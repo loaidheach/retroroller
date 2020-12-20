@@ -1,0 +1,30 @@
+# Template file for 'retro8_libretro'
+pkgname=retro8_libretro
+_gitrev=87b5f5446a4dc7987f836ece5c6a3e23daeb9839
+version=0.1
+revision=1
+wrksrc="retro8-${_gitrev}"
+hostmakedepends="pkg-config libtool git"
+makedepends="zlib-devel libdrm-devel libgomp-devel MesaLib-devel"
+short_desc="${pkgname}"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-2.0-only"
+homepage="https://github.com/Jakz/retro8"
+distfiles="https://github.com/Jakz/retro8/archive/${_gitrev}.zip"
+checksum=6d119e9ab2186c1b16faba7be3e6fe14bc6f5410e92307735d8c003b5c683ea8
+patch_args="-Np1"
+
+post_extract() {
+    vsed -i src/libretro/libretro.cpp -e "s:SAMPLE_RATE / 60:SAMPLE_RATE / 15:"
+}
+
+do_build() {
+#    _opts="CC_AS=$CC HAVE_OPENMP=1 FORCE_GLES=1 HAVE_LTCG=0 WITH_DYNAREC=arm64 platform=${_platform}"
+
+#    vsed -i Makefile -e "s/-O3/-O2 -fdata-sections -fmerge-all-constants/"
+    make -j16 ${_opts} V=1
+}
+
+do_install() {
+    vinstall "${pkgname}.so" 755 opt/libretro
+}
