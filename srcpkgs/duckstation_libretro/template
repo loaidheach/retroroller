@@ -1,22 +1,29 @@
 # Template file for 'duckstation_libretro'
 pkgname=duckstation_libretro
-version=0.20201026
-_gitrev=3ed429772d034397a574a6419779005aa75b1a22
+version=0.20201215
+_gitrev=f5f12fd76d0c4993dd647c42ddf271fd804bdaa3
 revision=1
 wrksrc="duckstation-${_gitrev}"
 build_style=cmake
 short_desc="duckstation"
-configure_args="-DBUILD_LIBRETRO_CORE=ON -DBUILD_QT_FRONTEND=OFF -DBUILD_SDL_FRONTEND=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_VERBOSE_MAKEFILE=ON -DENABLE_DISCORD_PRESENCE=OFF -DUSE_SDL2=OFF -DUSE_X11=OFF -DUSE_EGL=OFF"
+configure_args="-DBUILD_LIBRETRO_CORE=ON -DBUILD_QT_FRONTEND=OFF -DBUILD_SDL_FRONTEND=OFF -DCMAKE_BUILD_TYPE=Release
+ -DCMAKE_VERBOSE_MAKEFILE=ON -DENABLE_DISCORD_PRESENCE=OFF -DUSE_SDL=OFF -DUSE_EGL=OFF -DUSE_X11=OFF -DUSE_WAYLAND=OFF"
 maintainer="valadaa48 <valadaa48@gmx.com>"
-hostmakedepends="pkg-config python unzip cmake rsync"
+hostmakedepends="pkg-config python unzip cmake"
 makedepends="libdrm-devel alsa-lib-devel"
 license="GPL-2.0-or-later"
 homepage="https://github.com/libretro/duckstation"
 distfiles="https://github.com/stenzek/duckstation/archive/${_gitrev}.tar.gz"
-checksum=4780bec1aef50c261d4b8b9540b9abd33e1912efe3b750adb8e044962995ff3e
+#distfiles="https://github.com/valadaa48/duckstation/archive/${_gitrev}.tar.gz"
+checksum=7add20b77b6b296ffbc029ea6e972ab4890eddeaf68e83b2e324980ed991cea9
+
+CFLAGS+="${LTO_FLAGS}"
+CXXFLAGS+="${LTO_FLAGS} -fno-exceptions"
+LDFLAGS+="${LTO_FLAGS}"
 
 post_extract() {
     # Software is threaded and faster than GL (mali)
 #    cd ${wrksrc}
     vsed -i src/duckstation-libretro/libretro_host_interface.cpp -e 's/   "OpenGL"/   "Software"/'
+    vsed -i src/duckstation-libretro/libretro_host_interface.cpp -e 's/   "Info"}/   "None"}/'
 }
