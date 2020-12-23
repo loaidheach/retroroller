@@ -20,12 +20,6 @@ CFLAGS="-Wno-deprecated-declarations -fcommon"
 python_version=2
 replaces="geda-data>=0"
 
-if [ "$CROSS_BUILD" ]; then
-	if [ "$XBPS_WORDSIZE" != "$XBPS_TARGET_WORDSIZE" ]; then
-		broken="The host ($XBPS_WORDSIZE) and target ($XBPS_TARGET_WORDSIZE) word sizes need to be the same for cross building."
-	fi
-fi
-
 CFLAGS="-Wno-unused-function"
 
 pre_configure() {
