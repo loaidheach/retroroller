@@ -542,7 +542,7 @@ libakonadi-filestore.so.5 kdepim-runtime-17.12.3_1
 libmaildir.so.5 kdepim-runtime-17.12.3_1
 libfolderarchivesettings.so.5 kdepim-runtime-17.12.3_1
 libkColorPicker.so.0.1.4 kColorPicker-0.1.4_1
-libkImageAnnotator.so.0.3.2 kImageAnnotator-0.3.2_1
+libkImageAnnotator.so.0.4.0 kImageAnnotator-0.4.0_1
 libbabl-0.1.so.0 babl-0.1.16_1
 libbamf3.so.2 bamf-0.5.1_1
 libicuio.so.67 icu-libs-67.1_1
@@ -1382,7 +1382,7 @@ libkworkspace5.so.5 kworkspace-5.14.5_2
 libdb-5.3.so libdb-5.3.21_1
 libdb_cxx-5.3.so libdb-cxx-5.3.21_1
 libcares.so.2 c-ares-1.10.0_1
-libcryptopp.so.8 crypto++-820_1
+libcryptopp.so.8 crypto++-8.3.0_1
 libdbusmenu-glib.so.4 libdbusmenu-glib-12.10.2_1
 libdbusmenu-gtk3.so.4 libdbusmenu-gtk3-12.10.2_1
 libGrantlee_Templates.so.5 grantlee5-5.0.0_1
@@ -3631,7 +3631,7 @@ libcaf_openssl.so.0.17.6 zeek-3.2.0_1
 libbinpac.so.0 zeek-3.1.1_1
 libllhttp.so.1 llhttp-1.0.1_1
 libpinyin.so.13 libpinyin-2.2.1_1
-libuhd.so.3.15.0 uhd-3.15.0.0_1
+libuhd.so.4.0.0 uhd-4.0.0.0_1
 libeditline.so.1 editline-1.16.0_1
 libgnuradio-rds.so.1 gnuradio-rds-3.8.0_1
 libgnuradio-nrsc5-1.0.0git.so.0.0.0 gnuradio-nrsc5-1.0.0_1
@@ -3698,7 +3698,7 @@ libbitcoin-server.so.0 libbitcoin-server-3.5.0_1
 libvpd-2.2.so.2 libvpd-2.2.6_1
 libvpd_cxx-2.2.so.2 libvpd-2.2.6_1
 liblcf.so.0 liblcf-0.6.0_1
-liboblibs.so.0.0 oblibs-0.0.1.1_1
+liboblibs.so.0.1 oblibs-0.1.1.1_1
 libaal-1.0.so.7 libaal-1.0.7_1
 libaal-minimal.so.0 libaal-1.0.7_1
 libcli.so.1.9 libcli-1.9.8.4_1
@@ -3718,7 +3718,7 @@ libircclient.so.1 libircclient-1.10_1
 libFAudio.so.0 FAudio-19.05_1
 libqaccessibilityclient-qt5.so.0 libqaccessibilityclient-0.4.0_1
 libnitrokey.so.3 libnitrokey-3.4.1_1
-libceres.so.1 ceres-solver-1.14.0_1
+libceres.so.2 ceres-solver-2.0.0_1
 libgraphene-1.0.so.0 graphene-1.8.2_1
 libflite.so.1 flite-2.1_1
 libflite_cmu_us_kal.so.1 flite-2.1_1
