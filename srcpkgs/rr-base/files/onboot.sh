@@ -33,6 +33,10 @@ if [ ! -e /etc/runit/runsvdir/default/dbus ]; then
     ln -sf /etc/sv/dbus /etc/runit/runsvdir/default/
 fi
 
+if [ ! -e /etc/runit/runsvdir/default/agetty-tty2 ]; then
+    ln -sf /etc/sv/agetty-tty2 /etc/runit/runsvdir/default/
+fi
+
 if [ ! -e /etc/runit/runsvdir/default/NetworkManager ]; then
     ln -sf /etc/sv/NetworkManager /etc/runit/runsvdir/default/
 fi
