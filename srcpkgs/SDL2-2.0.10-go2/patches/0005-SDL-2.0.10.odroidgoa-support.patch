@@ -1,19 +1,17 @@
-diff --git a/configure.ac b/configure.ac
-index 9e782c653..a32036311 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -2143,6 +2143,7 @@ CheckKMSDRM()
- AS_HELP_STRING([--enable-video-kmsdrm], [use KMSDRM video driver [[default=no]]]),
-                   , enable_video_kmsdrm=no)
- 
-+    EXTRA_LDFLAGS="$EXTRA_LDFLAGS -lrga"
-     if test x$enable_video = xyes -a x$enable_video_kmsdrm = xyes; then
-         video_kmsdrm=no
- 
-diff --git a/src/video/kmsdrm/SDL_kmsdrmopengles.c b/src/video/kmsdrm/SDL_kmsdrmopengles.c
-index 9616c832f..f36b38aa7 100644
---- a/src/video/kmsdrm/SDL_kmsdrmopengles.c
-+++ b/src/video/kmsdrm/SDL_kmsdrmopengles.c
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -516,7 +516,7 @@
+     check_c_compiler_flag("" HAVE_NO_UNDEFINED)
+     set(CMAKE_REQUIRED_FLAGS ${ORIG_CMAKE_REQUIRED_FLAGS})
+     if(HAVE_NO_UNDEFINED)
+-      list(APPEND EXTRA_LDFLAGS "-Wl,--no-undefined")
++      list(APPEND EXTRA_LDFLAGS "-Wl,--no-undefined -lrga")
+     endif()
+   endif()
+ endif()
+diff -r 0f7577d28c6c src/video/kmsdrm/SDL_kmsdrmopengles.c
+--- a/src/video/kmsdrm/SDL_kmsdrmopengles.c	Wed Jan 01 08:13:40 2020 -0800
++++ b/src/video/kmsdrm/SDL_kmsdrmopengles.c	Tue Mar 03 20:21:22 2020 +0100
 @@ -33,6 +33,9 @@
  #define EGL_PLATFORM_GBM_MESA 0x31D7
  #endif
@@ -24,7 +22,7 @@ index 9616c832f..f36b38aa7 100644
  /* EGL implementation of SDL OpenGL support */
  
  int
-@@ -60,7 +63,7 @@ KMSDRM_GLES_SetupCrtc(_THIS, SDL_Window * window) {
+@@ -60,7 +63,7 @@
          return SDL_FALSE;
      }
  
@@ -33,7 +31,7 @@ index 9616c832f..f36b38aa7 100644
      if (fb_info == NULL) {
          return SDL_FALSE;
      }
-@@ -97,6 +100,7 @@ KMSDRM_GLES_SwapWindow(_THIS, SDL_Window * window) {
+@@ -97,6 +100,7 @@
      SDL_VideoData *vdata = ((SDL_VideoData *)_this->driverdata);
      KMSDRM_FBInfo *fb_info;
      int ret;
@@ -41,16 +39,7 @@ index 9616c832f..f36b38aa7 100644
  
      /* Do we still need to wait for a flip? */
      int timeout = 0;
-@@ -116,7 +120,7 @@ KMSDRM_GLES_SwapWindow(_THIS, SDL_Window * window) {
-         wdata->next_bo = NULL;
-     }
- 
--    if (!(_this->egl_data->eglSwapBuffers(_this->egl_data->egl_display, wdata->egl_surface))) {
-+     if (!(_this->egl_data->eglSwapBuffers(_this->egl_data->egl_display, wdata->egl_surface))) {
-         SDL_LogError(SDL_LOG_CATEGORY_VIDEO, "eglSwapBuffers failed.");
-         return 0;
-     }
-@@ -136,10 +140,22 @@ KMSDRM_GLES_SwapWindow(_THIS, SDL_Window * window) {
+@@ -136,10 +140,22 @@
          SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, "Locked GBM surface %p", (void *)wdata->next_bo); */
      }
  
@@ -74,11 +63,9 @@ index 9616c832f..f36b38aa7 100644
      if (_this->egl_data->egl_swapinterval == 0) {
          /* Swap buffers instantly, possible tearing */
          /* SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, "drmModeSetCrtc(%d, %u, %u, 0, 0, &%u, 1, &%ux%u@%u)",
-diff --git a/src/video/kmsdrm/SDL_kmsdrmsym.h b/src/video/kmsdrm/SDL_kmsdrmsym.h
-index e34642350..c54a7b47d 100644
 --- a/src/video/kmsdrm/SDL_kmsdrmsym.h
 +++ b/src/video/kmsdrm/SDL_kmsdrmsym.h
-@@ -88,6 +88,7 @@ SDL_KMSDRM_SYM(struct gbm_surface *,gbm_surface_create,(struct gbm_device *gbm,
+@@ -88,6 +88,7 @@
  SDL_KMSDRM_SYM(void,gbm_surface_destroy,(struct gbm_surface *surf))
  SDL_KMSDRM_SYM(struct gbm_bo *,gbm_surface_lock_front_buffer,(struct gbm_surface *surf))
  SDL_KMSDRM_SYM(void,gbm_surface_release_buffer,(struct gbm_surface *surf, struct gbm_bo *bo))
@@ -86,11 +73,10 @@ index e34642350..c54a7b47d 100644
  
  
  #undef SDL_KMSDRM_MODULE
-diff --git a/src/video/kmsdrm/SDL_kmsdrmvideo.c b/src/video/kmsdrm/SDL_kmsdrmvideo.c
-index 54f623e29..610e3d293 100644
---- a/src/video/kmsdrm/SDL_kmsdrmvideo.c
-+++ b/src/video/kmsdrm/SDL_kmsdrmvideo.c
-@@ -41,12 +41,16 @@
+diff -r 0f7577d28c6c src/video/kmsdrm/SDL_kmsdrmvideo.c
+--- a/src/video/kmsdrm/SDL_kmsdrmvideo.c	Wed Jan 01 08:13:40 2020 -0800
++++ b/src/video/kmsdrm/SDL_kmsdrmvideo.c	Tue Mar 03 20:21:22 2020 +0100
+@@ -41,11 +41,15 @@
  #include "SDL_kmsdrmopengles.h"
  #include "SDL_kmsdrmmouse.h"
  #include "SDL_kmsdrmdyn.h"
@@ -100,14 +86,13 @@ index 54f623e29..610e3d293 100644
  #include <errno.h>
  
  #define KMSDRM_DRI_PATH "/dev/dri/"
- 
++
 +rga_info_t src_info = {0};
 +rga_info_t dst_info = {0};
-+
+ 
  static int
  check_modestting(int devindex)
- {
-@@ -259,6 +263,37 @@ KMSDRM_FBDestroyCallback(struct gbm_bo *bo, void *data)
+@@ -259,6 +263,46 @@
      SDL_free(fb_info);
  }
  
@@ -115,12 +100,23 @@ index 54f623e29..610e3d293 100644
 +KMSDRM_InitRotateBuffer(_THIS, int frameWidth, int frameHeight)
 +{
 +    // acquire new DRM PRIME buffer for rotate screen
++    int ret;
++    int l_frameHeight;
 +    SDL_VideoData *vdata = ((SDL_VideoData *)_this->driverdata);
 +
++    // setup rotation
++    c_RkRgaInit();
++    
++    l_frameHeight = frameHeight;
++
++    if(l_frameHeight % 32 != 0) {
++      l_frameHeight = (frameHeight + 32) & (~31);
++    }
++    
 +    for (int i = 0; i < RGA_BUFFERS_MAX; ++i)
 +    {
 +        vdata->rga_buffers[i] = KMSDRM_gbm_bo_create(vdata->gbm,
-+              frameWidth, frameHeight,
++              frameWidth, l_frameHeight,
 +              GBM_FORMAT_XRGB8888, GBM_BO_USE_SCANOUT | GBM_BO_USE_RENDERING);
 +        assert(vdata->rga_buffers[i]);
 +
@@ -128,13 +124,11 @@ index 54f623e29..610e3d293 100644
 +    }
 +    vdata->rga_buffer_index = 0;
 +    
-+    // setup rotation
-+    c_RkRgaInit();
 +    src_info.mmuFlag = 1;
 +    src_info.rotation = HAL_TRANSFORM_ROT_270;
 +
-+    // swap width and height here because our source buffer is 480x320
-+    rga_set_rect(&src_info.rect, 0, 0, frameHeight, frameWidth, frameHeight, frameWidth, RK_FORMAT_BGRA_8888);
++    // swap width and height and adjust stride here because our source buffer is 480x854
++    rga_set_rect(&src_info.rect, 0, 0, frameHeight, frameWidth, l_frameHeight, frameWidth, RK_FORMAT_BGRA_8888);
 +
 +    dst_info.fd = -1; //dph.fd;
 +    dst_info.mmuFlag = 1;
@@ -145,7 +139,7 @@ index 54f623e29..610e3d293 100644
  KMSDRM_FBInfo *
  KMSDRM_FBFromBO(_THIS, struct gbm_bo *bo)
  {
-@@ -479,8 +514,8 @@ KMSDRM_VideoInit(_THIS)
+@@ -479,8 +523,8 @@
  
      SDL_zero(current_mode);
  
@@ -156,7 +150,7 @@ index 54f623e29..610e3d293 100644
      current_mode.refresh_rate = data->cur_mode.vrefresh;
  
      /* FIXME ?
-@@ -597,6 +632,7 @@ KMSDRM_CreateWindow(_THIS, SDL_Window * window)
+@@ -597,6 +641,7 @@
  {
      SDL_WindowData *wdata;
      SDL_VideoDisplay *display;
@@ -164,18 +158,18 @@ index 54f623e29..610e3d293 100644
      SDL_VideoData *vdata = ((SDL_VideoData *)_this->driverdata);
      Uint32 surface_fmt, surface_flags;
  
-@@ -660,6 +696,10 @@ KMSDRM_CreateWindow(_THIS, SDL_Window * window)
+@@ -660,6 +705,10 @@
      SDL_SetKeyboardFocus(window);
  
      /* Window has been successfully created */
 +
-+    data = display->driverdata;
++    data = (SDL_DisplayData *) SDL_GetDisplayForWindow(window)->driverdata;
 +    KMSDRM_InitRotateBuffer(_this, data->cur_mode.hdisplay, data->cur_mode.vdisplay);
 +
      return 0;
  
  error:
-@@ -706,6 +746,7 @@ KMSDRM_DestroyWindow(_THIS, SDL_Window * window)
+@@ -706,6 +755,7 @@
          }
          SDL_free(data);
          window->driverdata = NULL;
@@ -183,8 +177,6 @@ index 54f623e29..610e3d293 100644
      }
  }
  
-diff --git a/src/video/kmsdrm/SDL_kmsdrmvideo.h b/src/video/kmsdrm/SDL_kmsdrmvideo.h
-index 84adb6571..343135cd3 100644
 --- a/src/video/kmsdrm/SDL_kmsdrmvideo.h
 +++ b/src/video/kmsdrm/SDL_kmsdrmvideo.h
 @@ -35,6 +35,10 @@
@@ -194,11 +186,11 @@ index 84adb6571..343135cd3 100644
 +#include <rga/RgaApi.h>
 +#include <assert.h>
 +
-+#define RGA_BUFFERS_MAX (3)
++#define RGA_BUFFERS_MAX 2
  
  typedef struct SDL_VideoData
  {
-@@ -46,6 +50,10 @@ typedef struct SDL_VideoData
+@@ -46,6 +50,10 @@
      drmModeCrtc *saved_crtc;    /* Saved CRTC to restore on quit */
      uint32_t saved_conn_id;     /* Saved DRM connector ID */
      uint32_t crtc_id;           /* CRTC in use */
