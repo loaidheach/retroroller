@@ -1,17 +1,17 @@
 # Template file for 'odroid-go2-rrvl-kernel'
 #
-_gitrev="35765b28653145bbbd105ca8b5498b480593169a"
+_gitrev="89d7bcefdeb04e9b906f224780b8dafcb1c9fffe"
 _gitshort="${_gitrev:0:7}"
 
 pkgname=odroid-go2-rrvl-kernel
 version=4.4.189
-revision=5
+revision=7
 short_desc="Linux kernel and modules for Odroid GO2 (${version%.*} [git ${_gitshort}])"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
 homepage="http://www.kernel.org"
 distfiles="https://github.com/valadaa48/linux/archive/${_gitrev}.tar.gz"
-checksum=f1247be9aacdc6e64954f6cc3e46205bd6709a721bcdc61d7c496217c425daa8
+checksum=f98c5720cdcfffa62e7aa9a1bcd8e2ab4f79ed6fc3160209fdd8ce7c38dca3db
 patch_args="-p1"
 wrksrc="linux-${_gitrev}"
 python_version=2 #unverified
@@ -89,6 +89,7 @@ do_install() {
 	vinstall arch/${arch}/boot/Image 644 boot
 	vinstall arch/${arch}/boot/dts/rockchip/rk3326-odroidgo2-linux.dtb 644 boot
 	vinstall arch/${arch}/boot/dts/rockchip/rk3326-odroidgo2-linux-v11.dtb 644 boot
+	vinstall arch/${arch}/boot/dts/rockchip/rk3326-odroidgo3-linux.dtb 644 boot
 
 	hdrdest=${DESTDIR}/usr/src/kernel-headers-${_kernver}
 
