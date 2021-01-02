@@ -1,4 +1,8 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+if [ -f /boot/rrvl.conf ]; then
+	source /boot/rrvl.conf
+fi
 
 RM="/etc/runit/runsvdir/default/agetty-tty1
 /etc/runit/runsvdir/default/agetty-tty3
@@ -21,20 +25,16 @@ for f in /sys/devices/platform/ff400000.gpu/devfreq/ff400000.gpu/governor /sys/d
 	chmod 775 $f
 done
 
-echo performance > /sys/devices/platform/dmc/devfreq/dmc/governor
-
-if [ -f /boot/cpufreq ]; then
-	/usr/bin/setfreq $(cat /boot/cpufreq)
-else
-	/usr/bin/setfreq 1296000
-fi
-
 if [ ! -e /etc/runit/runsvdir/default/dbus ]; then
     ln -sf /etc/sv/dbus /etc/runit/runsvdir/default/
 fi
 
 if [ ! -e /etc/runit/runsvdir/default/agetty-tty2 ]; then
     ln -sf /etc/sv/agetty-tty2 /etc/runit/runsvdir/default/
+fi
+
+if [ ! -e /etc/runit/runsvdir/default/agetty-console ]; then
+    ln -sf /etc/sv/agetty-console /etc/runit/runsvdir/default/
 fi
 
 if [ ! -e /etc/runit/runsvdir/default/NetworkManager ]; then
@@ -46,6 +46,10 @@ if ! groups odroid | grep -q '\bnetwork\b'; then
 fi
 
 [ -f /proc/sys/kernel/nmi_watchdog ] && echo 0 > /proc/sys/kernel/nmi_watchdog
+[ -f /roms/saves ] && mkdir -p /roms/saves && chown odroid:odroid /roms/saves
+
+echo performance > /sys/devices/platform/dmc/devfreq/dmc/governor
+/usr/bin/setfreq ${cpufreq:-1296000}
 
 echo 1500 > /proc/sys/vm/dirty_writeback_centisecs
 #echo disabled > /sys/class/net/wlan0/device/power/wakeup
