@@ -1,0 +1,32 @@
+# Template file for 'u-boot-oga'
+pkgname=u-boot-oga
+version=0.20201231
+revision=1
+_gitrev=a1b59905a4554055f35196e17301bf83cbe41b5f
+wrksrc="u-boot-${_gitrev}"
+hostmakedepends="bc"
+#makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel
+# librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel ffmpeg-devel"
+short_desc="u-boot for odroidgoa"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-2.0+"
+homepage="https://github.com/hardkernel/u-boot"
+distfiles="https://github.com/hardkernel/u-boot/archive/${_gitrev}.tar.gz"
+checksum=7cd65ce1729a204283a7c83f5a55aa500c38cc41e0acea8595981514cab77be9
+patch_args="-Np1"
+
+post_extract() {
+    vsed -i make.sh -e "s#TOOLCHAIN_ARM64_OPT=/opt/toolchains/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu/bin#TOOLCHAIN_ARM64_OPT=/usr/bin#"
+    vsed -i Makefile -e "s#-Werror#-Werror -Wno-address-of-packed-member#"
+}
+
+do_build() {
+    ./make.sh odroidgoa
+}
+
+do_install() {
+    vinstall sd_fuse/idbloader.img 644 /usr/share/oga
+    vinstall sd_fuse/trust.img 644 /usr/share/oga
+    vinstall sd_fuse/uboot.img 644 /usr/share/oga
+    vbin ${FILESDIR}/flash_uboot
+}

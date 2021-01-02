@@ -1,8 +1,8 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.9.0
-revision=27
-_gitrev=e0c25253ce54179c49907fa8ae063055bc0b560d
+revision=29
+_gitrev=d7e047956d76d3a810e4950ce04e45e7449cb99a
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
 configure_args="--prefix=/usr
@@ -47,7 +47,7 @@ maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
 homepage="http://www.libretro.com/"
 distfiles="https://github.com/valadaa48/RetroArch/archive/${_gitrev}.tar.gz"
-checksum=40bf1dca6021982f05309d56ea7c28d30a31ccc4479b9f6c45816c0fdd496d93
+checksum=44229ad156171e4b201d4462e3a12b4f7269794101a9fdf82b30daa2d9a3d310
 patch_args="-Np1"
 
 do_configure() {
@@ -70,7 +70,6 @@ pre_build() {
 	vsed -i gfx/drivers_context/drm_go2_ctx.c -e "s:<drm/drm_fourcc.h>:<libdrm/drm_fourcc.h>:" 
 	vsed -i deps/libgo2/src/display.c -e "s:<drm/drm_fourcc.h>:<libdrm/drm_fourcc.h>:" 
 	vsed -i gfx/drivers/oga_gfx.c -e "s:<drm/drm_fourcc.h>:<libdrm/drm_fourcc.h>:" 
-    vsed -i menu/drivers/ozone/ozone.c -e "s/scale_factor = ozone->last_scale_factor/scale_factor = ozone->last_scale_factor \* 1.5/"
 }
 
 do_build() {

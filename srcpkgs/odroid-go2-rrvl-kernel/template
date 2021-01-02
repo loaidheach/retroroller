@@ -5,7 +5,7 @@ _gitshort="${_gitrev:0:7}"
 
 pkgname=odroid-go2-rrvl-kernel
 version=4.4.189
-revision=7
+revision=8
 short_desc="Linux kernel and modules for Odroid GO2 (${version%.*} [git ${_gitshort}])"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
@@ -28,7 +28,7 @@ archs="aarch64"
 hostmakedepends="bc perl kmod uboot-mkimage libressl-devel python ncurses-devel"
 
 triggers="kernel-hooks"
-_kernver="${version}_${revision}"
+_kernver="${version}_RRVL-${revision}"
 
 # These files could be modified when an external module is built.
 mutable_files="
@@ -52,7 +52,7 @@ do_configure() {
 	cp -f ${FILESDIR}/config-odroidgo2 .config
 
 	# Always use our revision to CONFIG_LOCALVERSION to match our pkg version.
-	sed -i -e "s|^\(CONFIG_LOCALVERSION=\).*|\1\"_${revision}\"|" .config
+	sed -i -e "s|^\(CONFIG_LOCALVERSION=\).*|\1\"_RRVL-${revision}\"|" .config
 }
 
 do_build() {

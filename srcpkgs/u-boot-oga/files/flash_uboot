@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+sudo dd if=/usr/share/oga/idbloader.img of=/dev/mmcblk0 conv=fsync bs=512 seek=64
+sudo dd if=/usr/share/oga/uboot.img of=/dev/mmcblk0 conv=fsync bs=512 seek=16384
+sudo dd if=/usr/share/oga/trust.img of=/dev/mmcblk0 conv=fsync bs=512 seek=24576
+
+sync
+
+echo "u-boot updated. Reboot."
