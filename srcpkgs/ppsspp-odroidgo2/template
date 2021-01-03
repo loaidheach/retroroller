@@ -2,7 +2,7 @@
 pkgname=ppsspp-odroidgo2
 _pkgname=ppsspp
 version=1.10.3
-revision=12
+revision=15
 lang_commit=1c64b8fbd3cb6bd87935eb53f302f7de6f86e209
 glslang_commit=d0850f875ec392a130ccf00018dab458b546f27c
 SPIRV_Cross_commit=a1f7c8dc8ea2f94443951ee27003bffa562c1f13
@@ -23,10 +23,26 @@ configure_args="
  -DUSE_MINIUPNPC=ON
  -DUSE_ADDRESS_SANITIZER=OFF
  -DUSE_DISCORD=OFF
- -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON"
+ -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
+ -DCMAKE_SYSTEM_NAME=Linux
+ -DBUILD_SHARED_LIBS=OFF
+ -DARM_NO_VULKAN=ON
+ -DVULKAN=OFF
+ -DCMAKE_BUILD_TYPE=Release
+ -DUSE_WAYLAND_WSI=OFF
+ -DARM64=ON
+ -DANDROID=OFF
+ -DWIN32=OFF
+ -DAPPLE=OFF
+ -DUNITTEST=OFF
+ -DSIMULATOR=OFF
+
+ "
+# -DCMAKE_C_FLAGS=-DEGL_NO_X11
+# -DCMAKE_CXX_FLAGS=-DEGL_NO_X11
 hostmakedepends="pkg-config python3"
 makedepends="zlib-devel ffmpeg-devel libzip-devel libpng-devel
- snappy-devel rapidjson SDL2-devel libgomp-devel libglvnd-devel"
+ snappy-devel rapidjson SDL2-go2 libgomp-devel libglvnd-devel MesaLib-devel"
 short_desc="Fast and portable PSP emulator"
 maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later"
@@ -46,10 +62,14 @@ checksum="92a0931c0817529202679f926632510658f3aeea83e2a1663f9cce595b505421
 conflicts=ppsspp-go2
 replaces="ppsspp-go2>=0"
 
+#CFLAGS+="$LTO_FLAGS"
+#CXXFLAGS+="$LTO_FLAGS"
+#LDFLAGS+="$LTO_FLAGS"
+
 # compiler segfaults
-#XBPS_CROSS_CFLAGS+=" -flto=16 -fuse-linker-plugin"
-#XBPS_CROSS_CXXFLAGS+=" -flto=16 -fuse-linker-plugin"
-#XBPS_CROSS_LDFLAGS+=" -flto=16 -fuse-linker-plugin"
+XBPS_CROSS_CFLAGS+=" $CFLAGS"
+XBPS_CROSS_CXXFLAGS+=" $CXXFLAGS"
+XBPS_CROSS_LDFLAGS+=" $LDFLAGS"
 
 pre_configure() {
 	# copy submodules to right location
@@ -60,6 +80,10 @@ pre_configure() {
 
     patch -p1 < ${FILESDIR}/PPSSPPSDL-05-fix-fmv-stutter.patch
     patch -p1 < ${FILESDIR}/0000-revert-5aed2a2c.patch
+    patch -p1 < ${FILESDIR}/000-disable-mouse.patch
+    patch -p1 < ${FILESDIR}/max-fps-setting.patch
+
+    #sed -i "${wrksrc}/${_pkgname}-${version}/CMakeLists.txt" -e "s/-O3 -D_NDEBUG/-O3 -D_NDEBUG -g/"
 }
 
 do_install() {
