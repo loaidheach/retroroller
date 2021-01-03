@@ -5,7 +5,7 @@ if [ -f /boot/rrvl.conf ]; then
 fi
 
 RM="/etc/runit/runsvdir/default/agetty-tty1
-/etc/runit/runsvdir/default/agetty-tty3
+/etc/runit/runsvdir/default/agetty-tty2
 /etc/runit/runsvdir/default/agetty-tty4
 /etc/runit/runsvdir/default/agetty-tty5
 /etc/runit/runsvdir/default/agetty-tty6
@@ -25,12 +25,14 @@ for f in /sys/devices/platform/ff400000.gpu/devfreq/ff400000.gpu/governor /sys/d
 	chmod 775 $f
 done
 
+chmod 777 /dev/tty2
+
 if [ ! -e /etc/runit/runsvdir/default/dbus ]; then
     ln -sf /etc/sv/dbus /etc/runit/runsvdir/default/
 fi
 
-if [ ! -e /etc/runit/runsvdir/default/agetty-tty2 ]; then
-    ln -sf /etc/sv/agetty-tty2 /etc/runit/runsvdir/default/
+if [ ! -e /etc/runit/runsvdir/default/agetty-tty3 ]; then
+    ln -sf /etc/sv/agetty-tty3 /etc/runit/runsvdir/default/
 fi
 
 if [ ! -e /etc/runit/runsvdir/default/agetty-console ]; then

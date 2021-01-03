@@ -4,8 +4,8 @@ sudo chvt 2
 
 export TERM=linux
 
-printf "\033c"
+printf "\033c" > /dev/tty2
 
-"$@"
+"$@" &> /dev/tty2
 
 sudo chvt 1
