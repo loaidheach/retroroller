@@ -1,0 +1,28 @@
+# Template file for 'mame_libretro'
+pkgname=mame_libretro
+_gitrev=f0c675d604317fdbfaaa08997bd843af6bcfd193
+version=1.0.0
+revision=1
+wrksrc="mame-${_gitrev}"
+hostmakedepends="pkg-config libtool git"
+makedepends="zlib-devel libdrm-devel MesaLib-devel"
+short_desc="${pkgname}"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-2.0-only"
+homepage="https://github.com/libretro/mame"
+distfiles="https://github.com/libretro/mame/archive/${_gitrev}.zip"
+checksum=0b4c4fd7012603960ef9299452f4472df759d8b1dd1148a351861502d5672688
+patch_args="-Np1"
+
+do_build() {
+    local _opts
+    #vsed -i Makefile -e "s/-O3/-O2 -fdata-sections -fmerge-all-constants/"
+
+    #vsed -i Makefile -e "s/-frename-registers/-frename-registers -march=armv8-a -mtune=cortex-a35 -mcpu=cortex-a35 -fdata-sections -fno-stack-protector -fno-stack-clash-protection -fno-ident -fmerge-all-constants/"
+#
+    make -j16 ${_opts} V=1
+}
+
+do_install() {
+    vinstall "${pkgname}.so" 755 opt/libretro
+}
