@@ -1,0 +1,40 @@
+# Template file for 'SDL2-go2'
+pkgname=SDL2-go2
+version=2.0.12
+revision=5
+build_style=gnu-configure
+configure_args="--prefix=/usr --enable-alsa --disable-esd --disable-rpath --enable-libudev --disable-alsatest --disable-input-tslib --disable-video-opengl
+ --enable-clock_gettime --disable-nas --disable-arts --disable-x11-shared --disable-video-x11 --disable-pulseaudio --disable-video-wayland
+ --disable-alsa-shared --disable-pulseaudio-shared --disable-dbus --enable-video-kmsdrm --enable-sdl-dlopen --enable-video-opengles --disable-video-x11-xrandr --disable-video-vulkan"
+hostmakedepends="pkg-config autoconf which"
+makedepends="alsa-lib-devel eudev-libudev-devel libusb-compat-devel libsamplerate-devel libdrm-devel MesaLib-devel sndio-devel librga-devel"
+short_desc="Simple DirectMedia Layer (version 2)"
+maintainer="Orphaned <orphan@voidlinux.org>"
+license="Zlib"
+homepage="http://www.libsdl.org/"
+distfiles="http://www.libsdl.org/release/SDL2-2.0.10.tar.gz"
+checksum=b4656c13a1f0d0023ae2f4a9cf08ec92fffb464e0f24238337784159b8b91d57
+patch_args="-Np1"
+wrksrc="SDL2-2.0.10"
+replaces="SDL2>=0 SDL2-2.0.10>=0"
+provides="SDL2-2.0.12_1"
+
+LDFLAGS+=" -lrga"
+
+pre_configure() {
+    ./autogen.sh
+}
+
+#SDL2-go2-devel_package() {
+#	short_desc+=" - development files"
+#	depends="${makedepends} ${sourcepkg}>=${version}_${revision}"
+#	pkg_install() {
+#		vmove usr/bin
+#		vmove usr/include
+#		vmove usr/lib/cmake
+#		vmove usr/lib/pkgconfig
+#		vmove "usr/lib/*.a"
+#		vmove "usr/lib/*.so"
+#		vmove usr/share
+#	}
+#}
