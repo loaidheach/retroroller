@@ -1,47 +1,30 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.9.0
-revision=32
+revision=33
 _gitrev=d7e047956d76d3a810e4950ce04e45e7449cb99a
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
 configure_args="--prefix=/usr
  --sysconfdir=/etc
- --disable-builtinminiupnpc
- --disable-caca
  --disable-discord
- --disable-jack
- --disable-miniupnpc
- --disable-opengl
- --disable-opengl1
- --disable-pulse
- --disable-qt
- --disable-sdl
- --disable-sdl2
  --disable-libusb
- --disable-wayland
- --disable-x11
- --disable-vulkan
- --disable-xvideo
  --enable-git_version
  --enable-networking
  --enable-ozone
- --enable-tinyalsa
- --enable-alsa
  --enable-egl
- --enable-freetype
  --enable-kms
  --enable-odroidgo2
- --enable-ffmpeg
+ --disable-ffmpeg
+ --enable-mpv
  --enable-opengles
  --enable-opengles3
- --enable-udev
  --enable-wifi
 "
 conf_files="/etc/retroarch.cfg"
 hostmakedepends="pkg-config unzip git rsync openssh"
 makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel
- librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel ffmpeg-devel"
+ librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel mpv-devel"
 short_desc="Official reference frontend for the libretro API"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
@@ -79,7 +62,7 @@ do_build() {
 #		armv7*) _opts+="NEON_CFLAGS='-mfpu=neon-vfpv4 -mfloat-abi=hard' NEON_ASFLAGS='-mfpu=neon-vfpv4 -mfloat-abi=hard'";;
 #    esac
 
-    make V=1 -j$(nproc) GIT_VERSION=${_gitrev}
+    make -j$(nproc) GIT_VERSION=${_gitrev}
 }
 
 post_install() {
