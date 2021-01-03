@@ -1,6 +1,6 @@
 # Template file for 'rr-base'
 pkgname=rr-base
-version=1.8.8
+version=1.8.9
 revision=1
 archs="aarch64"
 create_wrkdir=true
@@ -22,6 +22,7 @@ do_install() {
     # scripts
     vinstall update.sh 755 usr/share/rrvl/scripts
     vinstall reset_ppsspp.sh 755 usr/share/rrvl/scripts
+    vinstall flash_uboot.sh 755 usr/share/rrvl/scripts
 
     vinstall 50-oga-suspend.sh 755 etc/zzz.d/suspend
     vinstall 50-oga-resume.sh 755 etc/zzz.d/resume
