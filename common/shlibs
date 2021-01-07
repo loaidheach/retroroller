@@ -2122,9 +2122,8 @@ libwvstreams.so.4.6 wvstreams-4.6.1_1
 libespeak-ng.so.1 libespeak-ng-1.50_1
 libKF5Plotting.so.5 kplotting-5.26.0_1
 libpgf.so.6 libpgf-6.14.12_1
-libqhull_p.so.7 libqhull-2015.2_1
-libqhull_r.so.7 libqhull-2015.2_1
-libqhull.so.7 libqhull-2015.2_1
+libqhull_r.so.8.0 libqhull-2020.2_1
+libqhull.so.8.0 libqhull-2020.2_1
 libKF5NetworkManagerQt.so.6 networkmanager-qt5-5.26.0_1
 libfcitx-core.so.0 libfcitx-4.2.8_1
 libfcitx-gclient.so.1 libfcitx-4.2.9.5_1
@@ -2571,7 +2570,7 @@ libhwloc.so.15 libhwloc-2.0.4_1
 libnetfilter_cttimeout.so.1 libnetfilter_cttimeout-1.0.0_1
 libnetfilter_cthelper.so.0 libnetfilter_cthelper-1.0.0_1
 libnetfilter_queue.so.1 libnetfilter_queue-1.0.2_1
-libfilezilla.so.10 libfilezilla-0.25.0_1
+libfilezilla.so.11 libfilezilla-0.26.0_1
 libtommath.so.1 libtommath-1.0_1
 libKF5ItemViews.so.5 kitemviews-5.26.0_1
 libunicorn.so.1 unicorn-1.0_1
