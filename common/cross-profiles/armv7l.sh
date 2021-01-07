@@ -7,6 +7,6 @@ XBPS_CROSS_CFLAGS="-march=armv7-a -mtune=cortex-a35 -mfpu=neon-vfpv4 -mfloat-abi
 #XBPS_CROSS_CFLAGS+=" -flto=$(nproc) -fuse-linker-plugin"
 XBPS_CROSS_CXXFLAGS="$XBPS_CROSS_CFLAGS"
 #XBPS_CROSS_LDFLAGS+=" -flto=$(nproc) -fuse-linker-plugin"
-XBPS_CROSS_FFLAGS=""
+XBPS_CROSS_FFLAGS="$XBPS_CROSS_CFLAGS"
 XBPS_CROSS_RUSTFLAGS="--sysroot=${XBPS_CROSS_BASE}/usr"
 XBPS_CROSS_RUST_TARGET="armv7-unknown-linux-gnueabihf"
