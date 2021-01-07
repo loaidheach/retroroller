@@ -1,0 +1,62 @@
+# Template file for 'emulationstation-fcamod'
+pkgname=emulationstation-fcamod
+_gitrev=57f635d64c5e27ee74624c79cc1464566c6a719e
+version=0.20210105
+revision=1
+wrksrc="EmulationStation-fcamod-${_gitrev}"
+build_style=cmake
+configure_args="-DCMAKE_BUILD_TYPE=Release -DGLES=1 -DGL=0 -DRPI=0 -DCEC=0 -DCMAKE_VERBOSE_MAKEFILE=ON"
+hostmakedepends="pkg-config git"
+makedepends="freetype-devel freeimage-devel libgo2-devel libdrm-devel 
+ MesaLib-devel SDL2-go2 SDL2_mixer-devel libcurl-devel vlc-devel rapidjson freefont-ttf dejavu-fonts-ttf fonts-droid-ttf"
+short_desc="Emulation Station is a flexible emulator front-end supporting keyboardless navigation and custom system themes. EE edition for odroidgo2."
+license="MIT"
+homepage="https://github.com/RetroPie/EmulationStation"
+#distfiles="https://github.com/christianhaitian/EmulationStation-fcamod/archive/${_gitrev}.tar.gz "
+#checksum=0e41c99eab4fdc7a49aa3fd1891457eb146910bd205cb56f0eae639d7c7d5861
+
+LDFLAGS+="-lrga"
+
+do_fetch() {
+    git clone --recursive https://github.com/christianhaitian/EmulationStation-fcamod ${wrksrc}
+    cd ${wrksrc}
+    git reset --hard ${_gitrev}
+}
+
+post_extract() {
+    vsed -i es-core/src/renderers/Renderer_GLES10.cpp -e "s#drm/drm_fourcc.h#libdrm/drm_fourcc.h#"
+    vsed -i es-core/src/resources/Font.cpp -e "s#/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf#/usr/share/fonts/TTF/DejaVuSans.ttf#"
+    vsed -i es-core/src/resources/Font.cpp -e "s#/usr/share/fonts/truetype/freefont/FreeMono.ttf#/usr/share/fonts/TTF/FreeMono.ttf#"
+    vsed -i es-core/src/resources/Font.cpp -e "s#/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf#/usr/share/fonts/TTF/DroidSansFallbackFull.ttf#"
+}
+
+
+#post_install() {
+#    rm -rf ${DESTDIR}/usr/include
+#    rm -rf ${DESTDIR}/usr/lib
+#    rm -rf ${DESTDIR}/usr/bin
+#
+#    vmkdir usr/bin
+#    cp ${FILESDIR}/emulationstation.sh ${DESTDIR}/usr/bin/emulationstation
+#
+#    vmkdir opt/emulationstation
+#    cp emulationstation ${DESTDIR}/opt/emulationstation
+#    cp -r resources ${DESTDIR}/opt/emulationstation/
+##    cp ${FILESDIR}/splash.svg ${DESTDIR}/opt/emulationstation/resources/
+#    cp ${FILESDIR}/es_systems.cfg ${DESTDIR}/opt/emulationstation/
+#    cp ${FILESDIR}/es_input.cfg ${DESTDIR}/opt/emulationstation/
+#
+#    vlicense LICENSE.md
+#    vsv emulationstation
+#
+#    vmkdir /usr/share/emulationstation
+#    cp -r ../EmuELEC-49b329c4cb59739a67d20aae50b2c43772d30ee3/packages/sx05re/emuelec/config/emulationstation/scripts ${DESTDIR}/usr/share/emulationstation/es_scripts
+#    chmod -R 755 ${DESTDIR}/usr/share/emulationstation/es_scripts
+#
+#    cp ../EmuELEC-49b329c4cb59739a67d20aae50b2c43772d30ee3/packages/sx05re/emuelec/config/emuelec/scripts/batocera/* ${DESTDIR}/usr/bin
+#    chmod 755 ${DESTDIR}/usr/bin/*
+#
+#    cp -r ../EmuELEC-49b329c4cb59739a67d20aae50b2c43772d30ee3/packages/sx05re/emuelec/config/emuelec ${DESTDIR}/usr/share/emulationstation/ee_config
+#
+#    echo "OdroidGoAdvance" > ${DESTDIR}/usr/share/emulationstation/ee_arch
+#}

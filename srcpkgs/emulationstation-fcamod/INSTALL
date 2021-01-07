@@ -1,0 +1,30 @@
+echo "ACTION ${ACTION}"
+
+case "${ACTION}" in
+post)
+    mkdir -p /home/odroid/.emulationstation
+    if [ -f /home/odroid/.emulationstation/es_systems.cfg ]; then
+        echo "Backing up es_systems.cfg"
+        cp /home/odroid/.emulationstation/es_systems.cfg /home/odroid/.emulationstation/es_systems.cfg.$(date +%Y%m%d_%H%M%S)
+    fi
+    if [ -f /home/odroid/.emulationstation/es_input.cfg ]; then
+        echo "Backing up es_input.cfg"
+        cp /home/odroid/.emulationstation/es_input.cfg /home/odroid/.emulationstation/es_input.cfg.$(date +%Y%m%d_%H%M%S)
+    fi
+
+    cp /opt/emulationstation/es_systems.cfg /home/odroid/.emulationstation
+    cp /opt/emulationstation/es_input.cfg /home/odroid/.emulationstation
+
+    rm -rf /home/odroid/.emulationstation/scripts
+    rm -rf /storage/.config/emuelec
+
+    cp -rf /usr/share/emulationstation/es_scripts /home/odroid/.emulationstation/scripts
+
+    cp -f /usr/share/emulationstation/ee_arch /ee_arch
+
+    cp -rf /usr/share/emulationstation/ee_config /storage/.config/emuelec
+
+    chown -R odroid:odroid /home/odroid/.emulationstation
+
+	;;
+esac
