@@ -1,17 +1,17 @@
 # Template file for 'odroid-go2-rrvl-kernel'
 #
-_gitrev="4441c8c5345c0c4d82c95caa9069605f78e3f56f"
+_gitrev="09f67e97cfeb9c1b9524d4f1b71dd7e8e64491f2"
 _gitshort="${_gitrev:0:7}"
 
 pkgname=odroid-go2-rrvl-kernel
 version=4.4.189
-revision=8
+revision=9
 short_desc="Linux kernel and modules for Odroid GO2 (${version%.*} [git ${_gitshort}])"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
 homepage="http://www.kernel.org"
 distfiles="https://github.com/valadaa48/linux/archive/${_gitrev}.tar.gz"
-checksum=fd2f05cc4f4c666822a0840e30fdf6c25897a923959acbe0c859778eff00d143
+checksum=a6926b1291c1d5ebc295aaaf1ec7d0abec5b9b996ecf32d440339169b4c44180
 patch_args="-p1"
 wrksrc="linux-${_gitrev}"
 python_version=2 #unverified
