@@ -1,22 +1,25 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.9.0
-revision=33
-_gitrev=d7e047956d76d3a810e4950ce04e45e7449cb99a
+revision=35
+_gitrev=f72bc60842304c2a3d16c11c068480ae537d0b4e
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
 configure_args="--prefix=/usr
  --sysconfdir=/etc
  --disable-discord
  --disable-libusb
+ --disable-sdl2
+ --disable-vulkan
+ --disable-vulkan_display
  --enable-git_version
  --enable-networking
  --enable-ozone
  --enable-egl
  --enable-kms
  --enable-odroidgo2
- --disable-ffmpeg
- --enable-mpv
+ --enable-ffmpeg
+ --disable-mpv
  --enable-opengles
  --enable-opengles3
  --enable-wifi
@@ -24,13 +27,13 @@ configure_args="--prefix=/usr
 conf_files="/etc/retroarch.cfg"
 hostmakedepends="pkg-config unzip git rsync openssh"
 makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel
- librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel mpv-devel"
+ librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel"
 short_desc="Official reference frontend for the libretro API"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
 homepage="http://www.libretro.com/"
 distfiles="https://github.com/valadaa48/RetroArch/archive/${_gitrev}.tar.gz"
-checksum=44229ad156171e4b201d4462e3a12b4f7269794101a9fdf82b30daa2d9a3d310
+checksum=a16dce6e480157de4fd21639ee7ec18d19fde92413b0eec9df759d4ff2ec6076
 patch_args="-Np1"
 
 do_configure() {
@@ -67,6 +70,9 @@ do_build() {
 
 post_install() {
     vinstall ${FILESDIR}/retroarch.cfg 644 etc
+    vinstall ${FILESDIR}/go_advance_gamepad.cfg 644 usr/share/retroarch
+    vinstall ${FILESDIR}/go_advance_gamepad_v11.cfg 644 usr/share/retroarch
+    vinstall ${FILESDIR}/go_super_gamepad.cfg 644 usr/share/retroarch
     vsv retroarch
 }
 

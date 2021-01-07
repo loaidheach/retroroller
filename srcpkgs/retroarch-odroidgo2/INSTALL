@@ -1,0 +1,6 @@
+case "${ACTION}" in
+post)
+    cp /usr/share/retroarch/go*.cfg /home/odroid/.config/retroarch/autoconfig/udev/
+    chown odroid:odroid /home/odroid/.config/retroarch/autoconfig/udev/*.cfg
+	;;
+esac
