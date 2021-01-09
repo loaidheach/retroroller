@@ -58,9 +58,6 @@ echo 1500 > /proc/sys/vm/dirty_writeback_centisecs
 
 echo mmc0 > /sys/class/leds/blue:heartbeat/trigger
 
-/usr/bin/iw dev wlan0 set power_save off
-
-if ! egrep -q "joypad_autoconfig_dir.*/usr/share" /home/odroid/.config/retroarch/retroarch.cfg; then
-    rm /home/odroid/.config/retroarch/retroarch.cfg
-fi
+sed -i /home/odroid/.config/retroarch/retroarch.cfg  -e 's#joypad_autoconfig_dir.*#joypad_autoconfig_dir = "/usr/share/libretro/autoconfig"#'
+sed -i /home/odroid/.config/retroarch/retroarch.cfg  -e 's#libretro_info_path.*#libretro_info_path = "/usr/share/libretro/info"#'
 
