@@ -1,0 +1,19 @@
+# Template file for 'libretro-core-info'
+pkgname=libretro-core-info
+version=0.20210107
+revision=1
+_gitrev=d8078f814520b29c417005d97547f6fccf4c182e
+build_style=configure
+wrksrc="${pkgname}-${_gitrev}"
+short_desc="libretro core info files"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-3.0-or-later"
+homepage="http://www.libretro.com/"
+distfiles="https://github.com/libretro/libretro-core-info/archive/${_gitrev}.tar.gz"
+checksum=52e796394a183756afc4da2b6e88a99dad021caef0b4a7a6a84e639463ce4688
+
+post_install() {
+    for f in $(ls ${FILESDIR}); do
+        vinstall "${FILESDIR}/$f" 644 usr/share/libretro/info
+    done
+}

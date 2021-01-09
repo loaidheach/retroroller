@@ -60,3 +60,7 @@ echo mmc0 > /sys/class/leds/blue:heartbeat/trigger
 
 /usr/bin/iw dev wlan0 set power_save off
 
+if ! egrep -q "joypad_autoconfig_dir.*/usr/share" /home/odroid/.config/retroarch/retroarch.cfg; then
+    rm /home/odroid/.config/retroarch/retroarch.cfg
+fi
+

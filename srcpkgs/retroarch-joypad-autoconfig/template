@@ -1,0 +1,13 @@
+# Template file for 'retroarch-joypad-autoconfig'
+pkgname=retroarch-joypad-autoconfig
+version=0.20210107
+revision=1
+_gitrev=22faf8bafa65ade594d0ef8e76203fba2706fc77
+build_style=configure
+wrksrc="${pkgname}-${_gitrev}"
+short_desc="retroarch-joypad-autoconfig"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-3.0-or-later"
+homepage="http://www.libretro.com/"
+distfiles="https://github.com/libretro/retroarch-joypad-autoconfig/archive/${_gitrev}.tar.gz"
+checksum=225f5dfb17e49b46bbb217c6904c008fa58a66e03c95cf5a77445a32f058c94c

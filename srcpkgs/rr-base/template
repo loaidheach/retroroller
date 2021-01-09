@@ -1,14 +1,14 @@
 # Template file for 'rr-base'
 pkgname=rr-base
-version=1.8.9
+version=1.9.5
 revision=1
 archs="aarch64"
 create_wrkdir=true
-short_desc="retroroller base"
+short_desc="RRVL base"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-or-later"
 homepage="https://github.com/valadaa48"
-depends="p7zip unzip NetworkManager xtools librga libgo2 libmali-bifrost-gbm ogage ppsspp-odroidgo2 dialog linux-firmware-network spring-rrvl retrorun-go2 duckstation-go2 u-boot-oga SDL2-go2>=2.0.12"
+depends="p7zip unzip NetworkManager xtools librga libgo2 libmali-bifrost-gbm ogage ppsspp-odroidgo2 dialog linux-firmware-network retrorun-go2 duckstation-go2 u-boot-oga SDL2-go2>=2.0.12 wget"
 conf_files="/boot/boot.ini /etc/NetworkManager/conf.d/wifi-powersave-off.conf"
 
 do_install() {
@@ -21,7 +21,7 @@ do_install() {
 
     # scripts
     vinstall update.sh 755 usr/share/rrvl/scripts
-    vinstall reset_ppsspp.sh 755 usr/share/rrvl/scripts
+    vinstall reset_rrvl.sh 755 usr/share/rrvl/scripts
     vinstall flash_uboot.sh 755 usr/share/rrvl/scripts
 
     vinstall 50-oga-suspend.sh 755 etc/zzz.d/suspend
@@ -31,14 +31,19 @@ do_install() {
 
     vbin firstboot.sh
     vbin onboot.sh
+
     vbin setfreq
     vbin performance
     vbin arm-xbps
     vbin update
     vbin termwrap
     vbin ogainfo
+
     vbin retrorun32
     vbin retrorun64
     vbin retroarch32
-    vbin dark
+
+    for f in $(ls ${FILESDIR}/spring_*.so); do
+        vinstall "$f" 644 opt/retroarch/spring
+    done
 }

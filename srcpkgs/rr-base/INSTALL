@@ -3,5 +3,8 @@ post)
     if [ ! -e /roms/_rrvl ]; then
         ln -sf /usr/share/rrvl/scripts /roms/_rrvl
     fi
+
+    cp /opt/retroarch/spring/spring*.so /home/odroid/.config/retroarch/cores/
+    chown odroid:odroid /home/odroid/.config/retroarch/cores/spring*.so
 	;;
 esac
