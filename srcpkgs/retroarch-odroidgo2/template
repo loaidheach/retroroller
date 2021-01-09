@@ -1,7 +1,7 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.9.0
-revision=37
+revision=38
 _gitrev=2d35a83480b73ad2842190e9256fe087d594246d
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
@@ -38,21 +38,24 @@ checksum=45cbe66faddccf3f8f955995dee508c032b1d54e58dbaf619516fa4c026485c0
 patch_args="-Np1"
 
 post_extract() {
-echo "joypad_autoconfig_dir = /usr/share/libretro/autoconfig" >> retroarch.cfg
-echo "libretro_info_path = /usr/share/libretro/info" >> retroarch.cfg
 echo "audio_driver = alsathread" >> retroarch.cfg
 echo "core_updater_buildbot_cores_url = http://eple.us/retroroller/libretro/aarch64/" >> retroarch.cfg
 echo "input_driver = udev" >> retroarch.cfg
 echo "input_max_users = 1" >> retroarch.cfg
-echo "input_menu_toggle_gamepad_combo = 0" >> retroarch.cfg
+echo "input_menu_toggle_gamepad_combo = 4" >> retroarch.cfg
+echo "joypad_autoconfig_dir = /usr/share/libretro/autoconfig" >> retroarch.cfg
+echo "libretro_info_path = /usr/share/libretro/info" >> retroarch.cfg
+echo "menu_driver = ozone" >> retroarch.cfg
 echo "menu_rgui_shadows = true" >> retroarch.cfg
 echo "menu_scale_factor = 1.250000" >> retroarch.cfg
 echo "menu_show_advanced_settings = true" >> retroarch.cfg
+echo "menu_show_load_content_animation = false" >> retroarch.cfg
 echo "menu_timedate_style = 5" >> retroarch.cfg
 echo "menu_widget_scale_auto = false" >> retroarch.cfg
 echo "menu_widget_scale_factor = 2.0" >> retroarch.cfg
 echo "menu_widget_scale_factor_windowed = 2.0" >> retroarch.cfg
 echo "ozone_collapse_sidebar = true" >> retroarch.cfg
+echo "rgui_aspect_ratio = 5" >> retroarch.cfg
 echo "rgui_background_filler_thickness_enable = false" >> retroarch.cfg
 echo "rgui_border_filler_enable = false" >> retroarch.cfg
 echo "rgui_border_filler_thickness_enable = false" >> retroarch.cfg
@@ -68,9 +71,6 @@ echo "video_driver = glcore" >> retroarch.cfg
 echo "video_font_size = 12.000000" >> retroarch.cfg
 echo "video_threaded = true" >> retroarch.cfg
 echo "wifi_driver = nmcli" >> retroarch.cfg
-echo "rgui_aspect_ratio = 5" >> retroarch.cfg
-# NO! Enter the Void!
-#echo "menu_driver = ozone" >> retroarch.cfg
 }
 
 do_configure() {
