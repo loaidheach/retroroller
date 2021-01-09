@@ -1,7 +1,0 @@
-case "${ACTION}" in
-post)
-    mkdir -p /home/odroid/.config/retroarch/cores
-    cp /opt/libretro/spring/* /home/odroid/.config/retroarch/cores/
-    chown -R odroid:odroid /home/odroid/.config/retroarch/cores
-	;;
-esac

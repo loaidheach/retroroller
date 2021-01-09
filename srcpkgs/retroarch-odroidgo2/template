@@ -1,8 +1,8 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.9.0
-revision=35
-_gitrev=f72bc60842304c2a3d16c11c068480ae537d0b4e
+revision=37
+_gitrev=2d35a83480b73ad2842190e9256fe087d594246d
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
 configure_args="--prefix=/usr
@@ -24,17 +24,54 @@ configure_args="--prefix=/usr
  --enable-opengles3
  --enable-wifi
 "
-conf_files="/etc/retroarch.cfg"
+#conf_files="/etc/retroarch.cfg"
 hostmakedepends="pkg-config unzip git rsync openssh"
 makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel
- librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel"
+ librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel libretro-core-info retroarch-joypad-autoconfig"
+depends="libretro-core-info retroarch-joypad-autoconfig"
 short_desc="Official reference frontend for the libretro API"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
 homepage="http://www.libretro.com/"
 distfiles="https://github.com/valadaa48/RetroArch/archive/${_gitrev}.tar.gz"
-checksum=a16dce6e480157de4fd21639ee7ec18d19fde92413b0eec9df759d4ff2ec6076
+checksum=45cbe66faddccf3f8f955995dee508c032b1d54e58dbaf619516fa4c026485c0
 patch_args="-Np1"
+
+post_extract() {
+echo "joypad_autoconfig_dir = /usr/share/libretro/autoconfig" >> retroarch.cfg
+echo "libretro_info_path = /usr/share/libretro/info" >> retroarch.cfg
+echo "audio_driver = alsathread" >> retroarch.cfg
+echo "core_updater_buildbot_cores_url = http://eple.us/retroroller/libretro/aarch64/" >> retroarch.cfg
+echo "input_driver = udev" >> retroarch.cfg
+echo "input_max_users = 1" >> retroarch.cfg
+echo "input_menu_toggle_gamepad_combo = 0" >> retroarch.cfg
+echo "menu_rgui_shadows = true" >> retroarch.cfg
+echo "menu_scale_factor = 1.250000" >> retroarch.cfg
+echo "menu_show_advanced_settings = true" >> retroarch.cfg
+echo "menu_timedate_style = 5" >> retroarch.cfg
+echo "menu_widget_scale_auto = false" >> retroarch.cfg
+echo "menu_widget_scale_factor = 2.0" >> retroarch.cfg
+echo "menu_widget_scale_factor_windowed = 2.0" >> retroarch.cfg
+echo "ozone_collapse_sidebar = true" >> retroarch.cfg
+echo "rgui_background_filler_thickness_enable = false" >> retroarch.cfg
+echo "rgui_border_filler_enable = false" >> retroarch.cfg
+echo "rgui_border_filler_thickness_enable = false" >> retroarch.cfg
+echo "rgui_browser_directory = /roms" >> retroarch.cfg
+echo "rgui_extended_ascii = true" >> retroarch.cfg
+echo "rgui_inline_thumbnails = true" >> retroarch.cfg
+echo "rgui_menu_color_theme = 20" >> retroarch.cfg
+echo "rgui_particle_effect = 4" >> retroarch.cfg
+echo "rgui_particle_effect_speed = 0.300000" >> retroarch.cfg
+echo "savefile_directory = /roms/saves" >> retroarch.cfg
+echo "system_directory = /roms/bios" >> retroarch.cfg
+echo "video_driver = glcore" >> retroarch.cfg
+echo "video_font_size = 12.000000" >> retroarch.cfg
+echo "video_threaded = true" >> retroarch.cfg
+echo "wifi_driver = nmcli" >> retroarch.cfg
+echo "rgui_aspect_ratio = 5" >> retroarch.cfg
+# NO! Enter the Void!
+#echo "menu_driver = ozone" >> retroarch.cfg
+}
 
 do_configure() {
 	if [ "$CROSS_BUILD" ]; then
@@ -69,10 +106,7 @@ do_build() {
 }
 
 post_install() {
-    vinstall ${FILESDIR}/retroarch.cfg 644 etc
-    vinstall ${FILESDIR}/go_advance_gamepad.cfg 644 usr/share/retroarch
-    vinstall ${FILESDIR}/go_advance_gamepad_v11.cfg 644 usr/share/retroarch
-    vinstall ${FILESDIR}/go_super_gamepad.cfg 644 usr/share/retroarch
+    vinstall retroarch.cfg 644 etc
     vsv retroarch
 }
 
