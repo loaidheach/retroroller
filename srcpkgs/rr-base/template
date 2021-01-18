@@ -1,6 +1,6 @@
 # Template file for 'rr-base'
 pkgname=rr-base
-version=1.9.8
+version=1.9.10
 revision=1
 archs="aarch64"
 create_wrkdir=true
@@ -8,7 +8,7 @@ short_desc="RRVL base"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-or-later"
 homepage="https://github.com/valadaa48"
-depends="p7zip unzip NetworkManager xtools librga libgo2 libmali-bifrost-gbm ogage ppsspp-odroidgo2 dialog linux-firmware-network retrorun-go2 duckstation-go2 u-boot-oga SDL2-go2>=2.0.12 wget"
+depends="p7zip unzip NetworkManager xtools librga libgo2 libmali-bifrost-gbm ogage ppsspp-odroidgo2 dialog linux-firmware-network retrorun-go2 duckstation-go2 u-boot-oga wget odroid-go2-rrvl-kernel"
 conf_files="/boot/boot.ini /etc/NetworkManager/conf.d/wifi-powersave-off.conf"
 
 do_install() {
@@ -30,7 +30,7 @@ do_install() {
     vinstall 50-oga.rules 644 usr/lib/udev/rules.d
 
     vbin firstboot.sh
-    vbin onboot.sh
+    vinstall 50-onboot.sh 755 etc/runit/core-services
 
     vbin setfreq
     vbin performance

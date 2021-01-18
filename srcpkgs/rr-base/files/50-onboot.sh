@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-if [ -f /boot/rrvl.conf ]; then
-	source /boot/rrvl.conf
-fi
+RUNSVROOT=/etc/runit/runsvdir/default
+SVROOT=/etc/sv
+
+[ -f /boot/rrvl.conf ] && source /boot/rrvl.conf
 
 RM="/etc/runit/runsvdir/default/agetty-tty1
 /etc/runit/runsvdir/default/agetty-tty2
@@ -12,12 +13,10 @@ RM="/etc/runit/runsvdir/default/agetty-tty1
 /etc/runit/runsvdir/default/dhcpcd
 /usr/libexec/dhcpcd-hooks/10-wpa_supplicant
 /boot/wpa_supplicant.conf
- "
+"
 
 for f in $RM; do
-    if [ -e $f ]; then
-        rm -f $f
-    fi
+    rm -f $f
 done
 
 for f in /sys/devices/platform/ff400000.gpu/devfreq/ff400000.gpu/governor /sys/devices/platform/dmc/devfreq/dmc/governor /sys/devices/system/cpu/cpufreq/policy0/*; do
@@ -27,28 +26,16 @@ done
 
 chmod 777 /dev/tty2
 
-if [ ! -e /etc/runit/runsvdir/default/dbus ]; then
-    ln -sf /etc/sv/dbus /etc/runit/runsvdir/default/
-fi
+for svc in dbus agetty-tty3 agetty-console NetworkManager; do
+    ln -snf "$SVROOT/$svc" "$RUNSVROOT/"
+done
 
-if [ ! -e /etc/runit/runsvdir/default/agetty-tty3 ]; then
-    ln -sf /etc/sv/agetty-tty3 /etc/runit/runsvdir/default/
-fi
-
-if [ ! -e /etc/runit/runsvdir/default/agetty-console ]; then
-    ln -sf /etc/sv/agetty-console /etc/runit/runsvdir/default/
-fi
-
-if [ ! -e /etc/runit/runsvdir/default/NetworkManager ]; then
-    ln -sf /etc/sv/NetworkManager /etc/runit/runsvdir/default/
-fi
-
-if ! groups odroid | grep -q '\bnetwork\b'; then
-    gpasswd -a odroid network
-fi
+gpasswd -a odroid network
 
 [ -f /proc/sys/kernel/nmi_watchdog ] && echo 0 > /proc/sys/kernel/nmi_watchdog
-[ -f /roms/saves ] && mkdir -p /roms/saves && chown odroid:odroid /roms/saves
+
+mkdir -p /roms/saves && chown odroid:odroid /roms/saves
+mkdir -p /roms/bios && chown odroid:odroid /roms/bios
 
 echo performance > /sys/devices/platform/dmc/devfreq/dmc/governor
 /usr/bin/setfreq ${cpufreq:-1296000}
@@ -60,4 +47,5 @@ echo mmc0 > /sys/class/leds/blue:heartbeat/trigger
 
 sed -i /home/odroid/.config/retroarch/retroarch.cfg  -e 's#joypad_autoconfig_dir.*#joypad_autoconfig_dir = "/usr/share/libretro/autoconfig"#'
 sed -i /home/odroid/.config/retroarch/retroarch.cfg  -e 's#libretro_info_path.*#libretro_info_path = "/usr/share/libretro/info"#'
+sed -i /etc/rc.local  -e 's#/usr/bin/onboot.sh.*##'
 
