@@ -68,6 +68,12 @@ post_patch() {
 	fi
 }
 
+pre_build() {
+	ninja -C build \
+		src/remote/qemu_protocol.h \
+		src/remote/remote_protocol.h
+}
+
 post_install() {
 	# runit services
 	vsv libvirtd
