@@ -1,6 +1,6 @@
 # Template file for 'odroid-go2-kernel-mainline'
 #
-_gitrev=33ba112f566a7e7379297f974335631583893360
+_gitrev=262df1cff8cd0406dfd13aabd5b3ee64806d3971
 _gitshort="${_gitrev:0:7}"
 
 pkgname=odroid-go2-kernel-mainline
@@ -10,10 +10,10 @@ short_desc="Linux kernel and modules for Odroid GO2 (${version%.*} [git ${_gitsh
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
 homepage="http://www.kernel.org"
-distfiles="https://github.com/macromorgan/odroid_go_advance_linux/archive/${_gitrev}.tar.gz"
-checksum=211a04c0f675dea6db81a81cd5781d60a47613b6b7c8147fbff89646496d0f9f
+distfiles="https://github.com/valadaa48/linux/archive/${_gitrev}.tar.gz"
+checksum=b9332e2b270f0f04b254c120e990e75bf9ff031a2cfdfd19bb8fa752bf08d75d
 patch_args="-p1"
-wrksrc="odroid_go_advance_linux-33ba112f566a7e7379297f974335631583893360"
+wrksrc="linux-${_gitrev}"
 python_version=2 #unverified
 
 nodebug=yes
