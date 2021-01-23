@@ -1785,7 +1785,180 @@ CONFIG_REGULATOR_RK818=y
 # CONFIG_REGULATOR_TPS65132 is not set
 # CONFIG_REGULATOR_TPS6524X is not set
 # CONFIG_REGULATOR_XZ3216 is not set
-# CONFIG_MEDIA_SUPPORT is not set
+CONFIG_MEDIA_SUPPORT=y
+
+#
+# Multimedia core support
+#
+CONFIG_MEDIA_CAMERA_SUPPORT=y
+# CONFIG_MEDIA_ANALOG_TV_SUPPORT is not set
+# CONFIG_MEDIA_DIGITAL_TV_SUPPORT is not set
+# CONFIG_MEDIA_RADIO_SUPPORT is not set
+# CONFIG_MEDIA_SDR_SUPPORT is not set
+# CONFIG_MEDIA_RC_SUPPORT is not set
+# CONFIG_MEDIA_CEC_SUPPORT is not set
+# CONFIG_MEDIA_CONTROLLER is not set
+CONFIG_VIDEO_DEV=y
+CONFIG_VIDEO_V4L2=y
+# CONFIG_VIDEO_ADV_DEBUG is not set
+# CONFIG_VIDEO_FIXED_MINOR_RANGES is not set
+# CONFIG_TTPCI_EEPROM is not set
+
+#
+# Media drivers
+#
+# CONFIG_MEDIA_USB_SUPPORT is not set
+# CONFIG_V4L_PLATFORM_DRIVERS is not set
+# CONFIG_V4L_MEM2MEM_DRIVERS is not set
+# CONFIG_V4L_TEST_DRIVERS is not set
+# CONFIG_ROCKCHIP_TSP is not set
+
+#
+# Supported MMC/SDIO adapters
+#
+# CONFIG_CYPRESS_FIRMWARE is not set
+
+#
+# Media ancillary drivers (tuners, sensors, i2c, spi, frontends)
+#
+# CONFIG_MEDIA_SUBDRV_AUTOSELECT is not set
+
+#
+# I2C Encoders, decoders, sensors and other helper chips
+#
+
+#
+# Audio decoders, processors and mixers
+#
+# CONFIG_VIDEO_TVAUDIO is not set
+# CONFIG_VIDEO_TDA7432 is not set
+# CONFIG_VIDEO_TDA9840 is not set
+# CONFIG_VIDEO_TEA6415C is not set
+# CONFIG_VIDEO_TEA6420 is not set
+# CONFIG_VIDEO_MSP3400 is not set
+# CONFIG_VIDEO_CS5345 is not set
+# CONFIG_VIDEO_CS53L32A is not set
+# CONFIG_VIDEO_TLV320AIC23B is not set
+# CONFIG_VIDEO_UDA1342 is not set
+# CONFIG_VIDEO_WM8775 is not set
+# CONFIG_VIDEO_WM8739 is not set
+# CONFIG_VIDEO_VP27SMPX is not set
+# CONFIG_VIDEO_SONY_BTF_MPX is not set
+
+#
+# RDS decoders
+#
+# CONFIG_VIDEO_SAA6588 is not set
+
+#
+# Video decoders
+#
+# CONFIG_VIDEO_ADV7183 is not set
+# CONFIG_VIDEO_BT819 is not set
+# CONFIG_VIDEO_BT856 is not set
+# CONFIG_VIDEO_BT866 is not set
+# CONFIG_VIDEO_KS0127 is not set
+# CONFIG_VIDEO_ML86V7667 is not set
+# CONFIG_VIDEO_SAA7110 is not set
+# CONFIG_VIDEO_SAA711X is not set
+# CONFIG_VIDEO_TVP514X is not set
+# CONFIG_VIDEO_TVP5150 is not set
+# CONFIG_VIDEO_TVP7002 is not set
+# CONFIG_VIDEO_TW2804 is not set
+# CONFIG_VIDEO_TW9903 is not set
+# CONFIG_VIDEO_TW9906 is not set
+# CONFIG_VIDEO_VPX3220 is not set
+
+#
+# Video and audio decoders
+#
+# CONFIG_VIDEO_SAA717X is not set
+# CONFIG_VIDEO_CX25840 is not set
+
+#
+# Video encoders
+#
+# CONFIG_VIDEO_SAA7127 is not set
+# CONFIG_VIDEO_SAA7185 is not set
+# CONFIG_VIDEO_ADV7170 is not set
+# CONFIG_VIDEO_ADV7175 is not set
+# CONFIG_VIDEO_ADV7343 is not set
+# CONFIG_VIDEO_ADV7393 is not set
+# CONFIG_VIDEO_AK881X is not set
+# CONFIG_VIDEO_THS8200 is not set
+
+#
+# Camera sensor devices
+#
+# CONFIG_VIDEO_IMX219 is not set
+# CONFIG_VIDEO_IMX258 is not set
+# CONFIG_VIDEO_IMX317 is not set
+# CONFIG_VIDEO_IMX323 is not set
+# CONFIG_VIDEO_IMX327 is not set
+# CONFIG_VIDEO_VIRT_CAMERA is not set
+# CONFIG_VIDEO_OV2659 is not set
+# CONFIG_VIDEO_OV2680 is not set
+# CONFIG_VIDEO_OV2735 is not set
+# CONFIG_VIDEO_OV5695 is not set
+# CONFIG_VIDEO_OV7251 is not set
+# CONFIG_VIDEO_OV7640 is not set
+# CONFIG_VIDEO_OV7670 is not set
+# CONFIG_VIDEO_OV7725 is not set
+# CONFIG_VIDEO_OV7750 is not set
+# CONFIG_VIDEO_OV8858 is not set
+# CONFIG_VIDEO_OV9281 is not set
+# CONFIG_VIDEO_VS6624 is not set
+# CONFIG_VIDEO_MT9V011 is not set
+# CONFIG_VIDEO_SR030PC30 is not set
+
+#
+# Flash devices
+#
+
+#
+# Video improvement chips
+#
+# CONFIG_VIDEO_UPD64031A is not set
+# CONFIG_VIDEO_UPD64083 is not set
+
+#
+# Camera lens devices
+#
+
+#
+# Audio/Video compression chips
+#
+# CONFIG_VIDEO_SAA6752HS is not set
+
+#
+# Miscellaneous helper chips
+#
+# CONFIG_VIDEO_THS7303 is not set
+# CONFIG_VIDEO_M52790 is not set
+# CONFIG_VIDEO_NVP6324 is not set
+
+#
+# Sensors used on soc_camera driver
+#
+
+#
+# SPI helper chips
+#
+
+#
+# Customise DVB Frontends
+#
+CONFIG_DVB_AU8522=m
+CONFIG_DVB_AU8522_V4L=m
+CONFIG_DVB_TUNER_DIB0070=m
+CONFIG_DVB_TUNER_DIB0090=m
+
+#
+# Tools to develop new frontends
+#
+# CONFIG_DVB_DUMMY_FE is not set
+# CONFIG_CAMSYS_DRV is not set
+# CONFIG_ROCK_CHIP_SOC_CAMERA is not set
 
 #
 # Graphics support
@@ -1907,7 +2080,7 @@ CONFIG_FB_SYS_FOPS=y
 # CONFIG_FB_METRONOME is not set
 # CONFIG_FB_BROADSHEET is not set
 # CONFIG_FB_AUO_K190X is not set
-CONFIG_FB_SIMPLE=y
+# CONFIG_FB_SIMPLE is not set
 # CONFIG_FB_SSD1307 is not set
 CONFIG_BACKLIGHT_LCD_SUPPORT=y
 # CONFIG_LCD_CLASS_DEVICE is not set
@@ -1962,7 +2135,8 @@ CONFIG_RK_VCODEC=y
 #
 # ROCKCHIP_MPP
 #
-# CONFIG_ROCKCHIP_MPP_SERVICE is not set
+CONFIG_ROCKCHIP_MPP_SERVICE=y
+CONFIG_ROCKCHIP_MPP_DEVICE=y
 # CONFIG_VGASTATE is not set
 CONFIG_VIDEOMODE_HELPERS=y
 CONFIG_HDMI=y
@@ -2903,7 +3077,6 @@ CONFIG_CPU_PX30=y
 # CONFIG_CPU_RK3368 is not set
 # CONFIG_CPU_RK3399 is not set
 CONFIG_ANDROID_VERSION=0x07010000
-CONFIG_ROCKCHIP_CPUINFO=y
 # CONFIG_ROCKCHIP_DEVICEINFO is not set
 CONFIG_ROCKCHIP_IPA=y
 CONFIG_ROCKCHIP_OPP=y
@@ -3213,8 +3386,8 @@ CONFIG_ANDROID=y
 # CONFIG_ANDROID_BINDER_IPC is not set
 # CONFIG_LIBNVDIMM is not set
 CONFIG_NVMEM=y
-CONFIG_ROCKCHIP_EFUSE=y
-CONFIG_ROCKCHIP_OTP=y
+# CONFIG_ROCKCHIP_EFUSE is not set
+# CONFIG_ROCKCHIP_OTP is not set
 # CONFIG_STM is not set
 # CONFIG_INTEL_TH is not set
 
@@ -3279,12 +3452,7 @@ CONFIG_XFS_FS=y
 # CONFIG_XFS_DEBUG is not set
 # CONFIG_GFS2_FS is not set
 # CONFIG_OCFS2_FS is not set
-CONFIG_BTRFS_FS=y
-# CONFIG_BTRFS_FS_POSIX_ACL is not set
-# CONFIG_BTRFS_FS_CHECK_INTEGRITY is not set
-# CONFIG_BTRFS_FS_RUN_SANITY_TESTS is not set
-# CONFIG_BTRFS_DEBUG is not set
-# CONFIG_BTRFS_ASSERT is not set
+# CONFIG_BTRFS_FS is not set
 # CONFIG_NILFS2_FS is not set
 CONFIG_F2FS_FS=y
 # CONFIG_F2FS_FS_XATTR is not set
@@ -3648,7 +3816,6 @@ CONFIG_HAVE_ARCH_HARDENED_USERCOPY=y
 # CONFIG_TEE_SUPPORT is not set
 CONFIG_DEFAULT_SECURITY_DAC=y
 CONFIG_DEFAULT_SECURITY=""
-CONFIG_XOR_BLOCKS=y
 CONFIG_CRYPTO=y
 
 #
@@ -3815,7 +3982,6 @@ CONFIG_CRYPTO_CRC32_ARM64=y
 #
 # Library routines
 #
-CONFIG_RAID6_PQ=y
 CONFIG_BITREVERSE=y
 CONFIG_HAVE_ARCH_BITREVERSE=y
 CONFIG_RATIONAL=y
