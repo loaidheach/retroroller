@@ -1,6 +1,6 @@
 # Template file for 'SDL2'
 pkgname=SDL2
-version=2.0.12
+version=2.0.14
 revision=1
 build_style=gnu-configure
 configure_args="--prefix=/usr --enable-alsa --disable-esd --disable-rpath --enable-libudev --disable-alsatest --disable-input-tslib --disable-video-opengl
@@ -12,11 +12,8 @@ short_desc="Simple DirectMedia Layer (version 2)"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="Zlib"
 homepage="http://www.libsdl.org/"
-distfiles="http://www.libsdl.org/release/${pkgname}-2.0.10.tar.gz"
-checksum=b4656c13a1f0d0023ae2f4a9cf08ec92fffb464e0f24238337784159b8b91d57
-patch_args="-Np1"
-wrksrc="${pkgname}-2.0.10"
-replaces="SDL2-2.0.10>=0"
+distfiles="http://www.libsdl.org/release/${pkgname}-${version}.tar.gz"
+checksum=d8215b571a581be1332d2106f8036fcb03d12a70bae01e20f424976d275432bc
 
 LDFLAGS+=" -lrga"
 
