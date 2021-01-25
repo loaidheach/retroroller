@@ -19,5 +19,5 @@ done
 
 echo -e "\n* Rsync'ing\n"
 
-rsync --delete -av $* $repo/* eple.us:www/rrvl
+rsync --delete -av $* $repo/ eple.us:www/rrvl/.
 #rsync -av hostdir/binpkgs/rrvl rrvl:

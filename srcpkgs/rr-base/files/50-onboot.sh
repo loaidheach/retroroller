@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 RUNSVROOT=/etc/runit/runsvdir/default
 SVROOT=/etc/sv
 
-[ -f /boot/rrvl.conf ] && source /boot/rrvl.conf
+[ -f /boot/rrvl.conf ] && . /boot/rrvl.conf
 
 RM="/etc/runit/runsvdir/default/agetty-tty1
 /etc/runit/runsvdir/default/agetty-tty2

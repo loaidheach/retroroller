@@ -1,6 +1,6 @@
 # Template file for 'odroid-go2-rrvl-kernel'
 #
-_gitrev="09f67e97cfeb9c1b9524d4f1b71dd7e8e64491f2"
+_gitrev="b6542dd19ccd79b0f861da3cb37a25aa2b73f174"
 _gitshort="${_gitrev:0:7}"
 
 pkgname=odroid-go2-rrvl-kernel
@@ -11,7 +11,7 @@ maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
 homepage="http://www.kernel.org"
 distfiles="https://github.com/valadaa48/linux/archive/${_gitrev}.tar.gz"
-checksum=a6926b1291c1d5ebc295aaaf1ec7d0abec5b9b996ecf32d440339169b4c44180
+checksum=78470ad3c1ab10e7e7e8dc47519dc036f1912dd75e3b5d5c6848556458899894
 patch_args="-p1"
 wrksrc="linux-${_gitrev}"
 python_version=2 #unverified
@@ -53,6 +53,8 @@ do_configure() {
 
 	# Always use our revision to CONFIG_LOCALVERSION to match our pkg version.
 	sed -i -e "s|^\(CONFIG_LOCALVERSION=\).*|\1\"_RRVL-${revision}\"|" .config
+
+    sed -i arch/arm64/Makefile -e "s/-fno-pic/-fno-pic -march=armv8-a+crc+fp+simd -mtune=cortex-a35 -mcpu=cortex-a35/"
 }
 
 do_build() {
