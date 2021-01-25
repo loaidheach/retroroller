@@ -1,16 +1,17 @@
 # Template file for 'odroid-go2-kernel-510'
-_gitrev=3644e2d2dda78e21edd8f5415b6d7ab03f5f54f3
+_gitrev=353540807ce7a28b01966c0bb7af100ee53b8dc3
 
+# 5.11.0-rc4_1
 pkgname=odroid-go2-kernel-510
-version=5.10.0
+version="5.11.0"
 revision=1
-wrksrc="odroid_go_advance_linux_android-${_gitrev}"
+wrksrc="linux-${_gitrev}"
 short_desc="Linux kernel and modules for OGA (${version%.*} series"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
 homepage="https://www.kernel.org"
-distfiles="https://github.com/valadaa48/odroid_go_advance_linux_android/archive/${_gitrev}.tar.gz"
-checksum=cf4ab7d72361ba28c21ceaedb8f54867aa11717d17c2dfea057a568023d8ef9b
+distfiles="https://github.com/valadaa48/linux/archive/${_gitrev}.tar.gz"
+checksum=729f69388513c5e0de45a514693d5f8863facc66dc2b4e81c49b799d906a7b00
 python_version=3
 patch_args="-Np1"
 
