@@ -4,8 +4,7 @@ pkgs="librga
  libgo2
  libmali-bifrost-gbm
  retroarch-odroidgo2
- SDL2-2.0.10-go2
- SDL2-go2
+ SDL2
  ppsspp-go2 
  rr-base
  drastic-go2
