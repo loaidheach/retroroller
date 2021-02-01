@@ -1,7 +1,7 @@
 # Template file for 'removed-packages'
 pkgname=removed-packages
 version=0.1
-revision=19
+revision=20
 build_style=meta
 short_desc="Uninstalls packages removed from repository"
 maintainer="Piotr Wójcik <chocimier@tlen.pl>"
@@ -10,6 +10,7 @@ homepage="https://voidlinux.org"
 
 replaces="
  Platinum9-theme<=0.0.0.20170720_3
+ albert<=0.16.1_4
  apg<=2.2.3_5
  arm-mem-git<=20131108_2
  arptables<=0.0.4_3
@@ -33,6 +34,7 @@ replaces="
  enventor<=1.0.0_2
  epstopdf<=2.27_3
  fontmatrix<=0.6.0.20171228_2
+ gegl3<=0.3.28_2
  geoip-data<=20171002_2
  gksu<=2.0.2_4
  go1.4-bootstrap<=20171003_2
