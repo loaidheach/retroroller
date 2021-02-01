@@ -1,7 +1,7 @@
 # Template file for 'duckstation_libretro'
 pkgname=duckstation_libretro
-version=0.20210103
-_gitrev=b3bf9f3f10d86078fd69e060e3d98c80b6cde4cd
+version=0.20210129
+_gitrev=da3d29b7defd050da0071872e82911a91855055c
 revision=1
 wrksrc="duckstation-${_gitrev}"
 build_style=cmake
@@ -13,17 +13,16 @@ hostmakedepends="pkg-config python unzip cmake"
 makedepends="libdrm-devel alsa-lib-devel"
 license="GPL-2.0-or-later"
 homepage="https://github.com/libretro/duckstation"
-distfiles="https://github.com/stenzek/duckstation/archive/${_gitrev}.tar.gz"
-#distfiles="https://github.com/valadaa48/duckstation/archive/${_gitrev}.tar.gz"
-checksum=f342f3a24f86a73d91a03beef015abd4852e792706b6984f774f9d35194d0d4a
+#distfiles="https://github.com/stenzek/duckstation/archive/${_gitrev}.tar.gz"
+distfiles="https://github.com/valadaa48/duckstation/archive/${_gitrev}.tar.gz"
+checksum=95e9ac17fa1f379d4d1d5d122eb1b426774335ff1d1c7c68276df1991bbce142
 
 CFLAGS+="${LTO_FLAGS}"
 CXXFLAGS+="${LTO_FLAGS} -fno-exceptions"
 LDFLAGS+="${LTO_FLAGS}"
 
 post_extract() {
-    # Software is threaded and faster than GL (mali)
-#    cd ${wrksrc}
-    vsed -i src/duckstation-libretro/libretro_host_interface.cpp -e 's/   "OpenGL"/   "Software"/'
-    vsed -i src/duckstation-libretro/libretro_host_interface.cpp -e 's/   "Info"}/   "None"}/'
+    vsed -i src/duckstation-libretro/libretro_host_interface.cpp -e "570s/OpenGL/Software/"
+    vsed -i src/duckstation-libretro/libretro_host_interface.cpp -e "831s/Info/None/"
+    vsed -i src/duckstation-libretro/libretro_host_interface.cpp -e "633s/false/true/"
 }
