@@ -1,15 +1,16 @@
 # Template file for 'mupen64plus-go2'
 pkgname=mupen64plus-go2
 version=2.5.9
-revision=2
+revision=3
 create_wrksrc=yes
 hostmakedepends="pkg-config git which"
-makedepends="boost-devel SDL2-devel speexdsp-devel freetype-devel glu-devel libpng-devel libsamplerate-devel libgo2-devel MesaLib-devel"
+makedepends="boost-devel SDL2-go2 speexdsp-devel freetype-devel glu-devel libpng-devel libsamplerate-devel libgo2-devel MesaLib-devel"
 short_desc="A Nintendo64 Emulator for go2"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2"
 homepage="http://www.mupen64plus.org"
 archs="aarch64"
+patch_args="-Np1"
 
 _components='core rsp-hle video-rice audio-sdl input-sdl ui-console'
 _opts='BITS=64 USE_GLES=1 NEW_DYNAREC=1 OPTFLAGS="-O3" V=1 HOST_CPU=aarch64 PIE=1 PLUGINDIR=/usr/lib/mupen64plus'
@@ -27,6 +28,8 @@ do_patch() {
     cd mupen64plus-video-rice
     patch -Np1 < ${FILESDIR}/mupen64plus-video-rice-aarch64.patch
     patch -Np1 < ${FILESDIR}/mupen64plus-video-rice-res.patch
+    cd ../mupen64plus-ui-console
+    patch -Np1 < ${FILESDIR}/pif_fix.patch
 }
 
 do_build() {
@@ -40,7 +43,7 @@ do_build() {
   vsed -i mupen64plus-input-sdl/projects/unix/Makefile -e "s/SDL_CONFIG = \$(CROSS_COMPILE)sdl2-config/SDL_CONFIG = sdl2-config/"
   vsed -i mupen64plus-ui-console/projects/unix/Makefile -e "s/SDL_CONFIG = \$(CROSS_COMPILE)sdl2-config/SDL_CONFIG = sdl2-config/"
 
-  export CFLAGS="$CFLAGS -Ofast -pipe -march=armv8-a+crc+simd -mtune=cortex-a35 -mcpu=cortex-a35 -U_FORTIFY_SOURCE -fno-stack-protector -fno-stack-clash-protection -ftree-vectorize -fdata-sections -ffunction-sections -fno-ident -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-math-errno -funsafe-math-optimizations -fomit-frame-pointer -ffast-math"
+  export CFLAGS="$CFLAGS -Ofast -pipe -march=armv8-a+crc+simd -mtune=cortex-a35 -mcpu=cortex-a35 -U_FORTIFY_SOURCE -fno-stack-protector -fno-stack-clash-protection -ftree-vectorize -fdata-sections -ffunction-sections -fno-ident -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-math-errno -funsafe-math-optimizations -fomit-frame-pointer -ffast-math -fcommon"
   export CXXFLAGS="$CXXFLAGS $CFLAGS"
   for _component in $_components
   do
