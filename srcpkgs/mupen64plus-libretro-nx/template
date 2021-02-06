@@ -2,23 +2,32 @@
 pkgname=mupen64plus-libretro-nx
 version=1.0.0
 revision=1
-_gitrev=87737c0b4425e2372086385de7fe9c54b9dbbace
-wrksrc="${pkgname}-develop"
+_gitrev=b785150465048fa88f812e23462f318e66af0be0
+wrksrc="${pkgname}-${_gitrev}"
 #build_style=gnu-makefile
 hostmakedepends="pkg-config libtool"
-makedepends="zlib-devel libdrm-devel MesaLib-devel"
+makedepends="zlib-devel libdrm-devel MesaLib-devel libpng-devel"
 short_desc="${pkgname}"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
-homepage="https://github.com/libretro/snes9x2010"
-distfiles="https://github.com/libretro/mupen64plus-libretro-nx/archive/develop.tar.gz"
-checksum=0602d872dd4773b0a5df9719f4ec5b6092855621e64ad07f9364244bab625440
-#patch_args="-Np1"
+homepage="https://github.com/libretro/mupen64plus-libretro-nx"
+distfiles="https://github.com/libretro/mupen64plus-libretro-nx/archive/${_gitrev}.tar.gz"
+checksum=456c433f45b0e2ba15a587978234e3e1300301d431b6823747ad0e779331c97e
+patch_args="-Np1"
+
+#post_extract() {
+#    sed -i Makefile -e "s/COREFLAGS += -DOS_LINUX/COREFLAGS += -DOS_LINUX -fcommon/"
+#}
 
 do_build() {
-    make -j8 WITH_DYNAREC=aarch64 GLES=1 PIC=1 GL_LIB=-lGLESv2
+    #make -j8 WITH_DYNAREC=aarch64 GLES=1 PIC=1 GL_LIB=-lGLESv2 platform=odroidgoa
+#    export CFLAGS="$CFLAGS -fcommon"
+    make clean
+    #make -j17 WITH_DYNAREC=aarch64 platform=odroid64 ARCH=aarch64 BOARD=ODROIDGOA
+    make -j17 WITH_DYNAREC=aarch64 platform=odroid64 ARCH=aarch64 BOARD=ODROIDGOA
+
 }
 
 do_install() {
-    vinstall mupen64plus_next_libretro.so 755 opt/libretro
+    vinstall mupen64plus_next_libretro.so 755 usr/share/libretro/cores
 }
