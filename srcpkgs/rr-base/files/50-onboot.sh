@@ -6,7 +6,7 @@ SVROOT=/etc/sv
 [ -f /boot/rrvl.conf ] && . /boot/rrvl.conf
 
 RM="/etc/runit/runsvdir/default/agetty-tty1
-/etc/runit/runsvdir/default/agetty-tty2
+/etc/runit/runsvdir/default/agetty-tty3
 /etc/runit/runsvdir/default/agetty-tty4
 /etc/runit/runsvdir/default/agetty-tty5
 /etc/runit/runsvdir/default/agetty-tty6
@@ -24,9 +24,9 @@ for f in /sys/devices/platform/ff400000.gpu/devfreq/ff400000.gpu/governor /sys/d
 	chmod 775 $f
 done
 
-chmod 777 /dev/tty2
+chmod 777 /dev/tty1
 
-for svc in dbus agetty-tty3 agetty-console NetworkManager; do
+for svc in dbus agetty-tty2 agetty-console NetworkManager; do
     ln -snf "$SVROOT/$svc" "$RUNSVROOT/"
 done
 

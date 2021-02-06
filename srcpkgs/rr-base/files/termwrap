@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-sudo chvt 2
-
 export TERM=linux
 
-printf "\033c" > /dev/tty2
+printf "\033c" > /dev/tty1
 
-"$@" &> /dev/tty2
+"$@" &> /dev/tty1
 
-sudo chvt 1
+printf "\033c" > /dev/tty1

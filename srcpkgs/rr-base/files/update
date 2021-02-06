@@ -4,8 +4,8 @@ set -euo pipefail
 
 sudo xbps-install -Su $* xbps
 sudo xbps-install -u $*
+sudo xbps-remove -O
+
 sudo arm-xbps install -Su $* xbps
 sudo arm-xbps install -u $*
-
-sudo xbps-remove -O
 sudo arm-xbps remove -O

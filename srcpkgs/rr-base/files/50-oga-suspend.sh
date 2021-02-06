@@ -1,6 +1,10 @@
 #!/bin/sh
 
-alsactl store -f /var/asound.state
+alsactl store
 sv stop ogage
+
 modprobe -r dwc2
-modprobe -r esp8089 || true
+lsmod | tail -n+2 | cut -d' ' -f1 > /tmp/zzz_modules
+for x in $(cat /tmp/zzz_modules); do
+    modprobe -r $x || true
+done

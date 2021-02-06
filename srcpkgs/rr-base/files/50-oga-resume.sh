@@ -1,6 +1,9 @@
 #!/bin/sh
 
-alsactl restore -f /var/asound.state
-modprobe -i esp8089 || true
-modprobe -i dwc2
+alsactl restore
 sv start ogage
+
+modprobe -i dwc2
+for x in $(cat /tmp/zzz_modules); do
+    modprobe -i $x || true
+done
