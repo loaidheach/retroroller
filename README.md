@@ -1,3 +1,20 @@
+# RRVL
+
+Special thanks to:
+
+- npaladin2000 (dev)
+- tshroom
+- Raiden (dev)
+- Shanti of EE
+- Slaminger
+- Stenzek
+- CrashOverride for all his work on the OGA
+- meveric
+- HK for producing excellent platforms and giving back to the community
+
+
+--------------------------------------------------------------------------------
+
 ## The XBPS source packages collection
 
 This repository contains the XBPS source packages collection to build binary packages
