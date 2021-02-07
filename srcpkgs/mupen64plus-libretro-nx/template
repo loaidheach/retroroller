@@ -2,7 +2,7 @@
 pkgname=mupen64plus-libretro-nx
 version=1.0.0
 revision=1
-_gitrev=b785150465048fa88f812e23462f318e66af0be0
+_gitrev=eaefe94037aa8752d6a34cd0d409f4f5d5122905
 wrksrc="${pkgname}-${_gitrev}"
 #build_style=gnu-makefile
 hostmakedepends="pkg-config libtool"
@@ -12,7 +12,7 @@ maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
 homepage="https://github.com/libretro/mupen64plus-libretro-nx"
 distfiles="https://github.com/libretro/mupen64plus-libretro-nx/archive/${_gitrev}.tar.gz"
-checksum=456c433f45b0e2ba15a587978234e3e1300301d431b6823747ad0e779331c97e
+checksum=f67a473fcaf10baf4e6d1cdcf1a40f9787f4a1c321eaf27cf51dc1bd2b391852
 patch_args="-Np1"
 
 #post_extract() {

@@ -1,6 +1,6 @@
 # Template file for 'libretro-core-info'
 pkgname=libretro-core-info
-version=0.20210107
+version=0.20210206
 revision=1
 _gitrev=d8078f814520b29c417005d97547f6fccf4c182e
 build_style=configure
