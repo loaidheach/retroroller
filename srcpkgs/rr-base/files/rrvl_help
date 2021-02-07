@@ -1,0 +1,40 @@
+#!/usr/bin/python3
+
+print("""
+
+First Steps
+===========
+
+1. Connect Wifi in Settings -> WiFi
+2. System update in Load Content -> Start Directory -> _rrvl -> update.sh
+
+Global Hotkeys
+==============
+
+Power               Sleep/Wake
+F5 + Power          Power Off
+F5 + Left/Right     Volume
+F5 + Up/Down        Screen brightness
+F5 + L1/R1          Performance Off/On
+F5 + L2/R2          Unkill/Kill WiFi
+
+File system
+===========
+
+Roms:               /roms
+Bios:               /roms/bios
+Saves:              /roms/saves
+RetroArch config:   /home/odroid/.config/retroarch/retroarch.cfg
+
+Overclock
+=========
+
+Edit /boot/rrvl.conf
+
+Username/Password
+=================
+
+odroid/odroid
+root/odroid
+
+""")
