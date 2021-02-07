@@ -3138,9 +3138,9 @@ librpmio.so.9 librpmio-4.15.0_1
 libsquirrel.so.0 squirrel-libs-3.1_1
 libsqstdlib.so.0 squirrel-libs-3.1_1
 libexecinfo.so.1 libexecinfo-1.1_1
-libkdeconnectpluginkcm.so.1 kdeconnect-1.2_1
-libkdeconnectinterfaces.so.1 kdeconnect-1.2_1
-libkdeconnectcore.so.1 kdeconnect-1.2_1
+libkdeconnectpluginkcm.so.2 kdeconnect-20.12.2_1
+libkdeconnectinterfaces.so.20 kdeconnect-20.12.2_1
+libkdeconnectcore.so.20 kdeconnect-20.12.2_1
 libkpmcore.so.10 kpmcore-4.2.0_1
 libpkcs11-helper.so.1 pkcs11-helper-1.22_1
 libr_core.so.5.0.0 radare2-5.0.0_1
@@ -3192,7 +3192,6 @@ libKF5IdentityManagement.so.5 kidentitymanagement-17.12.0_1
 libKChart.so.2 kdiagram-2.6.0_1
 libKGantt.so.2 kdiagram-2.6.0_1
 libscrypt.so.0 libscrypt-1.21_1
-libzuluplay.so.1.1 zuluplay-1.1_1
 libzuluCryptPluginManager.so.1.0.0 zulucrypt-5.2.0_1
 libzuluCrypt-exe.so.1.2.0 zulucrypt-5.2.0_1
 libzuluCrypt.so.1.2.0 zulucrypt-5.2.0_1
