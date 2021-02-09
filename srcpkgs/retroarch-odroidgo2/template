@@ -1,7 +1,7 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.9.0
-revision=42
+revision=43
 _gitrev=cd8705584f8a5b67d998354abfbe9f644f7e11df
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
@@ -18,7 +18,7 @@ configure_args="--prefix=/usr
  --enable-egl
  --enable-kms
  --enable-odroidgo2
- --enable-ffmpeg
+ --disable-ffmpeg
  --disable-mpv
  --enable-opengles
  --enable-opengles3
@@ -27,7 +27,7 @@ configure_args="--prefix=/usr
 #conf_files="/etc/retroarch.cfg"
 hostmakedepends="pkg-config unzip git rsync openssh"
 makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel
- librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel libretro-core-info retroarch-joypad-autoconfig ffmpeg-devel"
+ librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel libretro-core-info retroarch-joypad-autoconfig"
 depends="libretro-core-info retroarch-joypad-autoconfig"
 short_desc="Official reference frontend for the libretro API"
 maintainer="valadaa48 <valadaa48@gmx.com>"
@@ -78,6 +78,7 @@ echo "input_load_state_btn = 4" >> retroarch.cfg
 echo "input_pause_toggle_btn = 0" >> retroarch.cfg
 echo "input_menu_toggle_btn = 15" >> retroarch.cfg
 echo "input_toggle_fast_forward_btn = 1" >> retroarch.cfg
+echo "rgui_aspect_ratio_lock = 1" >> retroarch.cfg
 }
 
 do_configure() {
