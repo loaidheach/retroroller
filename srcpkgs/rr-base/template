@@ -1,6 +1,6 @@
 # Template file for 'rr-base'
 pkgname=rr-base
-version=1.9.28
+version=1.9.29
 revision=1
 archs="aarch64"
 create_wrkdir=true
@@ -39,6 +39,7 @@ do_install() {
     vbin termwrap
     vbin ogainfo
     vbin rrvl_help
+    vbin perf_enable
 
     vbin retrorun32
     vbin retrorun64

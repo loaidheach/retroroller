@@ -1,7 +1,7 @@
 # Template file for 'duckstation_libretro'
 pkgname=duckstation_libretro
 version=0.20210129
-_gitrev=da3d29b7defd050da0071872e82911a91855055c
+_gitrev=0c3111d1da54ebc58c26f0ccbc44f46366945ed7
 revision=1
 wrksrc="duckstation-${_gitrev}"
 build_style=cmake
@@ -15,7 +15,7 @@ license="GPL-2.0-or-later"
 homepage="https://github.com/libretro/duckstation"
 #distfiles="https://github.com/stenzek/duckstation/archive/${_gitrev}.tar.gz"
 distfiles="https://github.com/valadaa48/duckstation/archive/${_gitrev}.tar.gz"
-checksum=95e9ac17fa1f379d4d1d5d122eb1b426774335ff1d1c7c68276df1991bbce142
+checksum=f7cd355f86ad61b15103d392e3c85c741a78bf18aa35fa50ad3ba9dd68ba0bb2
 
 CFLAGS+="${LTO_FLAGS}"
 CXXFLAGS+="${LTO_FLAGS} -fno-exceptions"

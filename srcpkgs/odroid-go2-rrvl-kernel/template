@@ -1,18 +1,17 @@
 # Template file for 'odroid-go2-rrvl-kernel'
 #
-_gitrev=e08c2c569ab05c757f7f2edc78653781666cb2b0
+_gitrev=7658c94b4e315f7ec91c42bd43d7c8fb4d6db0e9
 _gitshort="${_gitrev:0:7}"
-
 pkgname=odroid-go2-rrvl-kernel
 version=4.4.189
-revision=15
+revision=17
 short_desc="Linux kernel and modules for Odroid GO2 (${version%.*} [git ${_gitshort}])"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
 homepage="http://www.kernel.org"
 distfiles="https://github.com/valadaa48/linux/archive/${_gitrev}.tar.gz"
-checksum=55d4019284c806e86970dd381633af3c6a4eb4437aeec1c11be6797c57338f07
-patch_args="-p1"
+checksum=99bec6db0fe714053cbfee85f52d761ae891ac3ca9981d6e55308774664ba410
+patch_args="-Np1"
 wrksrc="linux-${_gitrev}"
 python_version=2 #unverified
 replaces="odroid-go2-kernel>=0"
@@ -25,7 +24,9 @@ noshlibprovides=yes
 preserve=yes
 
 archs="aarch64"
-hostmakedepends="bc perl kmod uboot-mkimage libressl-devel python ncurses-devel"
+hostmakedepends="bc perl kmod uboot-mkimage libressl-devel python ncurses-devel flex"
+makedepends="perl libunwind-devel libdwarf-devel zlib-devel python python-devel libaudit-devel slang-devel elfutils-devel liblzma-devel libnuma-devel libelf"
+depends="libunwind libaudit libnuma zlib slang elfutils liblzma libelf"
 
 triggers="kernel-hooks"
 _kernver="${version}_RRVL-${revision}"
@@ -74,10 +75,16 @@ do_build() {
 	unset LDFLAGS
 	make ARCH=arm64 ${_args} ${makejobs} prepare
 	make ARCH=arm64 ${_args} ${makejobs} Image modules dtbs
+
+    make ARCH=arm64 ${_args} ${makejobs} WERROR=0 EXTRA_CFLAGS="-fcommon -Wno-stringop-truncation" -C tools/ perf
 }
 
 do_install() {
-	local arch hdrdest
+	local arch hdrdest _args
+
+	if [ "$CROSS_BUILD" ]; then
+		_args="CROSS_COMPILE=${XBPS_CROSS_TRIPLET}-"
+	fi
 
 	case "$XBPS_TARGET_MACHINE" in
 		aarch64*) arch=arm64;;
@@ -101,6 +108,8 @@ do_install() {
 	# Switch to /usr.
 	vmkdir usr
 	mv ${DESTDIR}/lib ${DESTDIR}/usr
+
+    make ARCH=arm64 ${_args} ${makejobs} WERROR=0 EXTRA_CFLAGS="-fcommon -Wno-stringop-truncation" prefix=${DESTDIR}/usr -C tools/ perf_install 
 
 	cd ${DESTDIR}/usr/lib/modules/${_kernver}
 	rm -f source build

@@ -1,36 +1,40 @@
 # Template file for 'duckstation-go2'
 pkgname=duckstation-go2
-version=0.20201031
-_gitrev=0d94b718b9f6f11c93330814b8f7f8b06b5bf7dc
+version=0.20210206
+_gitrev=ccc25fc13157f58f3accf97ef68d2cb4cd2443b7
 revision=1
 wrksrc="duckstation-${_gitrev}"
 build_style=cmake
 short_desc="duckstation"
-configure_args="-DBUILD_GO2_FRONTEND=ON -DBUILD_QT_FRONTEND=OFF -DBUILD_SDL_FRONTEND=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_VERBOSE_MAKEFILE=ON -DENABLE_DISCORD_PRESENCE=OFF -DUSE_SDL2=OFF -DUSE_X11=OFF -DUSE_EGL=OFF"
+configure_args="-DBUILD_QT_FRONTEND=OFF -DBUILD_SDL_FRONTEND=OFF -DCMAKE_BUILD_TYPE=Release
+ -DCMAKE_VERBOSE_MAKEFILE=ON -DENABLE_DISCORD_PRESENCE=OFF -DUSE_SDL2=OFF -DUSE_X11=OFF -DUSE_EGL=ON -DUSE_DRMKMS=ON"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 hostmakedepends="pkg-config python unzip cmake rsync"
-makedepends="libdrm-devel alsa-lib-devel libgo2-devel MesaLib-devel"
+makedepends="libdrm-devel alsa-lib-devel MesaLib-devel libevdev-devel"
 license="GPL-2.0-or-later"
 homepage="https://github.com/libretro/duckstation"
-distfiles="https://github.com/stenzek/duckstation/archive/${_gitrev}.tar.gz"
-checksum=978ca8d0855b399d3a8d6fb2de9c3b55714317b6e4d6d3b5921dedad981f507a
+distfiles="https://github.com/valadaa48/duckstation/archive/${_gitrev}.tar.gz"
+checksum=490269cf06a73dd54fe49c9f067ddfab13519134ceca75921c425ae08793da01
 
 post_extract() {
+    ls
     # Software is threaded and faster than GL (mali)
 #    cd ${wrksrc}
-    vsed -i src/duckstation-libretro/libretro_host_interface.cpp -e 's/   "OpenGL"/   "Software"/'
-    vsed -i src/duckstation-go2/go2_host_display.cpp -e "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:"
-    vsed -i src/duckstation-go2/go2_opengl_host_display.cpp -e "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:"
-
-    vsed -i src/frontend-common/common_host_interface.cpp -e 's:GetProgramDirectoryRelativePath("database/compatibility.xml"):"/usr/share/duckstation/database/compatibility.xml":'
-    vsed -i src/frontend-common/common_host_interface.cpp -e 's:GetProgramDirectoryRelativePath("database/gamesettings.ini"):"/usr/share/duckstation/database/gamesettings.ini":'
-    vsed -i src/frontend-common/common_host_interface.cpp -e 's:GetUserDirectoryRelativePath("gamesettings.ini"):"/usr/share/duckstation/database/gamesettings.ini":'
+#    vsed -i src/duckstation-go2/go2_host_display.cpp -e "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:"
+#    vsed -i src/duckstation-go2/go2_opengl_host_display.cpp -e "s:drm/drm_fourcc.h:libdrm/drm_fourcc.h:"
+#
+#    vsed -i src/frontend-common/common_host_interface.cpp -e 's:GetProgramDirectoryRelativePath("database/compatibility.xml"):"/usr/share/duckstation/database/compatibility.xml":'
+#    vsed -i src/frontend-common/common_host_interface.cpp -e 's:GetProgramDirectoryRelativePath("database/gamesettings.ini"):"/usr/share/duckstation/database/gamesettings.ini":'
+#    vsed -i src/frontend-common/common_host_interface.cpp -e 's:GetUserDirectoryRelativePath("gamesettings.ini"):"/usr/share/duckstation/database/gamesettings.ini":'
 }
 
 do_install() {
-    vbin build/bin/duckstation-go2
+    vbin build/bin/duckstation-nogui
 
     vmkdir usr/share/duckstation
-	vcopy data/database usr/share/duckstation
+	vcopy build/bin/database usr/share/duckstation
+	vcopy build/bin/inputprofiles usr/share/duckstation
+	vcopy build/bin/resources usr/share/duckstation
+	vcopy build/bin/shaders usr/share/duckstation
 }
 
