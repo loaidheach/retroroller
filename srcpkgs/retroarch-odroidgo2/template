@@ -1,7 +1,7 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.9.0
-revision=43
+revision=44
 _gitrev=cd8705584f8a5b67d998354abfbe9f644f7e11df
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
@@ -18,7 +18,7 @@ configure_args="--prefix=/usr
  --enable-egl
  --enable-kms
  --enable-odroidgo2
- --disable-ffmpeg
+ --enable-ffmpeg
  --disable-mpv
  --enable-opengles
  --enable-opengles3
@@ -27,7 +27,7 @@ configure_args="--prefix=/usr
 #conf_files="/etc/retroarch.cfg"
 hostmakedepends="pkg-config unzip git rsync openssh"
 makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel
- librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel libretro-core-info retroarch-joypad-autoconfig"
+ librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel libretro-core-info retroarch-joypad-autoconfig ffmpeg-devel"
 depends="libretro-core-info retroarch-joypad-autoconfig"
 short_desc="Official reference frontend for the libretro API"
 maintainer="valadaa48 <valadaa48@gmx.com>"

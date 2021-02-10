@@ -1,0 +1,25 @@
+# Template file for 'libretro-mpv'
+pkgname=libretro-mpv
+version=0.20210209.0
+revision=1
+_gitrev=99f7fe4fd43d68da45006301829eaf37c7edbcc2
+wrksrc="${pkgname}-${_gitrev}"
+#build_style=gnu-makefile
+hostmakedepends="pkg-config libtool"
+makedepends="mpv-devel"
+depends="mpv"
+short_desc="${pkgname}"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-2.0-only"
+homepage="https://github.com/libretro/libretro-mpv"
+distfiles="https://github.com/libretro/libretro-mpv/archive/${_gitrev}.tar.gz"
+checksum=0a0af1194422ad04444105cfd1d282b4c6fd8b61ff8b58826a2e69087c66644b
+patch_args="-Np1"
+
+do_build() {
+    make platform=unixgles
+}
+
+do_install() {
+    vinstall mpv_libretro.so 755 usr/share/libretro/cores
+}
