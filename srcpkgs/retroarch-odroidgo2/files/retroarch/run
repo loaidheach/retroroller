@@ -5,5 +5,5 @@ export HOME=/home/odroid
 GROUPS=input:video:audio:odroid:cdrom:wheel:adm
 
 cd $HOME
-exec chpst -u "$USER:$GROUPS" \
+exec chrt -rr 99 chpst -u "$USER:$GROUPS" \
 retroarch
