@@ -1,8 +1,8 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.9.0
-revision=44
-_gitrev=cd8705584f8a5b67d998354abfbe9f644f7e11df
+revision=46
+_gitrev=aba93096fce3b56c1a998010e80c97e4ba7908fd
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
 configure_args="--prefix=/usr
@@ -12,6 +12,11 @@ configure_args="--prefix=/usr
  --disable-sdl2
  --disable-vulkan
  --disable-vulkan_display
+ --disable-audiomixer
+ --disable-x11
+ --disable-cdrom
+ --disable-video_layout
+ --disable-oss
  --enable-git_version
  --enable-networking
  --enable-ozone
@@ -25,16 +30,16 @@ configure_args="--prefix=/usr
  --enable-wifi
 "
 #conf_files="/etc/retroarch.cfg"
-hostmakedepends="pkg-config unzip git rsync openssh"
-makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel
- librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel libretro-core-info retroarch-joypad-autoconfig ffmpeg-devel"
+hostmakedepends="pkg-config openssh"
+makedepends="zlib-devel libxml2-devel freetype-devel
+ librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel ffmpeg-devel"
 depends="libretro-core-info retroarch-joypad-autoconfig"
 short_desc="Official reference frontend for the libretro API"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
 homepage="http://www.libretro.com/"
 distfiles="https://github.com/valadaa48/RetroArch/archive/${_gitrev}.tar.gz"
-checksum=66ff328b9db3b12131a473ac5e194fb1fa8b6b8989541b4d24cb07bbbe89b708
+checksum=a725e68ce1a4e9fcd36430c25ad932f51b93eecec21859d0bee3ebe71ca05c85
 patch_args="-Np1"
 
 post_extract() {
@@ -93,6 +98,7 @@ do_configure() {
     esac
 	
     export CFLAGS="$CFLAGS -O3 -fno-tree-vectorize"
+    export CXXFLAGS="$CXXFLAGS -O3 -fno-tree-vectorize"
     export ASFLAGS="$CFLAGS"
 	./configure ${configure_args}
 }
@@ -110,7 +116,10 @@ do_build() {
 #		armv7*) _opts+="NEON_CFLAGS='-mfpu=neon-vfpv4 -mfloat-abi=hard' NEON_ASFLAGS='-mfpu=neon-vfpv4 -mfloat-abi=hard'";;
 #    esac
 
-    make -j$(nproc) GIT_VERSION=${_gitrev}
+    export CFLAGS="$CFLAGS -O3 -fno-tree-vectorize"
+    export CXXFLAGS="$CXXFLAGS -O3 -fno-tree-vectorize"
+    export ASFLAGS="$CFLAGS"
+    make -j$(nproc) GIT_VERSION=${_gitrev} V=1
 }
 
 post_install() {
