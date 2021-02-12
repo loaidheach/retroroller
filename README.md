@@ -1,7 +1,10 @@
 # RRVL
 
+[CHANGELOG](./CHANGELOG.md)
+
 Special thanks to:
 
+- Safarikniv for hosting
 - npaladin2000 (dev)
 - tshroom
 - Raiden (dev)
