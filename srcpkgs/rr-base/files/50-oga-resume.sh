@@ -1,6 +1,6 @@
 #!/bin/sh
 
-alsactl restore
+#alsactl restore
 sv start ogage
 
 #modprobe -i dwc2

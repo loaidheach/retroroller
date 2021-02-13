@@ -1,6 +1,6 @@
 #!/bin/sh
 
-alsactl store
+#alsactl store
 sv stop ogage
 
 #modprobe -r dwc2
