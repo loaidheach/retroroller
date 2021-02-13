@@ -98,6 +98,7 @@ do_configure() {
     esac
 	
     export CFLAGS="$CFLAGS -O3 -fno-tree-vectorize"
+    export CXXFLAGS="$CXXFLAGS -O3 -fno-tree-vectorize"
     export ASFLAGS="$CFLAGS"
 	./configure ${configure_args}
 }
@@ -115,7 +116,10 @@ do_build() {
 #		armv7*) _opts+="NEON_CFLAGS='-mfpu=neon-vfpv4 -mfloat-abi=hard' NEON_ASFLAGS='-mfpu=neon-vfpv4 -mfloat-abi=hard'";;
 #    esac
 
-    make -j$(nproc) GIT_VERSION=${_gitrev}
+    export CFLAGS="$CFLAGS -O3 -fno-tree-vectorize"
+    export CXXFLAGS="$CXXFLAGS -O3 -fno-tree-vectorize"
+    export ASFLAGS="$CFLAGS"
+    make -j$(nproc) GIT_VERSION=${_gitrev} V=1
 }
 
 post_install() {
