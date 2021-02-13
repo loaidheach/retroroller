@@ -1,0 +1,19 @@
+# Template file for 'rockchip-mpp'
+pkgname=rockchip-mpp
+version=0.20210213
+revision=1
+_gitrev=a86f586b025474996a78820f0f0e57644c28e328
+wrksrc="mpp-${_gitrev}"
+build_style=cmake
+configure_args="-DRKPLATFORM=ON -DHAVE_DRM=ON -DCMAKE_BUILD_TYPE=Release"
+hostmakedepends="pkg-config cmake"
+makedepends="libdrm-devel MesaLib-devel alsa-lib-devel librga-devel"
+#makedepends="ffmpeg-devel libcurl-devel libevdev-devel opus-devel avahi-libs-devel libenet-devel libuuid-devel libudev-devel SDL2-go2 libdrm-devel MesaLib-devel alsa-lib-devel librga-devel"
+short_desc="rockchip-mpp"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="GPL-3.0"
+homepage="https://github.com/AreaScout/moonlight-embedded.git"
+distfiles="https://github.com/rockchip-linux/mpp/archive/${_gitrev}.tar.gz"
+checksum=efd3a52f7da6508c5e2c2b410e83604d95d43ba56942b18fc5280fa0ac1a558f
+patch_args="-Np1"
+
