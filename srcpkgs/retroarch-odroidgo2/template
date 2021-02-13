@@ -1,7 +1,7 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.9.0
-revision=48
+revision=49
 _gitrev=cd8705584f8a5b67d998354abfbe9f644f7e11df
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
