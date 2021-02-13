@@ -1,21 +1,44 @@
 # Template file for 'moonlight-embedded'
 pkgname=moonlight-embedded
 version=2.4.11
-revision=1
+revision=5
 _gitrev=5b6639c8a76c4bbb5e0b4bcfe41b8df136608885
 wrksrc="moonlight-embedded-${_gitrev}"
 build_style=cmake
+#configure_args="-DCMAKE_INSTALL_LIBDIR=/usr/lib -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_SYSCONFDIR=/etc -DCMAKE_BUILD_TYPE=Release"
 configure_args="-DCMAKE_INSTALL_LIBDIR=/usr/lib -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_SYSCONFDIR=/etc -DCMAKE_BUILD_TYPE=Release"
 hostmakedepends="pkg-config cmake git"
-makedepends="ffmpeg-devel libcurl-devel libevdev-devel opus-devel avahi-libs-devel libenet-devel libuuid-devel libudev-devel SDL2-go2 libdrm-devel MesaLib-devel alsa-lib-devel"
+makedepends="ffmpeg-devel libcurl-devel libevdev-devel opus-devel avahi-libs-devel libenet-devel libuuid-devel libudev-devel SDL2-go2 libdrm-devel MesaLib-devel alsa-lib-devel librga-devel rockchip-mpp libcec-devel"
 short_desc="Moonlight"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0"
-homepage="https://github.com/irtimmer/moonlight-embedded"
+homepage="https://github.com/AreaScout/moonlight-embedded.git"
 #distfiles="https://github.com/irtimmer/moonlight-embedded/archive/${_gitrev}.tar.gz"
 #checksum=9eea6bdbe63e5e11a69bc58652cf880e560bf4658d7900be8027617fbeab801f
 patch_args="-Np1"
 
 do_fetch() {
-    git clone --recursive https://github.com/irtimmer/moonlight-embedded ${wrksrc}
+    git clone --recursive https://github.com/AreaScout/moonlight-embedded.git ${wrksrc}
+}
+
+post_fetch() {
+    vsed -i ${wrksrc}/src/video/rk.c -e "s/DRM_FORMAT_NV12_10/DRM_FORMAT_NV12/"
+}
+
+do_install() {
+    vbin build/moonlight
+    vcopy build/libgamestream/libmoonlight-common.so.2.4.10 usr/lib
+    vcopy build/libgamestream/libmoonlight-common.so.4 usr/lib
+    vcopy build/libgamestream/libmoonlight-common.so usr/lib
+
+    vcopy build/libgamestream/libgamestream.so.2.4.10 usr/lib
+    vcopy build/libgamestream/libgamestream.so.4 usr/lib
+    vcopy build/libgamestream/libgamestream.so usr/lib
+
+    vman build/docs/moonlight.1
+    vmkdir etc/moonlight
+    vcopy moonlight.conf etc/moonlight
+
+    vmkdir usr/share/moonlight
+    vcopy gamecontrollerdb.txt usr/share/moonlight
 }
