@@ -1,0 +1,27 @@
+From a812c83ea9946e08854443e4c1ace8a5cb78eb3a Mon Sep 17 00:00:00 2001
+From: Kris Henriksen <github@krishenriksen>
+Date: Mon, 1 Feb 2021 02:47:54 +0000
+Subject: [PATCH] added required mode for rockchip
+
+---
+ src/video/rk.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/src/video/rk.c b/src/video/rk.c
+index af9451d7..e40f2c60 100644
+--- a/src/video/rk.c
++++ b/src/video/rk.c
+@@ -36,6 +36,13 @@
+ #include <xf86drmMode.h>
+ #include <libdrm/drm_fourcc.h>
+ 
++#define DRM_FORMAT_NV12_10    fourcc_code('N', 'A', '1', '2') /* 2x2 subsampled Cr:Cb plane */
++#define DRM_FORMAT_NV21_10    fourcc_code('N', 'A', '2', '1') /* 2x2 subsampled Cb:Cr plane */
++#define DRM_FORMAT_NV16_10    fourcc_code('N', 'A', '1', '6') /* 2x1 subsampled Cr:Cb plane */
++#define DRM_FORMAT_NV61_10    fourcc_code('N', 'A', '6', '1') /* 2x1 subsampled Cb:Cr plane */
++#define DRM_FORMAT_NV24_10    fourcc_code('N', 'A', '2', '4') /* non-subsampled Cr:Cb plane */
++#define DRM_FORMAT_NV42_10    fourcc_code('N', 'A', '4', '2') /* non-subsampled Cb:Cr plane */
++
+ #include <rockchip/rk_mpi.h>
+ #include <rga/RgaApi.h>
+ 

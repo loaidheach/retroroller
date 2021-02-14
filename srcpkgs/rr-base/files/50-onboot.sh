@@ -25,6 +25,7 @@ for f in /sys/devices/platform/ff400000.gpu/devfreq/ff400000.gpu/governor /sys/d
 done
 
 chmod 777 /dev/tty1
+chmod 777 /dev/vpu_service
 
 for svc in dbus agetty-tty2 agetty-console NetworkManager; do
     ln -snf "$SVROOT/$svc" "$RUNSVROOT/"
