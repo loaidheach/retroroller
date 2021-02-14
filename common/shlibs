@@ -3935,4 +3935,5 @@ librga.so librga-4.0.0_1
 librockchip_mpp.so.1 rockchip-mpp-0.20210213_1
 libgamestream.so.4 moonlight-embedded-2.4.11_1
 libmoonlight-common.so.4 moonlight-embedded-2.4.11_1
-
+librockchip_vpu.so.1 rockchip-mpp-0.20210213_1
+libmoonlight-rk.so moonlight-embedded-2.4.11_1

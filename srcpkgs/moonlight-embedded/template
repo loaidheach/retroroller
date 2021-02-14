@@ -1,15 +1,14 @@
 # Template file for 'moonlight-embedded'
 pkgname=moonlight-embedded
 version=2.4.11
-revision=6
+revision=12
 _gitrev=5b6639c8a76c4bbb5e0b4bcfe41b8df136608885
 wrksrc="moonlight-embedded-${_gitrev}"
 build_style=cmake
-#configure_args="-DCMAKE_INSTALL_LIBDIR=/usr/lib -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_SYSCONFDIR=/etc -DCMAKE_BUILD_TYPE=Release"
 configure_args="-DCMAKE_INSTALL_LIBDIR=/usr/lib -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_SYSCONFDIR=/etc -DCMAKE_BUILD_TYPE=Release"
 hostmakedepends="pkg-config cmake git"
-makedepends="ffmpeg-devel libcurl-devel libevdev-devel opus-devel avahi-libs-devel libenet-devel libuuid-devel libudev-devel SDL2-go2 libdrm-devel MesaLib-devel alsa-lib-devel librga-devel rockchip-mpp libcec-devel"
-depends="rockchip-mpp libuuid"
+makedepends="ffmpeg-devel libcurl-devel libevdev-devel opus-devel avahi-libs-devel libenet-devel libuuid-devel libudev-devel SDL2-devel libdrm-devel MesaLib-devel alsa-lib-devel librga-devel rockchip-mpp libcec-devel"
+depends="rockchip-mpp libuuid libcec"
 short_desc="Moonlight"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0"
@@ -23,7 +22,9 @@ do_fetch() {
 }
 
 post_fetch() {
-    vsed -i ${wrksrc}/src/video/rk.c -e "s/DRM_FORMAT_NV12_10/DRM_FORMAT_NV12/"
+    echo "190000004b4800000010000000010000,odroidgo2_joypad,a:b1,b:b0,x:b2,y:b3,leftshoulder:b4,rightshoulder:b5,dpdown:b7,dpleft:b8,dpright:b9,dpup:b6,leftx:a0,lefty:a1,back:b12,start:b13,guide:b11,leftstick:b10,rightstick:b15,rightx:b14,platform:Linux," >> ${wrksrc}/gamecontrollerdb.txt
+    echo "190000004b4800000010000001010000,odroidgo2_joypad_v11,a:b1,b:b0,x:b2,y:b3,leftshoulder:b4,rightshoulder:b5,lefttrigger:b6,righttrigger:b7,dpdown:b9,dpleft:b10,dpright:b11,dpup:b8,leftx:a0,lefty:a1,back:b14,start:b15,guide:b13,leftstick:b12,rightstick:b17,rightx:b16,platform:Linux," >> ${wrksrc}/gamecontrollerdb.txt
+    echo "190000004b4800000011000000010000,odroidgo3_joypad,platform:Linux,x:b2,a:b1,b:b0,y:b3,back:b12,guide:b16,start:b13,dpleft:b10,dpdown:b9,dpright:b11,dpup:b8,leftshoulder:b4,lefttrigger:b6,rightshoulder:b5,righttrigger:b7,leftstick:b14,rightstick:b17,leftx:a0,lefty:a1,rightx:a2,righty:a3,platform:Linux," >> ${wrksrc}/gamecontrollerdb.txt
 }
 
 do_install() {
@@ -35,6 +36,8 @@ do_install() {
     vcopy build/libgamestream/libgamestream.so.2.4.10 usr/lib
     vcopy build/libgamestream/libgamestream.so.4 usr/lib
     vcopy build/libgamestream/libgamestream.so usr/lib
+
+    vcopy build/libmoonlight-rk.so usr/lib
 
     vman build/docs/moonlight.1
     vmkdir etc/moonlight

@@ -1,13 +1,13 @@
 # Template file for 'rockchip-mpp'
 pkgname=rockchip-mpp
 version=0.20210213
-revision=1
+revision=2
 _gitrev=a86f586b025474996a78820f0f0e57644c28e328
 wrksrc="mpp-${_gitrev}"
 build_style=cmake
 configure_args="-DRKPLATFORM=ON -DHAVE_DRM=ON -DCMAKE_BUILD_TYPE=Release"
 hostmakedepends="pkg-config cmake"
-makedepends="libdrm-devel MesaLib-devel alsa-lib-devel librga-devel"
+makedepends="libdrm-devel"
 #makedepends="ffmpeg-devel libcurl-devel libevdev-devel opus-devel avahi-libs-devel libenet-devel libuuid-devel libudev-devel SDL2-go2 libdrm-devel MesaLib-devel alsa-lib-devel librga-devel"
 short_desc="rockchip-mpp"
 maintainer="valadaa48 <valadaa48@gmx.com>"
