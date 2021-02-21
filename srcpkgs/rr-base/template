@@ -1,6 +1,6 @@
 # Template file for 'rr-base'
 pkgname=rr-base
-version=1.11.6
+version=1.11.9
 revision=1
 archs="aarch64"
 create_wrkdir=true
@@ -16,6 +16,7 @@ do_install() {
     vinstall boot.ini 644 boot
     vinstall logo.bmp 644 boot
     vinstall rrvl.conf 644 boot
+    vinstall rrvl.defaults 644 boot
 
     vinstall wifi-powersave-off.conf 644 etc/NetworkManager/conf.d
 
