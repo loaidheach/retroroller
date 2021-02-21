@@ -3,7 +3,7 @@
 RUNSVROOT=/etc/runit/runsvdir/default
 SVROOT=/etc/sv
 
-[ -f /boot/rrvl.conf ] && . /boot/rrvl.conf
+[ -f /boot/rrvl.defaults ] && . /boot/rrvl.defaults
 
 RM="/etc/runit/runsvdir/default/agetty-tty1
 /etc/runit/runsvdir/default/agetty-tty3
