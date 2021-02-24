@@ -1,0 +1,16 @@
+# Template file for 'libopk'
+pkgname=libopk
+version=1.0.3
+revision=1
+_gitrev=0b406917eeb3edd6bd34584647558bd3686338b6
+wrksrc="${pkgname}-${_gitrev}"
+build_style=cmake
+hostmakedepends="pkg-config"
+makedepends="libini"
+short_desc="libopk"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="UNLICENSED"
+homepage="https://github.com/pcercuei/libopk"
+distfiles="https://github.com/pcercuei/libopk/archive/${_gitrev}.tar.gz"
+checksum=0c4d8a5c72a033f4f5016a998af8119fb0f77320dae25ed0a4677a45c35e474e
+shlib_provides="libopk.so"
