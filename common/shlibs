@@ -3945,3 +3945,7 @@ libsimavr.so.1 simavr-1.6_2
 libsimavrparts.so.1 simavr-1.6_2
 libsword-1.8.1.so libsword-1.8.1_6
 libtree-sitter.so.0 tree-sitter-0.18.2_1
+libini.so.0 libini-0.20210223_1
+libini.so libini-0.20210223_1
+libopk.so.1 libopk-1.0.3_1
+libopk.so libopk-1.0.3_1

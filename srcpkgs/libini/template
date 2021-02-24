@@ -1,0 +1,15 @@
+# Template file for 'libini'
+pkgname=libini
+version=0.20210223
+revision=1
+_gitrev=add8d482d2ff8fec6081b3c116e7616f7f763e36
+wrksrc="${pkgname}-${_gitrev}"
+build_style=cmake
+short_desc="libini"
+maintainer="valadaa48 <valadaa48@gmx.com>"
+license="LGPLv2.1"
+homepage="https://github.com/pcercuei/libini"
+distfiles="https://github.com/pcercuei/libini/archive/${_gitrev}.tar.gz"
+checksum=ece19576a46e1be46024528ef160b2a536cc6e0cbd0451333d1acbd15dcd9f45
+shlib_provides="libini.so"
+
