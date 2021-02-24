@@ -1,12 +1,12 @@
 # Template file for 'SDL-go2'
 pkgname=SDL-go2
 version=1.2.15
-revision=1
-_gitrev=65b9ac9d7b4192383e4a9b30ee0b0ea0b0ce31da
+revision=3
+_gitrev=72ed484ea9d20a0d9869923f9942e69ae8d5ae2d
 wrksrc="SDL-${_gitrev}"
 build_style=gnu-configure
-configure_args="--enable-video-kmsdrm=yes"
-hostmakedepends="pkg-config nasm autoconf automake"
+configure_args="--enable-video-kmsdrm=yes --prefix=/usr"
+hostmakedepends="pkg-config nasm autoconf"
 makedepends="alsa-lib-devel sndio-devel librga-devel libdrm-devel"
 depends="SDL-go2"
 short_desc="Simple Directmedia Layer"
@@ -14,25 +14,35 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="LGPL-2.1-only"
 homepage="http://www.libsdl.org/"
 distfiles="https://github.com/valadaa48/SDL/archive/${_gitrev}.tar.gz"
-checksum=3788d6cf609f18266c6f7be2f5118ed6aea5c1389844fb5e620436df330187fd
-replaces="SDL>=0 SDL-1.2.15>=0"
-provides="SDL-1.2.15_1"
+checksum=a9f2baa1e6b63fabaf9a7182dcd0a9030a3d1400713c833916e74bc8da0c05d6
+replaces="SDL>=0"
+provides="SDL-1.2.15_12"
 
-pre_configure() {
-    cat acinclude/* >aclocal.m4
-    autoconf
-    #./autogen.sh
+#pre_configure() {
+##    sed -i autogen.sh -e "
+##    ./autogen.sh
+#    cat acinclude/* >aclocal.m4
+#    autoconf
+#    cd test
+#    cp acinclude.m4 aclocal.m4
+#    autoconf
+#}
+
+post_configure() {
+    sed -i Makefile -e "s#LDFLAGS = -Wl,-z,relro -Wl,-z,now -Wl,--as-needed    -L/usr/aarch64-linux-gnu/usr/lib#LDFLAGS = -Wl,-z,relro -Wl,-z,now -Wl,--as-needed    -L/usr/aarch64-linux-gnu/usr/lib -lrga#"
 }
 
-#SDL-go2-devel_package() {
-#	short_desc+=" - development files"
-#	depends="${makedepends} SDL-go2>=${version}_${revision}"
-#	pkg_install() {
-#		vmove usr/bin
-#		vmove usr/include
-#		vmove usr/lib/pkgconfig
-#		vmove "usr/lib/*.a"
-#		vmove "usr/lib/*.so"
-#		vmove usr/share
-#	}
-#}
+SDL-go2-devel_package() {
+	short_desc+=" - development files"
+	depends="${makedepends} SDL-go2>=${version}_${revision}"
+    replaces="SDL-devel>=0"
+    provides="SDL-devel-1.2.15_12"
+	pkg_install() {
+		vmove usr/bin
+		vmove usr/include
+		vmove usr/lib/pkgconfig
+		vmove "usr/lib/*.a"
+		vmove "usr/lib/*.so"
+		vmove usr/share
+	}
+}
