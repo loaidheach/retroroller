@@ -1,7 +1,7 @@
 # Template file for 'rrvl-opks'
 pkgname=rrvl-opks
 version=0.20210225
-revision=1
+revision=2
 short_desc="rrvl-opks"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="LGPL"
