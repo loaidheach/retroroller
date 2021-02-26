@@ -1,16 +1,16 @@
 # Template file for 'odroid-go2-rrvl-kernel'
 #
-_gitrev=b0a422e6cd45163023ac94366bc393071c5f7b26
+_gitrev=83cade45e049817e47882c5f249783a8f8ee318a
 _gitshort="${_gitrev:0:7}"
 pkgname=odroid-go2-rrvl-kernel
 version=4.4.189
-revision=22
+revision=23
 short_desc="Linux kernel and modules for Odroid GO2 (${version%.*} [git ${_gitshort}])"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
 homepage="http://www.kernel.org"
 distfiles="https://github.com/valadaa48/linux/archive/${_gitrev}.tar.gz"
-checksum=5c9a02de87ce4a3fc615b938cee7254036f33aef6ac8fa530b5208a347c60b33
+checksum=6662fa0cd80bac066cf2d29697f39647e794f610340ca57591077db19acbbfdb
 patch_args="-Np1"
 wrksrc="linux-${_gitrev}"
 python_version=2 #unverified
@@ -28,8 +28,9 @@ hostmakedepends="bc perl kmod uboot-mkimage libressl-devel python ncurses-devel 
 makedepends="perl libunwind-devel libdwarf-devel zlib-devel python python-devel libaudit-devel slang-devel elfutils-devel liblzma-devel libnuma-devel libelf"
 depends="libunwind libaudit libnuma zlib slang elfutils liblzma libelf"
 
-triggers="kernel-hooks"
 _kernver="${version}_RRVL-${revision}"
+triggers="kernel-hooks"
+kernel_hooks_version="${_kernver}"
 
 # These files could be modified when an external module is built.
 mutable_files="
@@ -44,12 +45,14 @@ mutable_files="
  /usr/lib/modules/${_kernver}/modules.alias.bin
  /usr/lib/modules/${_kernver}/modules.devname"
 
-do_configure() {
-	if [ "$CROSS_BUILD" ]; then
-		_args="CROSS_COMPILE=${XBPS_CROSS_TRIPLET}-"
-	fi
+export KBUILD_BUILD_USER="odroid"
+export KBUILD_BUILD_HOST="rrvl"
 
-	unset LDFLAGS
+if [ "$CROSS_BUILD" ]; then
+    _cross="CROSS_COMPILE=${XBPS_CROSS_TRIPLET}-"
+fi
+
+do_configure() {
 	cp -f ${FILESDIR}/config-odroidgo2 .config
 
 	# Always use our revision to CONFIG_LOCALVERSION to match our pkg version.
@@ -59,41 +62,26 @@ do_configure() {
 }
 
 do_build() {
-	local _args
+	local arch
 
-	if [ "$CROSS_BUILD" ]; then
-		_args="CROSS_COMPILE=${XBPS_CROSS_TRIPLET}-"
-	fi
+    arch=arm64
 
-#	_args+=" V=1"
+	export LDFLAGS=
+	make ARCH=$arch ${_cross} ${makejobs} prepare
+	make ARCH=$arch ${_cross} ${makejobs} Image modules dtbs
 
-	# export ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu MENUCONFIG_COLOR=blackbg
-
-	export KBUILD_BUILD_USER="odroid"
-	export KBUILD_BUILD_HOST="rrvl"
-
-	unset LDFLAGS
-	make ARCH=arm64 ${_args} ${makejobs} prepare
-	make ARCH=arm64 ${_args} ${makejobs} Image modules dtbs
-
-    make ARCH=arm64 ${_args} ${makejobs} WERROR=0 EXTRA_CFLAGS="-fcommon -Wno-stringop-truncation" -C tools/ perf
+    make ARCH=$arch ${_cross} ${makejobs} WERROR=0 EXTRA_CFLAGS="-fcommon -Wno-stringop-truncation" -C tools/ perf
 }
 
 do_install() {
-	local arch hdrdest _args
+	local arch _args hdrdest
 
-	if [ "$CROSS_BUILD" ]; then
-		_args="CROSS_COMPILE=${XBPS_CROSS_TRIPLET}-"
-	fi
-
-	case "$XBPS_TARGET_MACHINE" in
-		aarch64*) arch=arm64;;
-	esac
+    arch=arm64
 
 	# Run depmod after compressing modules.
 	sed -i '2iexit 0' scripts/depmod.sh
 
-	make INSTALL_MOD_PATH=${DESTDIR} modules_install
+	make ${makejobs} ARCH=$arch INSTALL_MOD_PATH=${DESTDIR} ${_cross} modules_install
 
 	vinstall arch/${arch}/boot/Image 644 boot
 	vinstall arch/${arch}/boot/dts/rockchip/rk3326-odroidgo2-linux.dtb 644 boot
@@ -109,14 +97,13 @@ do_install() {
 	vmkdir usr
 	mv ${DESTDIR}/lib ${DESTDIR}/usr
 
-    make ARCH=arm64 ${_args} ${makejobs} WERROR=0 EXTRA_CFLAGS="-fcommon -Wno-stringop-truncation" prefix=${DESTDIR}/usr -C tools/ perf_install 
+    make ARCH=$arch ${makejobs} ${_cross} WERROR=0 EXTRA_CFLAGS="-fcommon -Wno-stringop-truncation" prefix=${DESTDIR}/usr -C tools/ perf_install 
 
 	cd ${DESTDIR}/usr/lib/modules/${_kernver}
 	rm -f source build
 	ln -sf ../../../src/kernel-headers-${_kernver} build
 
 	cd ${wrksrc}
-
 	# Install required headers to build external modules
 	install -Dm644 Makefile ${hdrdest}/Makefile
 	install -Dm644 kernel/Makefile ${hdrdest}/kernel/Makefile
@@ -126,15 +113,29 @@ do_install() {
 	rm -rf ${DESTDIR}/usr/lib/firmware
 
 	mkdir -p ${hdrdest}/include
-	for i in acpi asm-generic config crypto drm generated linux math-emu \
-		media net pcmcia scsi sound trace uapi video xen; do
+	for i in acpi asm-generic clocksource config crypto drm generated linux \
+		math-emu media net pcmcia scsi sound trace uapi video xen; do
 		if [ -d include/$i ]; then
 			cp -a include/$i ${hdrdest}/include
 		fi
 	done
 
+	cd ${wrksrc}
 	mkdir -p ${hdrdest}/arch/${arch}
 	cp -a arch/${arch}/include ${hdrdest}/arch/${arch}
+
+    # dkms needs this
+	mkdir -p ${hdrdest}/arch/${arch}
+	cp -rf arch/arm/include ${hdrdest}/arch/arm/
+
+	# Remove helper binaries built for host,
+	# if generated files from the scripts/ directory need to be included,
+	# they need to be copied to ${hdrdest} before this step
+	if [ "$CROSS_BUILD" ]; then
+		make ${makejobs} ARCH=$arch ${_cross} _mrproper_scripts
+		# remove host specific objects as well
+		find scripts -name '*.o' -delete
+	fi
 
 	cd ${wrksrc}
 	# Copy files necessary for later builds, like nvidia and vmware
@@ -174,6 +175,9 @@ do_install() {
 		ia64 m* p* s* um v850 xtensa x86*; do
 		rm -rf ${hdrdest}/arch/${arch}
 	done
+	# Keep arch/x86/ras/Kconfig as it is needed by drivers/ras/Kconfig
+	mkdir -p ${hdrdest}/arch/x86/ras
+	cp -a arch/x86/ras/Kconfig ${hdrdest}/arch/x86/ras/Kconfig
 
 	# Compress all modules with xz to save a few MBs.
 	msg_normal "$pkgver: compressing kernel modules with gzip, please wait...\n"
@@ -188,6 +192,8 @@ odroid-go2-rrvl-kernel-headers_package() {
 	nostrip=yes
 	noverifyrdeps=yes
 	noshlibprovides=yes
+    provides="linux5.10-headers"
+    replaces="linux5.10-headers>=0"
 	short_desc+=" - source headers for 3rd party modules"
 	pkg_install() {
 		vmove usr/src
