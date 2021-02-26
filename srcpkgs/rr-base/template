@@ -1,6 +1,6 @@
 # Template file for 'rr-base'
 pkgname=rr-base
-version=1.12.6
+version=1.12.7
 revision=1
 archs="aarch64"
 create_wrkdir=true

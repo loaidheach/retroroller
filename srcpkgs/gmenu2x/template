@@ -1,8 +1,8 @@
 # Template file for 'gmenu2x'
 pkgname=gmenu2x
 version=0.20210225
-revision=3
-_gitrev=f55b71f59b2b5a088578e52825cb9cba4c4f8d75
+revision=4
+_gitrev=38b5a32de884408327eea8614813896d2657d108
 wrksrc="${pkgname}-${_gitrev}"
 build_style=cmake
 configure_args="-DCPUFREQ=ON -DBIND_CONSOLE=OFF"
@@ -14,7 +14,7 @@ maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0"
 homepage="https://github.com/valadaa48/gmenu2x"
 distfiles="https://github.com/valadaa48/gmenu2x/archive/${_gitrev}.tar.gz"
-checksum=a249d3a91e6e886078b28e5a17c1f658af89ce2b807ce1ae5dc8164b457a16b2
+checksum=80f8c403d92ff35d5fe9c2d1f6dad0bbbc50d250eef9b473d5ef65863c0707da
 
 post_install() {
     vsv gmenu2x
