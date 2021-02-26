@@ -1,6 +1,6 @@
-#/usr/bin/env bash
+#!/bin/sh
 
-set -euo pipefail
+set -eu
 
 sudo xbps-install -Su $* xbps
 sudo xbps-install -u $*
