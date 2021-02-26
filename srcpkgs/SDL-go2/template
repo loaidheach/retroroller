@@ -1,8 +1,8 @@
 # Template file for 'SDL-go2'
 pkgname=SDL-go2
 version=1.2.15
-revision=3
-_gitrev=72ed484ea9d20a0d9869923f9942e69ae8d5ae2d
+revision=5
+_gitrev=ba466d10931f7a5ab10db780213c662287935d47
 wrksrc="SDL-${_gitrev}"
 build_style=gnu-configure
 configure_args="--enable-video-kmsdrm=yes --prefix=/usr"
@@ -14,7 +14,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="LGPL-2.1-only"
 homepage="http://www.libsdl.org/"
 distfiles="https://github.com/valadaa48/SDL/archive/${_gitrev}.tar.gz"
-checksum=a9f2baa1e6b63fabaf9a7182dcd0a9030a3d1400713c833916e74bc8da0c05d6
+checksum=3eecd028393c0cb1b4ba082a608954cbac090eff0b312340ae95649252827d76
 replaces="SDL>=0"
 provides="SDL-1.2.15_12"
 
