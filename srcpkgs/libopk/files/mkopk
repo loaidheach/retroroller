@@ -1,0 +1,3 @@
+#!/bin/sh
+
+mksquashfs "$@" -all-root -noappend -no-exports
