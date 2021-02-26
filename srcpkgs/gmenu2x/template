@@ -1,11 +1,11 @@
 # Template file for 'gmenu2x'
 pkgname=gmenu2x
 version=0.20210225
-revision=1
-_gitrev=6d2aedd5516aae9b3b3fd79cdbdcc6d3e2208091
+revision=3
+_gitrev=f55b71f59b2b5a088578e52825cb9cba4c4f8d75
 wrksrc="${pkgname}-${_gitrev}"
 build_style=cmake
-configure_args="-DSCREEN_WIDTH=480 -DSCREEN_HEIGHT=320 -DCPUFREQ=ON -DBIND_CONSOLE=OFF"
+configure_args="-DCPUFREQ=ON -DBIND_CONSOLE=OFF"
 hostmakedepends="pkg-config"
 makedepends="libini libopk SDL-go2-devel SDL_ttf-devel SDL_gfx-devel"
 depends="SDL-go2 SDL_gfx SDL_ttf libopk libini dejavu-fonts-ttf fonts-droid-ttf rrvl-opks"
@@ -14,7 +14,7 @@ maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0"
 homepage="https://github.com/valadaa48/gmenu2x"
 distfiles="https://github.com/valadaa48/gmenu2x/archive/${_gitrev}.tar.gz"
-checksum=83f6363c516c0bbbdd1deff5162462f586dbbc0f0cb487fdd1a94e309f73ad7d
+checksum=a249d3a91e6e886078b28e5a17c1f658af89ce2b807ce1ae5dc8164b457a16b2
 
 post_install() {
     vsv gmenu2x

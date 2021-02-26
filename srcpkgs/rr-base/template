@@ -1,6 +1,6 @@
 # Template file for 'rr-base'
 pkgname=rr-base
-version=1.12.4
+version=1.12.6
 revision=1
 archs="aarch64"
 create_wrkdir=true
@@ -8,7 +8,7 @@ short_desc="RRVL base"
 maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-or-later"
 homepage="https://github.com/valadaa48"
-depends="p7zip unzip NetworkManager xtools librga libgo2 libmali-bifrost-gbm ogage dialog linux-firmware-network retrorun-go2 u-boot-oga wget odroid-go2-rrvl-kernel mpv"
+depends="p7zip unzip NetworkManager xtools librga libgo2 libmali-bifrost-gbm ogage dialog linux-firmware-network retrorun-go2 u-boot-oga wget odroid-go2-rrvl-kernel mpv gmenu2x"
 conf_files="/boot/rrvl.conf /etc/NetworkManager/conf.d/wifi-powersave-off.conf"
 
 do_install() {
