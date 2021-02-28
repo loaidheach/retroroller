@@ -1,5 +1,0 @@
-case "${ACTION}" in
-post)
-    chown -R odroid:odroid /opt/drastic
-	;;
-esac

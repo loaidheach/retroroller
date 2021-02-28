@@ -36,16 +36,13 @@ do_install() {
 
     vbin setfreq
     vbin performance
-    vbin arm-xbps
     vbin update
     vbin termwrap
     vbin ogainfo
     vbin rrvl_help
     vbin perf_enable
 
-    vbin retrorun32
     vbin retrorun64
-    vbin retroarch32
 
     for f in $(ls ${FILESDIR}/spring_*.so); do
         vinstall "$f" 644 opt/retroarch/spring
