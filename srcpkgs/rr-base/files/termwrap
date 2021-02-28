@@ -6,4 +6,6 @@ printf "\033c" > /dev/tty1
 
 "$@" &> /dev/tty1
 
+[ $? -ne 0 ] && sleep 3
+
 printf "\033c" > /dev/tty1
