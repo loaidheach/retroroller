@@ -1,26 +1,25 @@
 # Template file for 'emulationstation-go2'
 pkgname=emulationstation-go2
-version=20200707
-revision=7
-_gitrev=8026560cd7de15746736ba4b3bb87c921a3a5593
+version=20210221
+revision=1
+_gitrev=54bfb3e2b6203f1f2ffade96149017d9a74ae62d
 wrksrc="${pkgname}-${_gitrev}"
 build_style=cmake
 configure_args="-Wno-dev"
 hostmakedepends="pkg-config git"
-makedepends="freetype-devel freeimage-devel libgo2-devel libdrm-devel libmali-bifrost-gbm
- MesaLib-devel SDL2-devel libcurl-devel vlc-devel rapidjson"
+makedepends="freetype-devel freeimage-devel libdrm-devel MesaLib-devel SDL2-devel libcurl-devel vlc-devel rapidjson libgo2-devel"
 short_desc="Emulation Station is a flexible emulator front-end supporting keyboardless navigation and custom system themes. For odroidgo2."
 license="MIT"
-homepage="https://github.com/RetroPie/EmulationStation"
-distfiles="https://github.com/valadaa48/emulationstation-go2/archive/${_gitrev}.tar.gz "
-checksum=bcc6524f0fe9c127686caddd98e692def01ac33296f2242c5480dff510c210f1
+homepage="https://github.com/OtherCrashOverride/emulationstation-go2"
+distfiles="https://github.com/OtherCrashOverride/emulationstation-go2/archive/${_gitrev}.tar.gz "
+checksum=f61f5264857f849b1b1a63e903f9db381dca04d1fdc7f0a5fb03ef674dd573b9
 
 pre_configure() {
     cd ${wrksrc}
     rm -rf external/pugixml
     git clone --depth 1 https://github.com/zeux/pugixml.git external/pugixml
 
-    vsed -i CMakeLists.txt -e "s:usr/lib/libMali.so:/usr/lib/mali/libMali.so:"
+#    vsed -i CMakeLists.txt -e "s:usr/lib/libMali.so:/usr/lib/mali/libMali.so:"
 }
 
 post_install() {

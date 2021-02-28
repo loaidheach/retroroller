@@ -7,7 +7,6 @@ archs="aarch64 armv7*"
 wrksrc="linux-rga-${_gitrev}"
 build_style=gnu-makefile
 short_desc="Rockchip RGA rotation and scaling library"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-or-later"
 homepage="https://github.com/rockchip-linux"
 distfiles="https://github.com/Caesar-github/linux-rga/archive/${_gitrev}.tar.gz"

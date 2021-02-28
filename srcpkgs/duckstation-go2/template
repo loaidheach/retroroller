@@ -8,7 +8,6 @@ build_style=cmake
 short_desc="duckstation"
 configure_args="-DBUILD_QT_FRONTEND=OFF -DBUILD_SDL_FRONTEND=OFF -DCMAKE_BUILD_TYPE=Release
  -DCMAKE_VERBOSE_MAKEFILE=ON -DENABLE_DISCORD_PRESENCE=OFF -DUSE_SDL2=OFF -DUSE_X11=OFF -DUSE_EGL=ON -DUSE_DRMKMS=ON"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 hostmakedepends="pkg-config python unzip cmake rsync"
 makedepends="libdrm-devel alsa-lib-devel MesaLib-devel libevdev-devel"
 license="GPL-2.0-or-later"

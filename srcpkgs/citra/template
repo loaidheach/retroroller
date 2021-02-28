@@ -6,7 +6,6 @@ build_style=cmake
 short_desc="citra"
 configure_args="-DENABLE_QT=OFF"
 #configure_args="-DCMAKE_BUILD_TYPE=Release -DBUILD_QT_FRONTEND=OFF -DBUILD_SDL_FRONTEND=OFF -DBUILD_GO2_FRONTEND=ON -DUSE_SDL2=OFF -DUSE_X11=OFF -DUSE_EGL=OFF"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 hostmakedepends="pkg-config python unzip git cmake"
 makedepends="libdrm-devel MesaLib-devel SDL2-devel qt5-devel qt5-qmake"
 #makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel libopenal-devel SDL2-devel"

@@ -8,7 +8,6 @@ hostmakedepends="premake4"
 makedepends="libopenal-devel alsa-lib-devel libdrm-devel libevdev-devel
 MesaLib-devel librga-devel libpng-devel"
 short_desc="Support library for the ODROID-GO Advance"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
 homepage="https://github.com/OtherCrashOverride/libgo2"
 distfiles="https://github.com/OtherCrashOverride/libgo2/archive/${_gitrev}.tar.gz"

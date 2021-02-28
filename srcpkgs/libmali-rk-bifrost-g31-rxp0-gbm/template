@@ -5,7 +5,6 @@ revision=1
 _gitrev=7fca6310eceb5b85062259ed8f4a5c1cf44fe773
 wrksrc="libmali-${_gitrev}"
 short_desc="Rockchip mali bifrost g31 gbm"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 license="Unlicense"
 homepage="https://github.com/rockchip-linux/libmali"
 distfiles="https://github.com/rockchip-linux/libmali/archive/${_gitrev}.tar.gz"

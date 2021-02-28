@@ -7,7 +7,6 @@ version="5.11.0"
 revision=1
 wrksrc="linux-${_gitrev}"
 short_desc="Linux kernel and modules for OGA (${version%.*} series"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
 homepage="https://www.kernel.org"
 distfiles="https://github.com/valadaa48/linux/archive/${_gitrev}.tar.gz"

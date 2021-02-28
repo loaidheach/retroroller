@@ -7,7 +7,6 @@ wrksrc="pcsx_rearmed-${_gitrev}"
 build_style=gnu-makefile
 hostmakedepends="pkg-config libtool git"
 short_desc="${pkgname}"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
 homepage="https://github.com/libretro/pcsx_rearmed"
 distfiles="https://github.com/libretro/pcsx_rearmed/archive/${_gitrev}.tar.gz"

@@ -7,7 +7,6 @@ pkgs="librga
  SDL2
  ppsspp-go2 
  rr-base
- drastic-go2
  libretro-spring
  odroid-go2-kernel
  ogage

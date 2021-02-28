@@ -3,7 +3,6 @@ pkgname=retrolauncher2
 version=0.5.0
 revision=1
 short_desc="RetroLauncher 2"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 #wrksrc="retrolauncher2-${version}"
 create_wrksrc=yes
 depends="python3-retrolauncher2"

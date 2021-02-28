@@ -9,7 +9,6 @@ build_style=cmake
 hostmakedepends="pkg-config qt5-qmake qt5-host-tools"
 makedepends="libpcap-devel MesaLib-devel SDL2-2.0.10-go2 libslirp-devel qt5-devel"
 short_desc="DS emulator, sorta"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/Arisotura/melonDS"
 distfiles="https://github.com/Arisotura/melonDS/archive/${_gitrev}.tar.gz"

@@ -8,7 +8,6 @@ hostmakedepends="bc"
 #makedepends="zlib-devel libxml2-devel freetype-devel libxkbcommon-devel
 # librga-devel alsa-lib-devel eudev-libudev-devel libdrm-devel MesaLib-devel ffmpeg-devel"
 short_desc="u-boot for odroidgoa"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0+"
 homepage="https://github.com/hardkernel/u-boot"
 distfiles="https://github.com/hardkernel/u-boot/archive/${_gitrev}.tar.gz"
