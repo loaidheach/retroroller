@@ -1,11 +1,10 @@
 # Template file for 'rr-base'
 pkgname=rr-base
-version=1.12.7
+version=1.13.0
 revision=1
 archs="aarch64"
 create_wrkdir=true
 short_desc="RRVL base"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-or-later"
 homepage="https://github.com/valadaa48"
 depends="p7zip unzip NetworkManager xtools librga libgo2 libmali-bifrost-gbm ogage dialog linux-firmware-network retrorun-go2 u-boot-oga wget odroid-go2-rrvl-kernel mpv gmenu2x"
@@ -31,9 +30,9 @@ do_install() {
 
     vinstall 50-oga.rules 644 usr/lib/udev/rules.d
 
-    vbin firstboot.sh
     vinstall 50-onboot.sh 755 etc/runit/core-services
 
+    vbin firstboot.sh
     vbin setfreq
     vbin performance
     vbin update

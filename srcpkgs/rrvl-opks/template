@@ -1,11 +1,10 @@
 # Template file for 'rrvl-opks'
 pkgname=rrvl-opks
-version=0.20210225
-revision=2
+version=0.20210227
+revision=1
 short_desc="rrvl-opks"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 license="LGPL"
-homepage="https://github.com/valadaa48"
+homepage="https://github.com/pcercuei/libopk"
 
 do_install() {
     vmkdir opt/apps

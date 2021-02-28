@@ -8,7 +8,6 @@ build_style=cmake
 short_desc="duckstation"
 configure_args="-DBUILD_LIBRETRO_CORE=ON -DBUILD_QT_FRONTEND=OFF -DBUILD_SDL_FRONTEND=OFF -DCMAKE_BUILD_TYPE=Release
  -DCMAKE_VERBOSE_MAKEFILE=ON -DENABLE_DISCORD_PRESENCE=OFF -DUSE_SDL=OFF -DUSE_EGL=OFF -DUSE_X11=OFF -DUSE_WAYLAND=OFF"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 hostmakedepends="pkg-config python unzip cmake"
 makedepends="libdrm-devel alsa-lib-devel"
 license="GPL-2.0-or-later"

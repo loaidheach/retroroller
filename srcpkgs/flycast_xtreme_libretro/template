@@ -8,7 +8,6 @@ build_style=gnu-makefile
 hostmakedepends="pkg-config libtool git"
 makedepends="zlib-devel libdrm-devel MesaLib-devel"
 short_desc="${pkgname}"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
 homepage="https://github.com/KMFDManic/reicast-emulator"
 distfiles="https://github.com/valadaa48/flycast/archive/${_gitrev}.tar.gz"

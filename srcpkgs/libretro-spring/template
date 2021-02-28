@@ -7,7 +7,6 @@ wrksrc="spring-libretro-${_gitrev}"
 build_style=gnu-makefile
 makedepends=""
 short_desc="spring launcher for libretro"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/valadaa48/spring-libretro"
 distfiles="https://github.com/valadaa48/spring-libretro/archive/${_gitrev}.tar.gz"

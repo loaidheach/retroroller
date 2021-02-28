@@ -7,7 +7,6 @@ wrksrc="snes9x-${_gitrev}"
 archs="aarch64 armv7*"
 build_style=gnu-makefile
 short_desc="snes9x"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-or-later"
 homepage="https://github.com/libretro/snes9x"
 distfiles="https://github.com/libretro/snes9x/archive/${_gitrev}.tar.gz"

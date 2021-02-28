@@ -3,7 +3,6 @@ pkgname=ogage
 version=1.4.1
 revision=1
 short_desc="ogage"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
 homepage="https://github.com/valadaa48"
 

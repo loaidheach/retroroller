@@ -1,18 +1,17 @@
 # Template file for 'openbor-odroidgo2'
 pkgname=openbor-odroidgo2
-version=0.20200706
-revision=2
-_gitrev=7a45a2215a0cc12c1085d92e7b210a827ea552c2
+version=0.20210221
+revision=1
+_gitrev=2b7f9ac6cf244e9e68da5e85459e2ba9c5bcb0b9
 wrksrc="openbor-${_gitrev}"
 build_style=gnu-makefile
 hostmakedepends="pkg-config"
 makedepends="libpng-devel SDL2-devel libogg-devel libvpx-devel"
 short_desc="openbor"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/DCurrent/openbor"
 distfiles="https://github.com/DCurrent/openbor/archive/${_gitrev}.tar.gz"
-checksum=cf765ffb41459068079f85a36c54aff2357b2403c5f67243ddd112d003907b6e
+checksum=8bde7d821fc85c84200b3c61331311d5e7789e96f6ae5ce53ab05b7a5feb6031
 
 pre_configure() {
     cd engine
@@ -25,7 +24,7 @@ do_build() {
     _args+=" INCLUDES=${XBPS_CROSS_BASE}/usr/include/SDL2"
 
     cd engine
-    CFLAGS+=" -Wno-format-overflow -Wno-stringop-truncation -Wno-unused-variable"
+    CFLAGS+=" -Wno-format-overflow -Wno-stringop-truncation -Wno-unused-variable -Wno-stringop-overflow"
     make -j8 ${_args} V=1 VERBOSE=1
 }
 

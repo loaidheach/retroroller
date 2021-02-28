@@ -7,7 +7,6 @@ wrksrc="${pkgname}-master"
 build_style=gnu-makefile
 hostmakedepends="pkg-config libtool"
 short_desc="${pkgname}"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-2.0-only"
 homepage="https://github.com/libretro/snes9x2010"
 distfiles="https://github.com/libretro/snes9x2010/archive/master.tar.gz"

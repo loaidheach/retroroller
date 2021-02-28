@@ -6,7 +6,6 @@ _gitrev=22faf8bafa65ade594d0ef8e76203fba2706fc77
 build_style=configure
 wrksrc="${pkgname}-${_gitrev}"
 short_desc="retroarch-joypad-autoconfig"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 license="GPL-3.0-or-later"
 homepage="http://www.libretro.com/"
 distfiles="https://github.com/libretro/retroarch-joypad-autoconfig/archive/${_gitrev}.tar.gz"

@@ -6,7 +6,6 @@ _gitrev=add8d482d2ff8fec6081b3c116e7616f7f763e36
 wrksrc="${pkgname}-${_gitrev}"
 build_style=cmake
 short_desc="libini"
-maintainer="valadaa48 <valadaa48@gmx.com>"
 license="LGPLv2.1"
 homepage="https://github.com/pcercuei/libini"
 distfiles="https://github.com/pcercuei/libini/archive/${_gitrev}.tar.gz"
