@@ -1,8 +1,8 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.9.0
-revision=52
-_gitrev=cd8705584f8a5b67d998354abfbe9f644f7e11df
+revision=53
+_gitrev=04c1511bb988166905ed7735ac826231a3d891f4
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
 configure_args="--prefix=/usr
@@ -17,6 +17,7 @@ configure_args="--prefix=/usr
  --disable-cdrom
  --disable-video_layout
  --disable-oss
+ --disable-opengl_core
  --enable-git_version
  --enable-networking
  --enable-ozone
@@ -35,13 +36,13 @@ short_desc="Official reference frontend for the libretro API"
 license="GPL-3.0-or-later"
 homepage="http://www.libretro.com/"
 distfiles="https://github.com/valadaa48/RetroArch/archive/${_gitrev}.tar.gz"
-checksum=66ff328b9db3b12131a473ac5e194fb1fa8b6b8989541b4d24cb07bbbe89b708
+checksum=e0755b72697fae40bc1644e9d4b6dec69033fe1ac241467513ecdef91078f46a
 patch_args="-Np1"
 
-#export CFLAGS="$CFLAGS -O3 -fno-tree-vectorize"
-#export CXXFLAGS="$CXXFLAGS -O3 -fno-tree-vectorize"
-#export ASFLAGS="$CFLAGS"
-#export LDFLAGS="$LDFLAGS libz.a"
+export CFLAGS="$CFLAGS -O3 -fno-tree-vectorize"
+export CXXFLAGS="$CXXFLAGS -O3 -fno-tree-vectorize"
+export ASFLAGS="$CFLAGS"
+export LDFLAGS="$LDFLAGS"
 
 if [ "$CROSS_BUILD" ]; then
     configure_args+=" --host=${XBPS_CROSS_TRIPLET}"
