@@ -1,19 +1,18 @@
 # Template file for 'rr-base'
 pkgname=rr-base
-version=1.13.0
+version=1.14.1
 revision=1
 archs="aarch64"
 create_wrkdir=true
 short_desc="RRVL base"
 license="GPL-2.0-or-later"
 homepage="https://github.com/valadaa48"
-depends="p7zip unzip NetworkManager xtools librga libgo2 libmali-bifrost-gbm ogage dialog linux-firmware-network retrorun-go2 u-boot-oga wget odroid-go2-rrvl-kernel mpv gmenu2x"
+depends="p7zip unzip NetworkManager xtools librga libgo2 libmali-bifrost-gbm ogage dialog linux-firmware-network retrorun-go2 u-boot-oga wget odroid-go2-rrvl-kernel mpv rrvl-opks libopk libini"
 conf_files="/boot/rrvl.conf /etc/NetworkManager/conf.d/wifi-powersave-off.conf"
 
 do_install() {
     cd ${FILESDIR}
     vinstall boot.ini 644 boot
-    vinstall logo.bmp 644 boot
     vinstall rrvl.conf 644 boot
     vinstall rrvl.defaults 644 boot
 
@@ -23,7 +22,6 @@ do_install() {
     vinstall update.sh 755 usr/share/rrvl/scripts
     vinstall reset_rrvl.sh 755 usr/share/rrvl/scripts
     vinstall flash_uboot.sh 755 usr/share/rrvl/scripts
-    vinstall gmenu2x.sh 755 usr/share/rrvl/scripts
 
     vinstall 50-oga-suspend.sh 755 etc/zzz.d/suspend
     vinstall 50-oga-resume.sh 755 etc/zzz.d/resume
