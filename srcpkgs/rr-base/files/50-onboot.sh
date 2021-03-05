@@ -46,7 +46,7 @@ echo 1500 > /proc/sys/vm/dirty_writeback_centisecs
 
 echo mmc0 > /sys/class/leds/blue:heartbeat/trigger
 
-sed -i /home/odroid/.config/retroarch/retroarch.cfg  -e 's#joypad_autoconfig_dir.*#joypad_autoconfig_dir = "/usr/share/libretro/autoconfig"#'
-sed -i /home/odroid/.config/retroarch/retroarch.cfg  -e 's#libretro_info_path.*#libretro_info_path = "/usr/share/libretro/info"#'
-sed -i /etc/rc.local  -e 's#/usr/bin/onboot.sh.*##'
-
+sed -i /home/odroid/.config/retroarch/retroarch.cfg -e 's#joypad_autoconfig_dir.*#joypad_autoconfig_dir = "/usr/share/libretro/autoconfig"#'
+sed -i /home/odroid/.config/retroarch/retroarch.cfg -e 's#libretro_info_path.*#libretro_info_path = "/usr/share/libretro/info"#'
+sed -i /home/odroid/.config/retroarch/retroarch.cfg -e 's#core_updater_buildbot_cores_url.*#core_updater_buildbot_cores_url = "https://raw.githubusercontent.com/christianhaitian/retroarch-cores/master/aarch64/"#'
+sed -i /etc/rc.local -e 's#/usr/bin/onboot.sh.*##'
