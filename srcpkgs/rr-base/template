@@ -1,24 +1,16 @@
 # Template file for 'rr-base'
 pkgname=rr-base
 version=1.15.1
-revision=1
+revision=2
 archs="aarch64"
 create_wrkdir=true
 short_desc="RRVL base"
 license="GPL-2.0-or-later"
 homepage="https://github.com/valadaa48"
 depends="
- base-files>=0.77 ncurses coreutils findutils diffutils libgcc
- dash bash grep gzip file sed gawk less util-linux which tar
- mdocml>=1.13.3 shadow e2fsprogs xfsprogs dosfstools
- procps-ng tzdata usbutils iana-etc openssh dhcpcd
- kbd iproute2 iputils iw wpa_supplicant xbps nvi sudo wifi-firmware
- ethtool kmod eudev runit-void removed-packages glibc-locales
- p7zip unzip NetworkManager xtools librga libgo2 libmali-bifrost-gbm ogage dialog
- retrorun-go2 u-boot-oga wget odroid-go2-rrvl-kernel mpv
- rrvl-opks libopk libini libSM
-"
-replaces="base-system>=0"
+ p7zip unzip NetworkManager xtools librga libgo2 libmali-bifrost-gbm ogage
+ dialog linux-firmware-network retrorun-go2 u-boot-oga wget odroid-go2-rrvl-kernel
+ mpv rrvl-opks libopk libini"
 conf_files="/boot/rrvl.conf /etc/NetworkManager/conf.d/wifi-powersave-off.conf"
 
 # libSM for CH's PPSSPP opk
