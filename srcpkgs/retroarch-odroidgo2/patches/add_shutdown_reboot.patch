@@ -1,8 +1,8 @@
 diff --git a/menu/menu_setting.c b/menu/menu_setting.c
-index ac940a6a69..c5dc7717b4 100644
+index 497bfedcfe..b4468699e9 100644
 --- a/menu/menu_setting.c
 +++ b/menu/menu_setting.c
-@@ -8077,7 +8077,7 @@ static bool setting_append_list(
+@@ -8534,7 +8534,7 @@ static bool setting_append_list(
                parent_group);
  #endif
  
@@ -12,10 +12,10 @@ index ac940a6a69..c5dc7717b4 100644
          CONFIG_ACTION(
                 list, list_info,
 diff --git a/retroarch.c b/retroarch.c
-index 0eba107d2c..ed5fc7683d 100644
+index 1e75ff089c..c0d3c3467b 100644
 --- a/retroarch.c
 +++ b/retroarch.c
-@@ -16110,7 +16110,7 @@ bool command_event(enum event_command cmd, void *data)
+@@ -14368,7 +14368,7 @@ bool command_event(enum event_command cmd, void *data)
           runloop_msg_queue_push(msg_hash_to_str(MSG_VALUE_SHUTTING_DOWN), 1, 180, true, NULL, MESSAGE_QUEUE_ICON_DEFAULT, MESSAGE_QUEUE_CATEGORY_INFO);
           command_event(CMD_EVENT_MENU_SAVE_CURRENT_CONFIG, NULL);
           command_event(CMD_EVENT_QUIT, NULL);
@@ -24,7 +24,7 @@ index 0eba107d2c..ed5fc7683d 100644
  #endif
           break;
        case CMD_EVENT_REBOOT:
-@@ -16118,7 +16118,7 @@ bool command_event(enum event_command cmd, void *data)
+@@ -14376,7 +14376,7 @@ bool command_event(enum event_command cmd, void *data)
           runloop_msg_queue_push(msg_hash_to_str(MSG_VALUE_REBOOTING), 1, 180, true, NULL, MESSAGE_QUEUE_ICON_DEFAULT, MESSAGE_QUEUE_CATEGORY_INFO);
           command_event(CMD_EVENT_MENU_SAVE_CURRENT_CONFIG, NULL);
           command_event(CMD_EVENT_QUIT, NULL);
