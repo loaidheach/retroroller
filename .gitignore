@@ -5,6 +5,7 @@
 *.o
 masterdir*
 hostdir*
+sync
 etc/conf
 etc/conf.*
 etc/virtual
