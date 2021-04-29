@@ -1,8 +1,8 @@
 # Template file for 'flycast_libretro'
 pkgname=flycast_libretro
-_gitrev=b7839962a58577cd94992ecfc0f3c6f041b90484
+_gitrev=e9e17e325189213f2ef901ac16109050da10008d
 version=1.0.0
-revision=7
+revision=8
 wrksrc="flycast-${_gitrev}"
 hostmakedepends="pkg-config libtool git"
 makedepends="zlib-devel libdrm-devel libgomp-devel MesaLib-devel"
@@ -10,7 +10,7 @@ short_desc="${pkgname}"
 license="GPL-2.0-only"
 homepage="https://github.com/libretro/flycast"
 distfiles="https://github.com/libretro/flycast/archive/${_gitrev}.zip"
-checksum=594187a243784cb212f934dd05ce887f83897e32a15e51345cb9742e8787aad0
+checksum=c9ca39db292f2d11f33462c5335e948bea23141050b091d6377d53d3f687a955
 patch_args="-Np1"
 
 do_build() {
