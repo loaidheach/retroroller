@@ -1,0 +1,18 @@
+# Template file for 'gemrb'
+pkgname=gemrb
+version=0.8.7
+_githash=f5d5134f7d7cd49146c880ddbc79e249345224dd
+revision=2
+wrksrc="gemrb-${_githash}"
+build_style=cmake
+python_version=2
+configure_args="-DDISABLE_WERROR=TRUE -DSDL_BACKEND=SDL2"
+hostmakedepends="pkg-config"
+makedepends="SDL2-devel libopenal-devel zlib-devel python-devel freetype-devel libpng-devel"
+#depends="SDL-go2"
+short_desc="A portable open-source reimplementation of the Infinity Engine"
+maintainer="<joe.batt@gmail.com>"
+license="GPL-2.0-only"
+homepage="https://gemrb.org"
+distfiles="https://github.com/gemrb/gemrb/archive/${_githash}.tar.gz"
+checksum=b50085863375cdb24581522376be0f9f38681284f8099bdcee83f020decb6df7
