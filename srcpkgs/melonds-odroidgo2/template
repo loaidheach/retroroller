@@ -7,7 +7,7 @@ wrksrc="melonDS-${_gitrev}"
 build_style=cmake
 #configure_args="-DBUILD_QT_SDL=OFF"
 hostmakedepends="pkg-config qt5-qmake qt5-host-tools"
-makedepends="libpcap-devel MesaLib-devel SDL2-2.0.10-go2 libslirp-devel qt5-devel"
+makedepends="libpcap-devel MesaLib-devel SDL2-go2 libslirp-devel qt5-devel"
 short_desc="DS emulator, sorta"
 license="GPL-3.0-or-later"
 homepage="https://github.com/Arisotura/melonDS"
