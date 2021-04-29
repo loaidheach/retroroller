@@ -19,7 +19,7 @@ if [ -z "$nopie" ]; then
 		# Enable FORITFY_SOURCE=2
 		#CFLAGS="-fstack-clash-protection -D_FORTIFY_SOURCE=2 ${CFLAGS}"
 		#CXXFLAGS="-fstack-clash-protection -D_FORTIFY_SOURCE=2 ${CXXFLAGS}"
-		FFLAGS="-fstack-clash-protection ${FFLAGS}"
+		FFLAGS="${FFLAGS}"
 		LDFLAGS="-Wl,-z,relro -Wl,-z,now ${LDFLAGS}"
 	fi
 else
