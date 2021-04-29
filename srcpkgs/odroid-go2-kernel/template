@@ -23,7 +23,7 @@ noshlibprovides=yes
 preserve=yes
 
 archs="aarch64"
-hostmakedepends="bc perl kmod uboot-mkimage libressl-devel python ncurses-devel"
+hostmakedepends="bc perl kmod uboot-mkimage openssl-devel python ncurses-devel"
 
 triggers="kernel-hooks"
 _kernver="${version}_${revision}"

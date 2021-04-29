@@ -1,13 +1,13 @@
 # Template file for 'moonlight-embedded'
 pkgname=moonlight-embedded
 version=2.4.11
-revision=14
+revision=16
 _gitrev=5b6639c8a76c4bbb5e0b4bcfe41b8df136608885
 wrksrc="moonlight-embedded-${_gitrev}"
 build_style=cmake
 configure_args="-DCMAKE_INSTALL_LIBDIR=/usr/lib -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_SYSCONFDIR=/etc -DCMAKE_BUILD_TYPE=Release"
 hostmakedepends="pkg-config cmake git"
-makedepends="libcurl-devel libressl-devel libevdev-devel expat-devel opus-devel avahi-libs-devel libenet-devel libuuid-devel libudev-devel libdrm-devel alsa-lib-devel librga-devel rockchip-mpp libcec-devel"
+makedepends="libcurl-devel openssl-devel libevdev-devel expat-devel opus-devel avahi-libs-devel libenet-devel libuuid-devel libudev-devel libdrm-devel alsa-lib-devel librga-devel rockchip-mpp libcec-devel"
 depends="rockchip-mpp libuuid libcec"
 short_desc="Moonlight"
 license="GPL-3.0"
