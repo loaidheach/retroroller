@@ -1,8 +1,8 @@
 # Template file for 'openbor-odroidgo2'
 pkgname=openbor-odroidgo2
-version=0.20210221
+version=0.20210429
 revision=1
-_gitrev=2b7f9ac6cf244e9e68da5e85459e2ba9c5bcb0b9
+_gitrev=60b7e9687ed1d3682b84067c9f47d2ffe1f8cab9
 wrksrc="openbor-${_gitrev}"
 build_style=gnu-makefile
 hostmakedepends="pkg-config"
@@ -11,7 +11,7 @@ short_desc="openbor"
 license="GPL-3.0-or-later"
 homepage="https://github.com/DCurrent/openbor"
 distfiles="https://github.com/DCurrent/openbor/archive/${_gitrev}.tar.gz"
-checksum=8bde7d821fc85c84200b3c61331311d5e7789e96f6ae5ce53ab05b7a5feb6031
+checksum=bcdf433ec5dbc94dcb6e742061b5a6dedddf54425aeeedf27196cc6b0c02dbc0
 
 pre_configure() {
     cd engine
