@@ -1,6 +1,6 @@
 # Template file for 'fheroes2'
 pkgname=fheroes2
-version=0.9.2
+version=0.9.3
 revision=1
 nopie=yes
 nogir=yes
@@ -9,7 +9,7 @@ wrksrc="fheroes2-${version}"
 create_wrksrc=yes
 depends="SDL2-go2 SDL2_ttf SDL2_mixer SDL2_image"
 short_desc="Heroes of Might and Magic II engine for modern operating systems"
-checksum="0c012213a855d64dab51ecb4bb7b2f9b4ffd3978a987954bc60211960174b6eb"
+checksum="b1cf01c51f024ccd0327c00a8f37a9a72367b74dde9402906bf51f0bcac777a9"
 maintainer="<loaidheach@chaoticneutral.eu>"
 license="GPL 2.0"
 homepage="https://github.com/ihhub/fheroes2"
