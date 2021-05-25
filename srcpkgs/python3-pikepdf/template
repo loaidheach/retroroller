@@ -1,7 +1,7 @@
 # Template file for 'python3-pikepdf'
 pkgname=python3-pikepdf
-version=2.11.2
-revision=2
+version=2.12.0
+revision=1
 wrksrc="pikepdf-${version}"
 build_style=python3-module
 hostmakedepends="python3-pybind11 python3-setuptools_scm python3-toml python3-wheel"
@@ -13,7 +13,7 @@ maintainer="Philipp David <pd@3b.pm>"
 license="MPL-2.0"
 homepage="https://github.com/pikepdf/pikepdf"
 distfiles="${PYPI_SITE}/p/pikepdf/pikepdf-${version}.tar.gz"
-checksum=0958a07ebf12d62427babadd6a922409cb358d0415a5219a9269d8fab2aa487e
+checksum=fcbb6e37426564ccaf6bb301616700277d426225895b00a64283a95ff648f3b9
 
 pre_build() {
 	vsed -e '/setuptools_scm_git_archive/d' -i setup.py
