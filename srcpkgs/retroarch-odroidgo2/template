@@ -1,8 +1,8 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
 version=1.9.3
-revision=1
-_gitrev=d64769debceb2f549d64a17c8f288a8f4881187c
+revision=2
+_gitrev=b95ae331a352b0fc15042db100881975f684a934
 wrksrc="RetroArch-${_gitrev}"
 build_style=configure
 configure_args="--prefix=/usr
@@ -18,7 +18,6 @@ configure_args="--prefix=/usr
  --disable-video_layout
  --disable-oss
  --disable-opengl_core
- --enable-git_version
  --enable-networking
  --enable-ozone
  --enable-egl
@@ -36,7 +35,7 @@ short_desc="Official reference frontend for the libretro API"
 license="GPL-3.0-or-later"
 homepage="http://www.libretro.com/"
 distfiles="https://github.com/cplr/RetroArch/archive/${_gitrev}.tar.gz"
-checksum=ede8be89ded5dcb97dc483d84fe8b0b90b533f8a4a7912ab1a42d9b5eaef5cf3
+checksum=5f17673719bf732eeacc206798accc48d8f1bce26df535adfbeb9f6c1f66e953
 patch_args="-Np1"
 
 export CFLAGS="$CFLAGS -O3 -fno-tree-vectorize"
@@ -115,7 +114,7 @@ pre_build() {
 }
 
 do_build() {
-    make -j$(nproc) GIT_VERSION=${_gitrev} V=1
+    make -j$(nproc) V=1
 }
 
 post_install() {
