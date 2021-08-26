@@ -1,9 +1,8 @@
 # Template file for 'kxmlgui'
 pkgname=kxmlgui
-version=5.82.0
+version=5.85.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF"
 hostmakedepends="kcoreaddons extra-cmake-modules kcoreaddons
  gettext qt5-qmake qt5-host-tools python3"
 makedepends="kglobalaccel-devel ktextwidgets-devel attica-devel"
@@ -12,7 +11,12 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.0-or-later, LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/kxmlgui"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=91046f2dffaa6426f766285559bb47e898950b2414fbe610d92b30e3aefb2d11
+checksum=253ae3984f2cc68165c683f5ac1f0a0417923d13673354e7ac8f156542cd3cb2
+
+do_check() {
+	cd build
+	ctest -E 'ktoolbar_unittest'
+}
 
 kxmlgui-devel_package() {
 	short_desc+=" - development"

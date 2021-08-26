@@ -1,6 +1,6 @@
 # Template file for 'libkleo'
 pkgname=libkleo
-version=21.04.1
+version=21.08.0
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules python3 qt5-qmake qt5-host-tools
@@ -11,7 +11,7 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later, LGPL-2.1-or-later"
 homepage="https://community.kde.org/KDE_PIM"
 distfiles="${KDE_SITE}/release-service/${version}/src/libkleo-${version}.tar.xz"
-checksum=09e080d6a3e0f1d1433a839211eb457e449fd3a36c400f128f1c373c52b65949
+checksum=77aa3100ec9a30c6085b5edc9efb1ebd44c7ae1216bf594c033f0d06e02e2692
 
 libkleo-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision} ${makedepends}"

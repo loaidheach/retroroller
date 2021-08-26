@@ -1,9 +1,9 @@
 # Template file for 'ktexteditor'
 pkgname=ktexteditor
-version=5.82.0
+version=5.85.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF
+configure_args="
  -DDESKTOPTOJSON_EXECUTABLE=/usr/bin/desktoptojson"
 hostmakedepends="kcoreaddons extra-cmake-modules pkg-config
  qt5-host-tools qt5-qmake python3 kauth kparts gettext"
@@ -13,7 +13,12 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.0-or-later"
 homepage="https://invent.kde.org/frameworks/ktexteditor"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=7c42e7527b2245b3eb8041afcb133457e416311a2342004c2c51e7be9700941d
+checksum=d550711e98e1ebdfcb74840e55328ad4ab40e1a90038f6ae3f64d5c3d19fddc8
+
+do_check() {
+	cd build
+	ctest -E 'kateview_test'
+}
 
 ktexteditor-devel_package() {
 	short_desc+=" - development"
