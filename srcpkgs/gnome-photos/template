@@ -1,11 +1,11 @@
 # Template file for 'gnome-photos'
 pkgname=gnome-photos
 version=40.0
-revision=1
+revision=3
 build_helper="gir"
 build_style=meson
-configure_args="-Ddogtail=false"
-hostmakedepends="pkg-config gettext itstool glib-devel gdk-pixbuf librsvg"
+configure_args="-Ddogtail=false -Dmanuals=true"
+hostmakedepends="pkg-config gettext itstool glib-devel gdk-pixbuf librsvg docbook-xsl libxslt"
 makedepends="gtk+3-devel babl-devel exempi-devel lcms2-devel
  gfbgraph-devel tracker3-devel libexif-devel librsvg-devel grilo-devel
  libgexiv2-devel gnome-online-accounts-devel gnome-desktop-devel libgdata-devel

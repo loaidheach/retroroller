@@ -1,18 +1,18 @@
 # Template file for 'xkeyboard-config'
 pkgname=xkeyboard-config
-version=2.32
-revision=1
+version=2.33
+revision=2
 build_style=gnu-configure
 configure_args="--with-xkb-rules-symlink=xfree86,xorg --enable-compat-rules"
 hostmakedepends="pkg-config libxslt intltool python3"
-makedepends="libX11-devel"
+makedepends="libX11-devel xkbcomp"
 depends="xkbcomp"
 short_desc="X Keyboard Configuration Database"
 maintainer="skmpz <dem.procopiou@gmail.com>"
 license="MIT"
 homepage="https://www.freedesktop.org/wiki/Software/XKeyboardConfig"
 distfiles="${XORG_SITE}/data/${pkgname}/${pkgname}-${version}.tar.bz2"
-checksum=1feee317ba39b91902b0cbd2987c0c73e6afbfc8f4c096367a5c86c216c036a8
+checksum=657fd790d6dcf781cd395de4cf726120a5b0f93ba91dfb2628bcc70ae8b1d3bc
 
 post_install() {
 	vlicense COPYING

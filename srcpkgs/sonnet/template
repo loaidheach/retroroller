@@ -1,6 +1,6 @@
 # Template file for 'sonnet'
 pkgname=sonnet
-version=5.82.0
+version=5.85.0
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=ON"
@@ -11,16 +11,12 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/sonnet"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=8e0a9a80a70def5c992c25d50cbeaa38f1655da83e80b6aae8847d77289111c2
+checksum=fce206399ca3b8d727d17ee00e6cd8139dc85650431e4cab3f932ec01270e2b1
 
 if [ "$CROSS_BUILD" ]; then
 	hostmakedepends+=" qt5-host-tools qt5-tools-devel sonnet"
 	configure_args+=" -DPARSETRIGRAMS_EXECUTABLE=/usr/bin/parsetrigrams"
 fi
-
-pre_check() {
-	export QT_QPA_PLATFORM=offscreen
-}
 
 sonnet-devel_package() {
 	short_desc+=" - development"

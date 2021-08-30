@@ -1,9 +1,8 @@
 # Template file for 'kdewebkit'
 pkgname=kdewebkit
-version=5.82.0
+version=5.85.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF"
 hostmakedepends="kcoreaddons extra-cmake-modules
  qt5-host-tools qt5-qmake python3 gettext"
 makedepends="kparts-devel qt5-webkit-devel"
@@ -12,7 +11,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.0-or-later"
 homepage="https://invent.kde.org/frameworks/kdewebkit"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/portingAids/${pkgname}-${version}.tar.xz"
-checksum=1fa2400c0605fa3b0e2dc7de9515290488e06406aea7325f964dc2ee61378910
+checksum=83b0eb5bf4db086315857493e928d4333843bd303e38d754a3ba8ceb38298293
 
 kdewebkit-devel_package() {
 	short_desc+=" - development"

@@ -1,8 +1,7 @@
 # Template file for 'python3-grpcio'
 pkgname=python3-grpcio
-version=1.38.0
+version=1.39.0
 revision=1
-archs="x86_64* i686* aarch64* armv[67]* ppc64le*"
 wrksrc="${pkgname#*-}-${version}"
 build_style=python3-module
 hostmakedepends="python3-setuptools python3-six"
@@ -13,7 +12,7 @@ maintainer="Andrew J. Hesford <ajh@sideband.org>"
 license="Apache-2.0"
 homepage="https://grpc.io"
 distfiles="${PYPI_SITE}/g/grpcio/grpcio-${version}.tar.gz"
-checksum=abbf9c8c3df4d5233d5888c6cfa85c1bb68a6923749bd4dd1abc6e1e93986f17
+checksum=57974361a459d6fe04c9ae0af1845974606612249f467bbd2062d963cb90f407
 
 if [ "$XBPS_TARGET_NO_ATOMIC8" ]; then
 	makedepends+=" libatomic-devel"

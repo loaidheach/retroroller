@@ -1,7 +1,7 @@
 # Template file for 'systemsettings'
 pkgname=systemsettings
-version=5.21.5
-revision=2
+version=5.22.4
+revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF"
 hostmakedepends="python3 qt5-qmake qt5-host-tools kconfig
@@ -14,4 +14,4 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later, GFDL-1.2-only"
 homepage="https://invent.kde.org/plasma/systemsettings"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=95784e6f0dc89778ebbd0bc4536f690cd8454001c7665eb853c0c6eace987acd
+checksum=10ed28d66aa7419210013f8a71cf43acdf82155cc47f6a1c9caa41a37480e2aa

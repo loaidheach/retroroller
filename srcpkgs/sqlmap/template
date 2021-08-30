@@ -1,6 +1,6 @@
 # Template file for 'sqlmap'
 pkgname=sqlmap
-version=1.5.5
+version=1.5.8
 revision=1
 pycompile_dirs="usr/libexec/sqlmap"
 depends="python3"
@@ -9,7 +9,7 @@ maintainer="Andrew Benson <abenson+void@gmail.com>"
 license="GPL-2.0-or-later"
 homepage="http://sqlmap.org"
 distfiles="https://github.com/sqlmapproject/sqlmap/archive/${version}.tar.gz"
-checksum=66a234c3ee60604a8edd685a64110663a633757d3183db314edd76526fe1a0d8
+checksum=a4302858bcf7791334e8f7165885369898330aa547888db0e73576b53f96771d
 python_version=3
 
 do_install() {

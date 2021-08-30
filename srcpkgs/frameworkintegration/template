@@ -1,9 +1,8 @@
 # Template file for 'frameworkintegration'
 pkgname=frameworkintegration
-version=5.82.0
+version=5.85.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF"
 hostmakedepends="kcoreaddons extra-cmake-modules pkg-config
  qt5-host-tools qt5-qmake python3 gettext"
 makedepends="kiconthemes-devel knotifications-devel kpackage-devel knewstuff-devel"
@@ -12,7 +11,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.0-or-later"
 homepage="https://invent.kde.org/frameworks/frameworkintegration"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=e230c8c3189addc85526321c289eacc225b07b0f8c6fa4d897953e599c48ca75
+checksum=f9d799b70f1c8ae661775c0a968e459bff8c5411567856075ac143573c0c77c8
 
 frameworkintegration-devel_package() {
 	short_desc+=" - development"

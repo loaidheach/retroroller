@@ -6,8 +6,8 @@ Updated by @q66.
 
 diff --git Source/JavaScriptCore/runtime/JSGenericTypedArrayView.h Source/JavaScriptCore/runtime/JSGenericTypedArrayView.h
 index dbe211d..4da5fbd 100644
---- Source/JavaScriptCore/runtime/JSGenericTypedArrayView.h
-+++ Source/JavaScriptCore/runtime/JSGenericTypedArrayView.h
+--- a/Source/JavaScriptCore/runtime/JSGenericTypedArrayView.h
++++ b/Source/JavaScriptCore/runtime/JSGenericTypedArrayView.h
 @@ -28,6 +28,7 @@
  #include "JSArrayBufferView.h"
  #include "ThrowScope.h"
@@ -115,8 +115,8 @@ index dbe211d..4da5fbd 100644
      {
 diff --git Source/JavaScriptCore/runtime/JSGenericTypedArrayViewPrototypeFunctions.h Source/JavaScriptCore/runtime/JSGenericTypedArrayViewPrototypeFunctions.h
 index 126f33c..0913af5 100644
---- Source/JavaScriptCore/runtime/JSGenericTypedArrayViewPrototypeFunctions.h
-+++ Source/JavaScriptCore/runtime/JSGenericTypedArrayViewPrototypeFunctions.h
+--- a/Source/JavaScriptCore/runtime/JSGenericTypedArrayViewPrototypeFunctions.h
++++ b/Source/JavaScriptCore/runtime/JSGenericTypedArrayViewPrototypeFunctions.h
 @@ -208,9 +208,36 @@ ALWAYS_INLINE EncodedJSValue genericTypedArrayViewProtoFuncIncludes(VM& vm, JSGl
      scope.assertNoException();
      RELEASE_ASSERT(!thisObject->isDetached());
@@ -158,8 +158,8 @@ index 126f33c..0913af5 100644
      } else {
 diff --git Source/WTF/wtf/FlipBytes.h Source/WTF/wtf/FlipBytes.h
 index 6cd7126..24708f7 100644
---- Source/WTF/wtf/FlipBytes.h
-+++ Source/WTF/wtf/FlipBytes.h
+--- a/Source/WTF/wtf/FlipBytes.h
++++ b/Source/WTF/wtf/FlipBytes.h
 @@ -24,6 +24,7 @@
   */
  
@@ -211,3 +211,51 @@ index 6cd7126..24708f7 100644
  template<typename T>
  inline T flipBytesIfLittleEndian(T value, bool littleEndian)
  {
+diff --git a/Source/JavaScriptCore/llint/LLIntOfflineAsmConfig.h b/Source/JavaScriptCore/llint/LLIntOfflineAsmConfig.h
+index 33be4058..1a6d69fd 100644
+--- a/Source/JavaScriptCore/llint/LLIntOfflineAsmConfig.h
++++ b/Source/JavaScriptCore/llint/LLIntOfflineAsmConfig.h
+@@ -179,3 +179,9 @@
+ #else
+ #define OFFLINE_ASM_HAVE_FAST_TLS 0
+ #endif
++
++#if CPU(BIG_ENDIAN)
++#define OFFLINE_ASM_BIG_ENDIAN 1
++#else
++#define OFFLINE_ASM_BIG_ENDIAN 0
++#endif
+diff --git a/Source/JavaScriptCore/llint/LowLevelInterpreter32_64.asm b/Source/JavaScriptCore/llint/LowLevelInterpreter32_64.asm
+index 20c0c40b..10c58846 100644
+--- a/Source/JavaScriptCore/llint/LowLevelInterpreter32_64.asm
++++ b/Source/JavaScriptCore/llint/LowLevelInterpreter32_64.asm
+@@ -1667,7 +1667,11 @@ llintOpWithMetadata(op_get_by_val, OpGetByVal, macro (size, get, dispatch, metad
+ 
+ .opGetByValNotDouble:
+     subi ArrayStorageShape, t2
+-    bia t2, SlowPutArrayStorageShape - ArrayStorageShape, .opGetByValNotIndexedStorage
++    if BIG_ENDIAN
++        bia t2, SlowPutArrayStorageShape - ArrayStorageShape, .opGetByValSlow
++    else
++        bia t2, SlowPutArrayStorageShape - ArrayStorageShape, .opGetByValNotIndexedStorage
++    end
+     biaeq t1, -sizeof IndexingHeader + IndexingHeader::u.lengths.vectorLength[t3], .opGetByValSlow
+     loadi ArrayStorage::m_vector + TagOffset[t3, t1, 8], t2
+     loadi ArrayStorage::m_vector + PayloadOffset[t3, t1, 8], t1
+diff --git a/Source/JavaScriptCore/llint/LowLevelInterpreter64.asm b/Source/JavaScriptCore/llint/LowLevelInterpreter64.asm
+index 27e76d2f..bfb2a46e 100644
+--- a/Source/JavaScriptCore/llint/LowLevelInterpreter64.asm
++++ b/Source/JavaScriptCore/llint/LowLevelInterpreter64.asm
+@@ -1721,7 +1721,11 @@ llintOpWithMetadata(op_get_by_val, OpGetByVal, macro (size, get, dispatch, metad
+     
+ .opGetByValNotDouble:
+     subi ArrayStorageShape, t2
+-    bia t2, SlowPutArrayStorageShape - ArrayStorageShape, .opGetByValNotIndexedStorage
++    if BIG_ENDIAN
++        bia t2, SlowPutArrayStorageShape - ArrayStorageShape, .opGetByValSlow
++    else
++        bia t2, SlowPutArrayStorageShape - ArrayStorageShape, .opGetByValNotIndexedStorage
++    end
+     biaeq t1, -sizeof IndexingHeader + IndexingHeader::u.lengths.vectorLength[t3], .opGetByValSlow
+     get(m_dst, t0)
+     loadq ArrayStorage::m_vector[t3, t1, 8], t2
