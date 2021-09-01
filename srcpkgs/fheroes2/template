@@ -1,6 +1,6 @@
 # Template file for 'fheroes2'
 pkgname=fheroes2
-version=0.9.4
+version=0.9.5
 revision=1
 nopie=yes
 nogir=yes
