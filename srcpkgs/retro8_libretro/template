@@ -1,16 +1,17 @@
 # Template file for 'retro8_libretro'
 pkgname=retro8_libretro
-_gitrev=87b5f5446a4dc7987f836ece5c6a3e23daeb9839
+_gitrev=1e7d61b23a6d81bb85f0b79fc14881d643a02bb5
 version=0.1
-revision=1
+revision=3
 wrksrc="retro8-${_gitrev}"
-hostmakedepends="pkg-config libtool git"
+hostmakedepends="libtool git"
+#hostmakedepends="pkg-config libtool git"
 makedepends="zlib-devel libdrm-devel libgomp-devel MesaLib-devel"
 short_desc="${pkgname}"
 license="GPL-2.0-only"
 homepage="https://github.com/Jakz/retro8"
 distfiles="https://github.com/Jakz/retro8/archive/${_gitrev}.zip"
-checksum=6d119e9ab2186c1b16faba7be3e6fe14bc6f5410e92307735d8c003b5c683ea8
+checksum=291539872a2e914eea9d0e39b3e338c3bd984330b9e20f7e4dbf74c2980549a3
 patch_args="-Np1"
 
 post_extract() {
@@ -26,4 +27,6 @@ do_build() {
 
 do_install() {
     vinstall "${pkgname}.so" 755 opt/libretro
+    vmkdir /usr/share/libretro/info/
+	cp ${FILESDIR}/${pkgname}.info "${DESTDIR}"/usr/share/libretro/info/"${pkgname}".info
 }
