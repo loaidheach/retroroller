@@ -5,11 +5,11 @@ diff -ur setup.py setup.py
                  "--message-format=json",
              ]
  
--            if platform.machine() in ("ppc64le", "ppc64", "powerpc"):
-+            if platform.machine() in ("ppc64le", "ppc64", "powerpc", "ppcle", "ppc"):
+-            if platform.machine() in ("ppc64le", "ppc64", "powerpc") or (
++            if platform.machine() in ("ppc64le", "ppc64", "powerpc", "ppcle", "ppc") or (
+                 sys.platform == "win32" and platform.machine() == "ARM64"
+             ):
                  cargo_args.extend(
-                     ["--no-default-features", "--features=upload,log,human-panic"]
-                 )
 diff -ur src/target.rs src/target.rs
 --- a/src/target.rs
 +++ b/src/target.rs
@@ -67,15 +67,14 @@ diff -ur src/target.rs src/target.rs
              Arch::X86 => 32,
              Arch::X86_64 => 64,
              Arch::S390X => 64,
-diff -ur src/auditwheel/audit.rs src/auditwheel/audit.rs
---- a/src/auditwheel/audit.rs
-+++ b/src/auditwheel/audit.rs
-@@ -278,6 +278,8 @@
-                             Arch::Armv7L => "libc.musl-armv7.so.1",
-                             Arch::Powerpc64Le => "libc.musl-ppc64le.so.1",
-                             Arch::Powerpc64 => "", // musllinux doesn't support ppc64
-+                            Arch::PowerpcLe => "", // musllinux doesn't support ppcle
-+                            Arch::Powerpc => "",   // musllinux doesn't support ppc
-                             Arch::X86 => "libc.musl-x86.so.1",
-                             Arch::X86_64 => "libc.musl-x86_64.so.1",
-                             Arch::S390X => "libc.musl-s390x.so.1",
+--- a/src/auditwheel/policy.rs
++++ b/src/auditwheel/policy.rs
+@@ -110,6 +110,8 @@
+                 Arch::Armv7L => "libc.musl-armv7.so.1",
+                 Arch::Powerpc64Le => "libc.musl-ppc64le.so.1",
+                 Arch::Powerpc64 => "", // musllinux doesn't support ppc64
++                Arch::PowerpcLe => "", // musllinux doesn't support ppcle
++                Arch::Powerpc => "", // musllinux doesn't support ppc
+                 Arch::X86 => "libc.musl-x86.so.1",
+                 Arch::X86_64 => "libc.musl-x86_64.so.1",
+                 Arch::S390X => "libc.musl-s390x.so.1",
