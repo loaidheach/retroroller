@@ -1,6 +1,6 @@
 # Template file for 'retroarch-odroidgo2'
 pkgname=retroarch-odroidgo2
-version=1.9.8
+version=1.9.14
 revision=1
 wrksrc="RetroArch-$version"
 build_style=configure
@@ -29,7 +29,7 @@ license="GPL-3.0-or-later"
 homepage="https://www.retroarch.com/"
 changelog="https://raw.githubusercontent.com/libretro/RetroArch/master/CHANGES.md"
 distfiles="https://github.com/libretro/RetroArch/archive/v$version.tar.gz"
-checksum=2c50de13ff9e7cea22494451f4947b428284f3103b922a4baa603a50077d40ee
+checksum=874f3e3aca1d12d2cb9d34687eb052eec0ccfc0f335606f61fa6a03c8b6bb90a
 
 configure_args+=" --enable-odroidgo2 --enable-wifi"
 depends+=" libretro-core-info retroarch-joypad-autoconfig"
