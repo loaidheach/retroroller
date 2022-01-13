@@ -10,6 +10,8 @@ XBPS_CROSS_CXXFLAGS="$XBPS_CROSS_CFLAGS"
 XBPS_CROSS_FFLAGS="$XBPS_CROSS_CFLAGS"
 XBPS_CROSS_RUSTFLAGS="--sysroot=${XBPS_CROSS_BASE}/usr"
 XBPS_CROSS_RUST_TARGET="aarch64-unknown-linux-gnu"
+XBPS_CROSS_ZIG_TARGET="aarch64-linux-gnu"
+XBPS_CROSS_ZIG_CPU="baseline"
 
 LTO_FLAGS="-flto=$(nproc) -fuse-linker-plugin"
 OPT_CFLAGS="-ftree-vectorize -fdata-sections -ffunction-sections -fno-ident -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-math-errno -funsafe-math-optimizations -ffast-math"

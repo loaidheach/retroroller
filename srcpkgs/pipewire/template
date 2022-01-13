@@ -1,7 +1,8 @@
 # Template file for 'pipewire'
 pkgname=pipewire
-version=0.3.33
-revision=2
+version=0.3.41
+revision=1
+_pms_version=0.4.1
 build_style=meson
 configure_args="
  --auto-features=enabled
@@ -13,21 +14,26 @@ configure_args="
  -Dsystemd=disabled
  -Dudevrulesdir=/usr/lib/udev/rules.d
  -Dvulkan=enabled
+ -Dmedia-session:systemd=disabled
 "
-hostmakedepends="doxygen graphviz pkg-config xmltoman gettext"
+hostmakedepends="doxygen graphviz pkg-config python3-docutils gettext"
 makedepends="$(vopt_if sdl2 SDL2-devel) gst-plugins-base1-devel jack-devel
  sbc-devel v4l-utils-devel libva-devel libbluetooth-devel ncurses-devel
  libfreeaptx-devel libusb-devel fdk-aac-devel libsndfile-devel Vulkan-Headers
- vulkan-loader pulseaudio-devel avahi-libs-devel webrtc-audio-processing-devel"
+ vulkan-loader pulseaudio-devel avahi-libs-devel webrtc-audio-processing-devel
+ readline-devel openssl-devel lilv-devel "
 depends="libspa-alsa>=${version}_${revision} libspa-audioconvert>=${version}_${revision}
- libspa-audiomixer>=${version}_${revision} libspa-control>=${version}_${revision}"
+ libspa-audiomixer>=${version}_${revision} libspa-control>=${version}_${revision}
+ libspa-v4l2>=${version}_${revision}"
 short_desc="Server and user space API to deal with multimedia pipelines"
 maintainer="Stefano Ragni <stefano.ragni@outlook.com>"
 license="MIT"
 homepage="https://pipewire.org/"
 changelog="https://gitlab.freedesktop.org/pipewire/pipewire/-/raw/master/NEWS"
-distfiles="https://gitlab.freedesktop.org/pipewire/pipewire/-/archive/${version}/pipewire-${version}.tar.gz"
-checksum=f60662be410523cbb767dbee81156f9e9e3bd2b06d0ea21e94c11eb7a6530bcc
+distfiles="https://gitlab.freedesktop.org/pipewire/pipewire/-/archive/${version}/pipewire-${version}.tar.gz
+ https://gitlab.freedesktop.org/pipewire/media-session/-/archive/${_pms_version}/media-session-${_pms_version}.tar.gz"
+checksum="665dd941c37f96b2709871ac594d21850b39038eb69a99ae77a7954ad3c35f4e
+ 119c9216070b54018217552c7924f9888da270c3c4647c5e2b85ffa6b1574975"
 make_dirs="/var/lib/pipewire 0755 _pipewire _pipewire"
 system_accounts="_pipewire"
 
@@ -45,6 +51,10 @@ if [ "$XBPS_TARGET_ENDIAN" = "le" ]; then
 else
 	configure_args+=" -Dbluez5-codec-ldac=disabled"
 fi
+
+post_extract() {
+	mv ${XBPS_BUILDDIR}/media-session-${_pms_version} ${wrksrc}/subprojects/media-session
+}
 
 post_install() {
 	vlicense LICENSE

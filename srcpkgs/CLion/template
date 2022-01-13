@@ -1,7 +1,7 @@
 # Template file for 'CLion'
 pkgname=CLion
-version=2021.2
-revision=2
+version=2021.3
+revision=1
 archs="x86_64 aarch64"
 wrksrc="clion-${version}"
 depends="jetbrains-jdk-bin giflib libXtst"
@@ -10,7 +10,7 @@ maintainer="Anton Afanasyev <anton@doubleasoftware.com>"
 license="custom:Commercial"
 homepage="https://www.jetbrains.com/clion"
 distfiles="https://download.jetbrains.com/cpp/CLion-${version}.tar.gz"
-checksum=2cabf03c825f15cb9216a936aa20c2caef8a0c3624556292b60f9a25ca22a146
+checksum=4968657ad64d55da794bcf9b878fdd36ed233014152930058f761296d2047867
 repository=nonfree
 restricted=yes
 nopie=yes

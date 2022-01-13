@@ -1,12 +1,12 @@
 # Template file for 'stress-ng'
 pkgname=stress-ng
-version=0.13.00
+version=0.13.08
 revision=1
 build_style=gnu-makefile
 make_use_env=1
 short_desc="Load and stress a computer system"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="GPL-2.0-or-later"
-homepage="http://kernel.ubuntu.com/~cking/stress-ng/"
-distfiles="http://kernel.ubuntu.com/~cking/tarballs/stress-ng/${pkgname}-${version}.tar.xz"
-checksum=1cefe4a3057c1522b146e62f61b80ce6e2e99da2d85ebe25bc03fc45228e58cd
+homepage="https://github.com/ColinIanKing/stress-ng/"
+distfiles="https://github.com/ColinIanKing/stress-ng/archive/refs/tags/V${version}.tar.gz"
+checksum=5dbb886f3926ef6c88e18cfd83c750f9fc11fb658f83b6eafcf22fd3a456cc8f
